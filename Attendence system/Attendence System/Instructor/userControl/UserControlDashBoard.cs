@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace attendence_system.Admin.userControl
+namespace attendence_system.Instructor
 {
-    public partial class UserControlAddClass : UserControl
+    public partial class UserControlDashBoard : UserControl
     {
-        public UserControlAddClass()
+        public UserControlDashBoard()
         {
             InitializeComponent();
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<studentsRecords xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\repo\Attendance-C-project\DataValidator.xsd">
+<studentsRecords xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\repo\Attendance-C-project\Data\DataValidator.xsd">
 	<class id="1">
 		<students>
 			<student>
-				<id>1</id>
-				<name>Ahmed</name>
-				<phone>01015328933</phone>
+				<id>10</id>
 				<attendanceDates>
 					<date>2024-03-12</date>
 					<status>p</status>
@@ -20,9 +18,7 @@
 	<class id="2">
 		<students>
 			<student>
-				<id>100</id>
-				<name>Abdo</name>
-				<phone>01125488751</phone>
+				<id>20</id>
 				<attendanceDates>
 					<date>2024-04-12</date>
 					<status>a</status>

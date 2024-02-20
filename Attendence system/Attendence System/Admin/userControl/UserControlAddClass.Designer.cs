@@ -32,10 +32,10 @@
             toolTip = new ToolTip(components);
             tabControlAddClass = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            label1 = new Label();
-            label2 = new Label();
             textBoxName = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
+            tabPage2 = new TabPage();
             tabControlAddClass.SuspendLayout();
             tabPage1.SuspendLayout();
             SuspendLayout();
@@ -60,20 +60,29 @@
             tabPage1.Location = new Point(4, 4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(934, 468);
+            tabPage1.Size = new Size(934, 464);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Add Class";
             tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
             // 
-            // tabPage2
+            // textBoxName
             // 
-            tabPage2.Location = new Point(4, 4);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(192, 70);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            textBoxName.Location = new Point(115, 151);
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(270, 27);
+            textBoxName.TabIndex = 2;
+            textBoxName.TextChanged += this.textBoxName_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label2.Location = new Point(115, 106);
+            label2.Name = "label2";
+            label2.Size = new Size(70, 19);
+            label2.TabIndex = 1;
+            label2.Text = "Name :";
             // 
             // label1
             // 
@@ -82,30 +91,23 @@
             label1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label1.Location = new Point(6, 3);
             label1.Name = "label1";
-            label1.Size = new Size(74, 16);
+            label1.Size = new Size(93, 19);
             label1.TabIndex = 0;
             label1.Text = "Add Class";
             // 
-            // label2
+            // tabPage2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(115, 106);
-            label2.Name = "label2";
-            label2.Size = new Size(54, 16);
-            label2.TabIndex = 1;
-            label2.Text = "Name :";
-            // 
-            // textBoxName
-            // 
-            textBoxName.Location = new Point(115, 151);
-            textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(270, 23);
-            textBoxName.TabIndex = 2;
+            tabPage2.Location = new Point(4, 4);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(934, 465);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // UserControlAddClass
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(tabControlAddClass);

@@ -59,6 +59,7 @@
             label5 = new Label();
             label4 = new Label();
             timerDateAndTime = new System.Windows.Forms.Timer(components);
+            userControlDashboard1 = new Admin.userControl.UserControlDashboard();
             panel1.SuspendLayout();
             panelAttendance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -409,11 +410,23 @@
             // 
             timerDateAndTime.Tick += timerDateAndTime_Tick;
             // 
+            // userControlDashboard1
+            // 
+            userControlDashboard1.BackColor = Color.White;
+            userControlDashboard1.Dock = DockStyle.Fill;
+            userControlDashboard1.Font = new Font("Century Gothic", 9.75F);
+            userControlDashboard1.Location = new Point(333, 179);
+            userControlDashboard1.Margin = new Padding(4, 4, 4, 4);
+            userControlDashboard1.Name = "userControlDashboard1";
+            userControlDashboard1.Size = new Size(1175, 541);
+            userControlDashboard1.TabIndex = 2;
+            // 
             // instructor
             // 
             AutoScaleDimensions = new SizeF(12F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1508, 720);
+            Controls.Add(userControlDashboard1);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -477,5 +490,6 @@
         private Button buttonLogOut;
         private Button buttonMinimize;
         private System.Windows.Forms.Timer timerDateAndTime;
+        private Admin.userControl.UserControlDashboard userControlDashboard1;
     }
 }
