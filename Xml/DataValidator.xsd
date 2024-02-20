@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="id">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="name">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-z A-Z]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="phone">
+		<xs:restriction base="id">
+			<xs:pattern value="01[0125][0-9]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="status">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[ap]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="studentsRecords">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="class" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="students">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="student">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="id" type="id"/>
+													<xs:element name="name" type="name"/>
+													<xs:element name="phone" type="phone"/>
+													<xs:element name="attendanceDates" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="date" type="xs:date"/>
+																<xs:element name="status" type="status"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="id"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

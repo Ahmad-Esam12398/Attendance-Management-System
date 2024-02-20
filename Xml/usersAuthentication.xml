@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\repo\Attendance-C-project\usersAuthenticationSchema.xsd">
+	<user>
+		<id>1</id>
+		<email>ahmad.esam1231998@gmail.com</email>
+		<password>12345678</password>
+		<role>admin</role>
+	</user>
+	<user>
+		<id>100</id>
+		<email>abdo.osama123@gmail.com</email>
+		<password>12345678</password>
+		<role>instructor</role>
+	</user>
+</users>
