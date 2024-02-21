@@ -77,5 +77,10 @@ namespace attendence_system.Instructor
         {
             MoveSidePanel(panelAddStudent);
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

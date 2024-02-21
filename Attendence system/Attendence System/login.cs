@@ -1,4 +1,5 @@
 using AttendanceManagmentProject.Admin;
+using attendence_system.Instructor;
 using System;
 using System.Windows.Forms;
 using System.Xml;
@@ -44,9 +45,11 @@ namespace attendence_system
                         break;
                     case "instructor":
                         MessageBox.Show("Login Successful as Instructor!");
-                        //instructor.UserName = "Ahmad"; // Example: Set the username for the instructor
-                        //instructor.Role = "Instructor"; // Example: Set the role for the instructor
-                        //instructor instructorForm = new instructor();
+                        this.Hide();
+                        // Create and show the admin form
+                        instructor instructorform = new instructor();
+                        instructorform.FormClosed += (s, args) => this.Close(); // Close the login form when the admin form is closed
+                        instructorform.Show();
 
                         break;
                     case "student":
