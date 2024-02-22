@@ -30,6 +30,18 @@
 					<status>present</status>
 				</attendanceDates>
 			</student>
+			<student>
+				<id>21</id>
+				<attendanceDates>
+					<date>2024-04-12</date>
+					<status>a</status>
+				</attendanceDates>
+				<attendanceDates>
+					<date>2024-04-15</date>
+					<status>p</status>
+				</attendanceDates>
+			</student>
+			
 		</students>
 		<instructors>
 		</instructors>

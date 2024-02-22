@@ -7,6 +7,12 @@
     <Compile Update="Admin\userControl\UserControlAddClass.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Admin\userControl\UserControlAddStudent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Admin\userControl\UserControlAddTeacher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Admin\userControl\UserControlDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>

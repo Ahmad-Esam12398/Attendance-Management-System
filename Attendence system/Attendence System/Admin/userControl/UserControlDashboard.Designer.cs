@@ -56,7 +56,7 @@
             panel1.Controls.Add(labelTotalClasses);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(115, 85);
+            panel1.Location = new Point(61, 85);
             panel1.Name = "panel1";
             panel1.Size = new Size(259, 128);
             panel1.TabIndex = 0;
@@ -98,11 +98,11 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.None;
-            panel2.BackColor = Color.Lavender;
+            panel2.BackColor = Color.Thistle;
             panel2.Controls.Add(labelTotalStudents);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(pictureBox2);
-            panel2.Location = new Point(492, 85);
+            panel2.Location = new Point(441, 85);
             panel2.Name = "panel2";
             panel2.Size = new Size(259, 128);
             panel2.TabIndex = 3;
@@ -148,7 +148,7 @@
             panel3.Controls.Add(label4);
             panel3.Controls.Add(labelTotalRole);
             panel3.Controls.Add(pictureBox3);
-            panel3.Location = new Point(251, 332);
+            panel3.Location = new Point(212, 299);
             panel3.Name = "panel3";
             panel3.Size = new Size(259, 128);
             panel3.TabIndex = 4;
@@ -198,6 +198,7 @@
             Font = new Font("Century Gothic", 9.75F);
             Name = "UserControlDashboard";
             Size = new Size(942, 501);
+            Load += UserControlDashboard_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -214,10 +215,10 @@
 
         private Panel panel1;
         private PictureBox pictureBox1;
-        private Label labelTotalClasses;
+        public Label labelTotalClasses;
         private Label label1;
         private Panel panel2;
-        private Label labelTotalStudents;
+        public static Label labelTotalStudents;
         private Label label3;
         private PictureBox pictureBox2;
         private Panel panel3;
