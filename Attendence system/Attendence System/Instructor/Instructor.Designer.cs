@@ -260,6 +260,7 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1175, 179);
             panel3.TabIndex = 1;
+            panel3.Paint += panel3_Paint;
             // 
             // panelExpand
             // 
