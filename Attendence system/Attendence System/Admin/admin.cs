@@ -18,26 +18,6 @@ namespace AttendanceManagmentProject.Admin
             timerDateAndTime.Start();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void admin_Load(object sender, EventArgs e)
         {
             panelExpand.Hide();
@@ -64,10 +44,6 @@ namespace AttendanceManagmentProject.Admin
 
         }
 
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void buttonMinimize_Click(object sender, EventArgs e)
         {
@@ -78,23 +54,43 @@ namespace AttendanceManagmentProject.Admin
 
 
         //
-        private void MoveSidePanel(Control button)
+        private void MoveSidePanel(Control panel)
         {
-            panelSide.Location = new Point(button.Location.X - button.Location.X, button.Location.Y - 180);
+            panelSide.Location = new Point(panelSide.Location.X, panel.Location.Y + 5);
         }
 
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
 
+            userControlAddClass1.Visible = false;
+            userControlAddTeacher1.Visible = false;
+            userControlAddStudent1.Visible = false;
+            userControlDashboard1.Visible = true;
+            MoveSidePanel(buttonDashboard);
+
         }
 
         private void buttonAttendance_Click(object sender, EventArgs e)
         {
+            userControlDashboard1.Visible = false;
+            userControlAddClass1.Visible = false;
+            userControlAddStudent1.Visible = false;
+            userControlAddTeacher1.Visible = false;
+
+            MoveSidePanel(buttonAttendance);
+
+
 
         }
 
         private void buttonAddClass_Click(object sender, EventArgs e)
         {
+            userControlAddClass1.Visible = true;
+            userControlAddStudent1.Visible = false;
+            userControlAddTeacher1.Visible = false;
+            userControlDashboard1.Visible = false;
+            MoveSidePanel(butnAddClass);
+
         }
 
         private void pictureBoxExpand_Click(object sender, EventArgs e)
@@ -116,12 +112,31 @@ namespace AttendanceManagmentProject.Admin
             labelTime.Text = now.ToString("F");
         }
 
-        private void userControlDashboard1_Load(object sender, EventArgs e)
+
+        private void butnAddTeacher_Click(object sender, EventArgs e)
         {
+            userControlAddTeacher1.Visible = true;
+            userControlAddStudent1.Visible = false;
+            userControlAddClass1.Visible = false;
+            userControlDashboard1.Visible = false;
+            MoveSidePanel(butnAddTeacher);
+
 
         }
 
-        private void panelBack_Paint(object sender, PaintEventArgs e)
+
+        private void buttonAddStudent_Click(object sender, EventArgs e)
+        {
+
+            userControlAddClass1.Visible = false;
+            userControlDashboard1.Visible = false;
+            userControlAddTeacher1.Visible = false;
+            userControlAddStudent1.Visible = true;
+            MoveSidePanel(buttonAddStudent);
+
+        }
+
+        private void userControlAddTeacher1_Load(object sender, EventArgs e)
         {
 
         }

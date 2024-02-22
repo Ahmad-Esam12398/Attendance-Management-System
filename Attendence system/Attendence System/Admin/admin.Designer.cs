@@ -33,10 +33,10 @@
             panel1 = new Panel();
             panel4 = new Panel();
             panel9 = new Panel();
-            button5 = new Button();
+            butnAddTeacher = new Button();
             pictureBox9 = new PictureBox();
             panel8 = new Panel();
-            button4 = new Button();
+            butnAddClass = new Button();
             pictureBox8 = new PictureBox();
             panel7 = new Panel();
             buttonAddStudent = new Button();
@@ -68,6 +68,9 @@
             pictureBoxExpand = new PictureBox();
             timerDateAndTime = new System.Windows.Forms.Timer(components);
             userControlDashboard1 = new attendence_system.Admin.userControl.UserControlDashboard();
+            userControlAddClass1 = new attendence_system.Admin.userControl.UserControlAddClass();
+            userControlAddStudent1 = new attendence_system.Admin.userControl.UserControlAddStudent();
+            userControlAddTeacher1 = new attendence_system.Admin.userControl.UserControlAddTeacher();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panel9.SuspendLayout();
@@ -113,33 +116,34 @@
             panel4.Controls.Add(panelSide);
             panel4.Cursor = Cursors.Hand;
             panel4.Dock = DockStyle.Left;
-            panel4.Location = new Point(0, 189);
+            panel4.Location = new Point(0, 172);
             panel4.Name = "panel4";
-            panel4.Size = new Size(287, 373);
+            panel4.Size = new Size(287, 390);
             panel4.TabIndex = 0;
             // 
             // panel9
             // 
-            panel9.Controls.Add(button5);
+            panel9.Controls.Add(butnAddTeacher);
             panel9.Controls.Add(pictureBox9);
             panel9.Location = new Point(29, 289);
             panel9.Name = "panel9";
             panel9.Size = new Size(200, 75);
             panel9.TabIndex = 4;
             // 
-            // button5
+            // butnAddTeacher
             // 
-            button5.BackColor = Color.Transparent;
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(73, 12);
-            button5.Name = "button5";
-            button5.Size = new Size(124, 50);
-            button5.TabIndex = 1;
-            button5.Text = "Add Teacher";
-            button5.UseVisualStyleBackColor = false;
+            butnAddTeacher.BackColor = Color.Transparent;
+            butnAddTeacher.FlatAppearance.BorderSize = 0;
+            butnAddTeacher.FlatStyle = FlatStyle.Flat;
+            butnAddTeacher.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
+            butnAddTeacher.ForeColor = Color.White;
+            butnAddTeacher.Location = new Point(73, 12);
+            butnAddTeacher.Name = "butnAddTeacher";
+            butnAddTeacher.Size = new Size(124, 50);
+            butnAddTeacher.TabIndex = 1;
+            butnAddTeacher.Text = "Add Teacher";
+            butnAddTeacher.UseVisualStyleBackColor = false;
+            butnAddTeacher.Click += butnAddTeacher_Click;
             // 
             // pictureBox9
             // 
@@ -153,26 +157,27 @@
             // 
             // panel8
             // 
-            panel8.Controls.Add(button4);
+            panel8.Controls.Add(butnAddClass);
             panel8.Controls.Add(pictureBox8);
             panel8.Location = new Point(29, 195);
             panel8.Name = "panel8";
             panel8.Size = new Size(200, 75);
             panel8.TabIndex = 3;
             // 
-            // button4
+            // butnAddClass
             // 
-            button4.BackColor = Color.Transparent;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(73, 12);
-            button4.Name = "button4";
-            button4.Size = new Size(113, 50);
-            button4.TabIndex = 1;
-            button4.Text = "Add Class";
-            button4.UseVisualStyleBackColor = false;
+            butnAddClass.BackColor = Color.Transparent;
+            butnAddClass.FlatAppearance.BorderSize = 0;
+            butnAddClass.FlatStyle = FlatStyle.Flat;
+            butnAddClass.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
+            butnAddClass.ForeColor = Color.White;
+            butnAddClass.Location = new Point(73, 12);
+            butnAddClass.Name = "butnAddClass";
+            butnAddClass.Size = new Size(113, 50);
+            butnAddClass.TabIndex = 1;
+            butnAddClass.Text = "Add Class";
+            butnAddClass.UseVisualStyleBackColor = false;
+            butnAddClass.Click += buttonAddClass_Click;
             // 
             // pictureBox8
             // 
@@ -207,6 +212,7 @@
             buttonAddStudent.TabIndex = 1;
             buttonAddStudent.Text = "Add Student";
             buttonAddStudent.UseVisualStyleBackColor = false;
+            buttonAddStudent.Click += buttonAddStudent_Click;
             // 
             // pictureBox7
             // 
@@ -240,6 +246,7 @@
             buttonAttendance.TabIndex = 1;
             buttonAttendance.Text = "Attendance";
             buttonAttendance.UseVisualStyleBackColor = false;
+            buttonAttendance.Click += buttonAttendance_Click;
             // 
             // pictureBox6
             // 
@@ -273,6 +280,7 @@
             buttonDashboard.TabIndex = 1;
             buttonDashboard.Text = "Dashboard";
             buttonDashboard.UseVisualStyleBackColor = false;
+            buttonDashboard.Click += buttonDashboard_Click;
             // 
             // pictureBox5
             // 
@@ -289,11 +297,12 @@
             panelSide.BackColor = Color.White;
             panelSide.Location = new Point(0, 0);
             panelSide.Name = "panelSide";
-            panelSide.Size = new Size(9, 49);
+            panelSide.Size = new Size(10, 66);
             panelSide.TabIndex = 0;
             // 
             // panel2
             // 
+            panel2.AutoSize = true;
             panel2.BackColor = Color.FromArgb(67, 3, 105);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label2);
@@ -301,7 +310,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(287, 189);
+            panel2.Size = new Size(287, 172);
             panel2.TabIndex = 0;
             // 
             // label4
@@ -311,7 +320,7 @@
             label4.ForeColor = Color.White;
             label4.Location = new Point(26, 136);
             label4.Name = "label4";
-            label4.Size = new Size(239, 23);
+            label4.Size = new Size(189, 18);
             label4.TabIndex = 3;
             label4.Text = "Attendance Managment";
             // 
@@ -322,10 +331,9 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(84, 154);
             label2.Name = "label2";
-            label2.Size = new Size(75, 23);
+            label2.Size = new Size(59, 18);
             label2.TabIndex = 2;
             label2.Text = "System";
-            label2.Click += label2_Click;
             // 
             // pictureBox1
             // 
@@ -344,7 +352,7 @@
             labelTime.ForeColor = Color.FromArgb(67, 3, 125);
             labelTime.Location = new Point(17, 29);
             labelTime.Name = "labelTime";
-            labelTime.Size = new Size(33, 23);
+            labelTime.Size = new Size(26, 18);
             labelTime.TabIndex = 1;
             labelTime.Text = "{?}";
             // 
@@ -380,7 +388,6 @@
             panel10.Name = "panel10";
             panel10.Size = new Size(150, 116);
             panel10.TabIndex = 0;
-            panel10.Paint += panel10_Paint;
             // 
             // buttonLogOut
             // 
@@ -448,7 +455,7 @@
             labelRole.ForeColor = Color.White;
             labelRole.Location = new Point(131, 77);
             labelRole.Name = "labelRole";
-            labelRole.Size = new Size(33, 23);
+            labelRole.Size = new Size(26, 18);
             labelRole.TabIndex = 5;
             labelRole.Text = "{?}";
             // 
@@ -459,10 +466,9 @@
             labelR.ForeColor = Color.White;
             labelR.Location = new Point(17, 77);
             labelR.Name = "labelR";
-            labelR.Size = new Size(55, 23);
+            labelR.Size = new Size(45, 18);
             labelR.TabIndex = 4;
             labelR.Text = "Role:";
-            labelR.Click += label3_Click;
             // 
             // LabelUserName
             // 
@@ -471,7 +477,7 @@
             LabelUserName.ForeColor = Color.White;
             LabelUserName.Location = new Point(131, 35);
             LabelUserName.Name = "LabelUserName";
-            LabelUserName.Size = new Size(33, 23);
+            LabelUserName.Size = new Size(26, 18);
             LabelUserName.TabIndex = 3;
             LabelUserName.Text = "{?}";
             // 
@@ -482,7 +488,7 @@
             labelUN.ForeColor = Color.White;
             labelUN.Location = new Point(17, 35);
             labelUN.Name = "labelUN";
-            labelUN.Size = new Size(103, 23);
+            labelUN.Size = new Size(84, 18);
             labelUN.TabIndex = 2;
             labelUN.Text = "Welcome:";
             // 
@@ -515,18 +521,53 @@
             userControlDashboard1.Dock = DockStyle.Fill;
             userControlDashboard1.Font = new Font("Century Gothic", 9.75F);
             userControlDashboard1.Location = new Point(287, 173);
-            userControlDashboard1.Margin = new Padding(4, 4, 4, 4);
             userControlDashboard1.Name = "userControlDashboard1";
             userControlDashboard1.Size = new Size(1046, 389);
             userControlDashboard1.TabIndex = 0;
-            userControlDashboard1.Load += userControlDashboard1_Load;
+            // 
+            // userControlAddClass1
+            // 
+            userControlAddClass1.BackColor = Color.White;
+            userControlAddClass1.Dock = DockStyle.Fill;
+            userControlAddClass1.Font = new Font("Century Gothic", 9.75F);
+            userControlAddClass1.Location = new Point(287, 173);
+            userControlAddClass1.Name = "userControlAddClass1";
+            userControlAddClass1.Size = new Size(1046, 389);
+            userControlAddClass1.TabIndex = 0;
+            userControlAddClass1.Visible = false;
+            // 
+            // userControlAddStudent1
+            // 
+            userControlAddStudent1.BackColor = Color.White;
+            userControlAddStudent1.Dock = DockStyle.Fill;
+            userControlAddStudent1.Font = new Font("Century Gothic", 9.75F);
+            userControlAddStudent1.Location = new Point(287, 173);
+            userControlAddStudent1.Name = "userControlAddStudent1";
+            userControlAddStudent1.Size = new Size(1046, 389);
+            userControlAddStudent1.TabIndex = 0;
+            userControlAddStudent1.Visible = false;
+            // 
+            // userControlAddTeacher1
+            // 
+            userControlAddTeacher1.BackColor = Color.White;
+            userControlAddTeacher1.Dock = DockStyle.Fill;
+            userControlAddTeacher1.Location = new Point(287, 173);
+            userControlAddTeacher1.Margin = new Padding(4);
+            userControlAddTeacher1.Name = "userControlAddTeacher1";
+            userControlAddTeacher1.Size = new Size(1046, 389);
+            userControlAddTeacher1.TabIndex = 0;
+            userControlAddTeacher1.Visible = false;
+            userControlAddTeacher1.Load += userControlAddTeacher1_Load;
             // 
             // admin
             // 
-            AutoScaleDimensions = new SizeF(12F, 23F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1333, 562);
+            Controls.Add(userControlAddTeacher1);
+            Controls.Add(userControlAddStudent1);
+            Controls.Add(userControlAddClass1);
             Controls.Add(userControlDashboard1);
             Controls.Add(panelBack);
             Controls.Add(panel1);
@@ -541,6 +582,7 @@
             WindowState = FormWindowState.Maximized;
             Load += admin_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel4.ResumeLayout(false);
             panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
@@ -586,10 +628,10 @@
         private System.Windows.Forms.PictureBox pictureBoxExpand;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button butnAddTeacher;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button butnAddClass;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button buttonAddStudent;
@@ -607,6 +649,9 @@
         private Button buttonLogOut;
         private System.Windows.Forms.Timer timerDateAndTime;
         private attendence_system.Admin.userControl.UserControlDashboard userControlDashboard1;
+        private attendence_system.Admin.userControl.UserControlAddClass userControlAddClass1;
+        private attendence_system.Admin.userControl.UserControlAddStudent userControlAddStudent1;
+        private attendence_system.Admin.userControl.UserControlAddTeacher userControlAddTeacher1;
         //  private System.Windows.Forms.Timer timerDateAndTime;
     }
 }
