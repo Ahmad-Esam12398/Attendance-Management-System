@@ -215,10 +215,10 @@
 
         private Panel panel1;
         private PictureBox pictureBox1;
-        private Label labelTotalClasses;
+        public Label labelTotalClasses;
         private Label label1;
         private Panel panel2;
-        private Label labelTotalStudents;
+        public static Label labelTotalStudents;
         private Label label3;
         private PictureBox pictureBox2;
         private Panel panel3;
