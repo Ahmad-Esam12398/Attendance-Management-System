@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<studentsRecords xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\repo\Attendance-C-project\Data\DataValidator.xsd">
-	<class id="1">
+<studentsRecords xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\DataValidator.xsd">
+	<class id="1" name="L1">
 		<students>
 			<student>
 				<id>10</id>
 				<attendanceDates>
 					<date>2024-03-12</date>
-					<status>p</status>
+					<status>present</status>
 				</attendanceDates>
 				<attendanceDates>
 					<date>2024-04-12</date>
-					<status>p</status>
+					<status>present</status>
 				</attendanceDates>
 			</student>
 		</students>
+		<instructors>
+		</instructors>
 	</class>
-	<class id="2">
+	<class id="2" name="L2">
 		<students>
 			<student>
 				<id>20</id>
 				<attendanceDates>
 					<date>2024-04-12</date>
-					<status>a</status>
+					<status>absent</status>
 				</attendanceDates>
 				<attendanceDates>
 					<date>2024-04-15</date>
-					<status>p</status>
+					<status>present</status>
 				</attendanceDates>
 			</student>
 		</students>
+		<instructors>
+		</instructors>
 	</class>
 </studentsRecords>

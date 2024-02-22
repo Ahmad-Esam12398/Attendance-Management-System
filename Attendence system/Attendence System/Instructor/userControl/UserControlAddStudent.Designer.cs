@@ -38,24 +38,30 @@
             textBox3 = new TextBox();
             labelPassword = new Label();
             buttonAddStudent = new Button();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            panel4 = new Panel();
             SuspendLayout();
             // 
             // labelAddStudent
             // 
             labelAddStudent.AutoSize = true;
-            labelAddStudent.BackColor = Color.LightGray;
+            labelAddStudent.BackColor = Color.Transparent;
             labelAddStudent.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             labelAddStudent.Location = new Point(3, 11);
             labelAddStudent.Name = "labelAddStudent";
-            labelAddStudent.Size = new Size(108, 19);
+            labelAddStudent.Size = new Size(118, 19);
             labelAddStudent.TabIndex = 1;
-            labelAddStudent.Text = "Add Student";
+            labelAddStudent.Text = "Add Student :";
             // 
             // textBoxName
             // 
+            textBoxName.BackColor = Color.White;
+            textBoxName.BorderStyle = BorderStyle.None;
             textBoxName.Location = new Point(135, 156);
             textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(270, 27);
+            textBoxName.Size = new Size(270, 20);
             textBoxName.TabIndex = 4;
             // 
             // labelName
@@ -70,9 +76,11 @@
             // 
             // textBox1
             // 
+            textBox1.BackColor = Color.White;
+            textBox1.BorderStyle = BorderStyle.None;
             textBox1.Location = new Point(483, 156);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(270, 27);
+            textBox1.Size = new Size(270, 20);
             textBox1.TabIndex = 6;
             // 
             // labelEmail
@@ -87,9 +95,11 @@
             // 
             // textBox2
             // 
+            textBox2.BackColor = Color.White;
+            textBox2.BorderStyle = BorderStyle.None;
             textBox2.Location = new Point(135, 242);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(270, 27);
+            textBox2.Size = new Size(270, 20);
             textBox2.TabIndex = 8;
             // 
             // labelPhone
@@ -104,9 +114,11 @@
             // 
             // textBox3
             // 
+            textBox3.BackColor = Color.White;
+            textBox3.BorderStyle = BorderStyle.None;
             textBox3.Location = new Point(483, 242);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(270, 27);
+            textBox3.Size = new Size(270, 20);
             textBox3.TabIndex = 10;
             // 
             // labelPassword
@@ -122,19 +134,57 @@
             // buttonAddStudent
             // 
             buttonAddStudent.BackColor = Color.FromArgb(67, 3, 125);
+            buttonAddStudent.FlatStyle = FlatStyle.Flat;
             buttonAddStudent.Font = new Font("Century Gothic", 9.75F);
             buttonAddStudent.ForeColor = Color.White;
-            buttonAddStudent.Location = new Point(194, 313);
+            buttonAddStudent.Location = new Point(187, 315);
             buttonAddStudent.Name = "buttonAddStudent";
-            buttonAddStudent.Size = new Size(128, 38);
+            buttonAddStudent.Size = new Size(143, 54);
             buttonAddStudent.TabIndex = 11;
             buttonAddStudent.Text = "Add";
             buttonAddStudent.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(67, 3, 125);
+            panel1.Location = new Point(135, 189);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(270, 2);
+            panel1.TabIndex = 12;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(67, 3, 125);
+            panel2.Location = new Point(483, 189);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(270, 2);
+            panel2.TabIndex = 13;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(67, 3, 125);
+            panel3.Location = new Point(483, 275);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(270, 2);
+            panel3.TabIndex = 14;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(67, 3, 125);
+            panel4.Location = new Point(135, 275);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(270, 2);
+            panel4.TabIndex = 15;
             // 
             // UserControlAddStudent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(buttonAddStudent);
             Controls.Add(textBox3);
             Controls.Add(labelPassword);
@@ -163,5 +213,9 @@
         private TextBox textBox3;
         private Label labelPassword;
         private Button buttonAddStudent;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
     }
 }

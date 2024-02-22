@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\repo\Attendance-C-project\Data\usersAuthenticationSchema.xsd">
+<users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\usersAuthenticationSchema.xsd">
 	<user>
 		<id>1</id>
 		<name>Ahmed</name>
 		<email>ahmad.esam1231998@gmail.com</email>
 		<phone>01015328933</phone>
 		<password>12345678</password>
-		<role>admin</role>
+		<gender>m</gender>
+		<role>instructor</role>
 	</user>
 	<user>
 		<id>10</id>
@@ -14,6 +15,7 @@
 		<email>mohamed.esam1231998@gmail.com</email>
 		<phone>01015328930</phone>
 		<password>12345678</password>
+		<gender>m</gender>
 		<role>student</role>
 	</user>
 	<user>
@@ -22,7 +24,8 @@
 		<email>abdo.osama123@gmail.com</email>
 		<phone>01125488751</phone>
 		<password>12345678</password>
-		<role>student</role>
+		<gender>m</gender>
+		<role>admin</role>
 	</user>
 	<user>
 		<id>100</id>
@@ -30,6 +33,7 @@
 		<email>habiba122@gmail.com</email>
 		<phone>01254882366</phone>
 		<password>12345678</password>
-		<role>instructor</role>
+		<gender>f</gender>
+		<role>admin</role>
 	</user>
 </users>
