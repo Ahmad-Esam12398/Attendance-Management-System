@@ -16,6 +16,7 @@ namespace attendence_system
             this.BackColor = System.Drawing.Color.LightGray; // Set your desired color
 
 
+            checkBox1.CheckedChanged += new EventHandler(checkBoxShowPassword_CheckedChanged);
 
         }
 
@@ -50,7 +51,6 @@ namespace attendence_system
                         instructor instructorform = new instructor();
                         instructorform.FormClosed += (s, args) => this.Close(); // Close the login form when the admin form is closed
                         instructorform.Show();
-
                         break;
                     case "student":
                         MessageBox.Show("Login Successful as Student!");
@@ -115,6 +115,13 @@ namespace attendence_system
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBoxShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            // If the checkbox is checked, show the password by setting the PasswordChar to '\0' (null character)
+            // If the checkbox is not checked, hide the password by setting the PasswordChar to '*' (or any other character you wish to use for masking)
+            textBox2.PasswordChar = checkBox1.Checked ? '\0' : '*';
         }
     }
 
