@@ -9,7 +9,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Xml;
+using System.Xml.Schema;
 
 
 namespace attendence_system.Instructor
@@ -29,7 +30,9 @@ namespace attendence_system.Instructor
             labelName.Text = "Ahmad";
             labelRole.Text = "Instructor";
             panelExpand.Hide();
-            userControlDashboard.Dock = DockStyle.Fill;
+            showUserControl(userControlDashboard);
+            XmlNode userNode = InstructorDataManipulator.GetUserNode();
+            userControlChangeUserData1.AssignUserValuesToBoxes(userNode);
         }
 
         private void pictureBoxExpand_Click(object sender, EventArgs e)
@@ -73,14 +76,13 @@ namespace attendence_system.Instructor
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
             MoveSidePanel(panelDashBoard);
+            showUserControl(userControlDashboard);
         }
 
         private void buttonAttendance_Click(object sender, EventArgs e)
         {
             MoveSidePanel(panelAttendance);
-            //userControlDashboard.Dock = DockStyle.None;
-            userControlDashboard.SendToBack();
-            setAttendance.Dock = DockStyle.Fill;
+            showUserControl(setAttendance);
         }
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
@@ -103,6 +105,7 @@ namespace attendence_system.Instructor
         private void buttonSettings_Click(object sender, EventArgs e)
         {
             MoveSidePanel(panelSettings);
+            showUserControl(userControlChangeUserData1);
         }
 
         private void userControlDashboard_Load(object sender, EventArgs e)
@@ -113,7 +116,7 @@ namespace attendence_system.Instructor
         private void setAttendance_Load(object sender, EventArgs e)
         {
 
-            
+
 
             //AllocConsole();
             //Console.WriteLine($"Debug Message\n {dataSet.Tables[0]}");
@@ -127,6 +130,24 @@ namespace attendence_system.Instructor
             //        }
             //    }
             //}
+        }
+        private void showUserControl(UserControl target)
+        {
+            setAttendance.Hide();
+            userControlDashboard.Hide();
+            userControlChangeUserData1.Hide();
+            target.Show();
+            target.Dock = DockStyle.Fill;
+        }
+
+        private void userControlChangeUserData1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userControlDashboard_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

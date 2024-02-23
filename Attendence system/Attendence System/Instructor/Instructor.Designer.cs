@@ -64,6 +64,7 @@
             timerDateAndTime = new System.Windows.Forms.Timer(components);
             setAttendance = new userControl.setAttendance();
             userControlDashboard = new Admin.userControl.UserControlDashboard();
+            userControlChangeUserData1 = new UserControlChangeUserData();
             panel1.SuspendLayout();
             panelSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -311,7 +312,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1175, 179);
             panel3.TabIndex = 1;
-            panel3.Paint += panel3_Paint;
             // 
             // panelExpand
             // 
@@ -481,11 +481,20 @@
             userControlDashboard.Size = new Size(362, 167);
             userControlDashboard.TabIndex = 3;
             // 
+            // userControlChangeUserData1
+            // 
+            userControlChangeUserData1.BackColor = Color.White;
+            userControlChangeUserData1.Location = new Point(768, 265);
+            userControlChangeUserData1.Name = "userControlChangeUserData1";
+            userControlChangeUserData1.Size = new Size(362, 165);
+            userControlChangeUserData1.TabIndex = 4;
+            // 
             // instructor
             // 
             AutoScaleDimensions = new SizeF(12F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1508, 720);
+            Controls.Add(userControlChangeUserData1);
             Controls.Add(userControlDashboard);
             Controls.Add(setAttendance);
             Controls.Add(panel3);
@@ -558,5 +567,6 @@
         private PictureBox pictureBox2;
         private userControl.setAttendance setAttendance;
         private Admin.userControl.UserControlDashboard userControlDashboard;
+        private UserControlChangeUserData userControlChangeUserData1;
     }
 }
