@@ -287,11 +287,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(-1, 3);
+            label2.Location = new Point(16, 13);
             label2.Name = "label2";
-            label2.Size = new Size(70, 19);
+            label2.Size = new Size(158, 19);
             label2.TabIndex = 30;
-            label2.Text = "Name :";
+            label2.Text = "Change Password";
             // 
             // textBoxPasswordNew
             // 
@@ -325,6 +325,7 @@
             // buttonChangePassword
             // 
             buttonChangePassword.BackColor = Color.FromArgb(67, 3, 125);
+            buttonChangePassword.Cursor = Cursors.Hand;
             buttonChangePassword.FlatStyle = FlatStyle.Flat;
             buttonChangePassword.Font = new Font("Century Gothic", 9.75F);
             buttonChangePassword.ForeColor = Color.White;

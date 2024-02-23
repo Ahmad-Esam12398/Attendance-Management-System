@@ -42,7 +42,6 @@ namespace attendence_system.Instructor
                 panelExpand.Hide();
             else
                 panelExpand.Show();
-
         }
 
         private void buttonMinimize_Click(object sender, EventArgs e)

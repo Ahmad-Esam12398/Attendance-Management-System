@@ -8,6 +8,7 @@
 		<password>12345678</password>
 		<gender>m</gender>
 		<role>instructor</role>
+		<class id="1">L1</class>
 	</user>
 	<user>
 		<id>2</id>
@@ -17,6 +18,15 @@
 		<password>12345678</password>
 		<gender>m</gender>
 		<role>student</role>
+		<class id="1">L1</class>
+		<attendanceDates>
+			<date>2024-03-12</date>
+			<status>present</status>
+		</attendanceDates>
+		<attendanceDates>
+			<date>2024-04-12</date>
+			<status>present</status>
+		</attendanceDates>
 	</user>
 	<user>
 		<id>3</id>

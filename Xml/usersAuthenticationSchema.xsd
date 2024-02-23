@@ -45,6 +45,17 @@
 			<xs:enumeration value="student"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="className">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[A-Z][1-999]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="status">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="absent"/>
+			<xs:enumeration value="present"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:element name="users">
 		<xs:complexType>
 			<xs:sequence>
@@ -58,6 +69,23 @@
 							<xs:element name="password" type="password"/>
 							<xs:element name="gender" type="gender"/>
 							<xs:element name="role" type="role"/>
+							<xs:element name="class" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="className">
+											<xs:attribute name="id" type="id"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="attendanceDates" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="date" type="xs:date"/>
+										<xs:element name="status" type="status"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>

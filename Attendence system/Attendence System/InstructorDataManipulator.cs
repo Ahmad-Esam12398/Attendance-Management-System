@@ -15,7 +15,6 @@ namespace attendence_system
         static string userData = "usersAuthenticationC#.xml";
         static string testUser = "userAuthenticationTester.xml";
         static string usersSchema = "usersAuthenticationSchema.xsd";
-
         static private XmlDocument usersData = new();
         static private XmlDocument testUserDoc = new();
         static private XmlSchemaSet usersSchemaSet = new();
