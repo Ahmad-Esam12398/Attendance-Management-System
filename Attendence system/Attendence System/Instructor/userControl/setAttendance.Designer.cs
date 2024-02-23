@@ -52,12 +52,11 @@
             // 
             // dataGridViewAttendance
             // 
-            dataGridViewAttendance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAttendance.Location = new Point(20, 103);
+            dataGridViewAttendance.Location = new Point(0, 148);
             dataGridViewAttendance.Name = "dataGridViewAttendance";
             dataGridViewAttendance.RowHeadersWidth = 51;
-            dataGridViewAttendance.Size = new Size(892, 323);
+            dataGridViewAttendance.Size = new Size(934, 316);
             dataGridViewAttendance.TabIndex = 3;
             dataGridViewAttendance.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -100,10 +99,12 @@
             // comboBoxClass
             // 
             comboBoxClass.FormattingEnabled = true;
+            comboBoxClass.Items.AddRange(new object[] { "All" });
             comboBoxClass.Location = new Point(498, 61);
             comboBoxClass.Name = "comboBoxClass";
             comboBoxClass.Size = new Size(270, 28);
             comboBoxClass.TabIndex = 20;
+            comboBoxClass.SelectedIndexChanged += comboBoxClass_SelectedIndexChanged;
             // 
             // comboBoxDate
             // 

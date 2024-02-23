@@ -30,7 +30,7 @@ namespace attendence_system
             userNode = GetUserNode("1");
         }
         
-        static private XmlNode GetUserNode(string id)
+        static public XmlNode GetUserNode(string id)
         {
             XmlNode target = usersData.SelectSingleNode($"/users/user[id='{id}']");
             return target;
@@ -60,18 +60,66 @@ namespace attendence_system
         }
         static public void UpdateUserData(XmlNode newOne)
         {
-            XmlNode oneWillBeAppended = usersData.ImportNode(userNode, true);
+            string id = newOne.SelectSingleNode("id").InnerText;
+            XmlNode oneWillBeAppended = usersData.ImportNode(GetUserNode(id), true);
             oneWillBeAppended.SelectSingleNode("name").InnerText = newOne.SelectSingleNode("name").InnerText;
             oneWillBeAppended.SelectSingleNode("email").InnerText = newOne.SelectSingleNode("email").InnerText;
             oneWillBeAppended.SelectSingleNode("phone").InnerText = newOne.SelectSingleNode("phone").InnerText;
+            oneWillBeAppended.SelectSingleNode("password").InnerText = newOne.SelectSingleNode("password").InnerText;
+            //oneWillBeAppended.SelectSingleNode("role").InnerText = newOne.SelectSingleNode("role").InnerText;
+            //if (newOne.SelectSingleNode("class") != null)
+            //{
+            //    oneWillBeAppended.SelectSingleNode("class").InnerText = newOne.SelectSingleNode("class").InnerText;
+            //    oneWillBeAppended.SelectSingleNode("class").Attributes["id"].Value = newOne.SelectSingleNode("class").Attributes["id"].Value;
+            //}
+            //if(newOne.SelectNodes("attendanceDates").Count != 0)
+            //{
+            //    for (int i = 0; i < oneWillBeAppended.SelectNodes("attendanceDates").Count; i++)
+            //    {
+            //        oneWillBeAppended.SelectNodes("attendanceDates")[i].ParentNode.RemoveChild(oneWillBeAppended.SelectNodes("attendanceDates")[i]);
+            //    }
+            //    for (int i = 0; i < newOne.SelectNodes("attendanceDates").Count; i++)
+            //    {
+            //        XmlNode importedNode = usersData.ImportNode(newOne.SelectNodes("attendanceDates")[i], true);
+            //        oneWillBeAppended.AppendChild(importedNode);
+            //    }
+            //}
+
             usersData.SelectSingleNode("/users").ReplaceChild(oneWillBeAppended, userNode);
-            usersData.Save(@"./../../../../../Xml/usersAuthenticationC#.xml");
-            userNode = GetUserNode("1");
+            SaveChangesInFile();
         }
         static public XmlNode GetUserNode()
         {
             XmlNode duplicate = userNode.CloneNode(true);
             return duplicate;
+        }
+        static public XmlDocument GetUsersData()
+        {
+            return usersData;
+        }
+        static public List<XmlNode> GetStudentsList() { 
+            int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
+            List<XmlNode> students = new List<XmlNode>();
+            for(int i = 0; i < studentsCount; i++)
+            {
+                students.Add(usersData.SelectNodes("/users/user[role='student']")[i]);
+            }
+            return students;
+        }
+        static public HashSet<string> GetClassesSet()
+        {
+            List<XmlNode> Students = GetStudentsList();
+            HashSet<string> classes = new HashSet<string>();
+            for(int i = 0; i < Students.Count; i++)
+            {
+                classes.Add(Students[i].SelectSingleNode("class").InnerText);
+            }
+            return classes;
+        }
+        static public void SaveChangesInFile()
+        {
+            usersData.Save(@"./../../../../../Xml/usersAuthenticationC#.xml");
+            userNode = GetUserNode("1");
         }
     }
 }

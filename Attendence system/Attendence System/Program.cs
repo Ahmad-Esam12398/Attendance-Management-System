@@ -16,7 +16,6 @@ namespace attendence_system
             //Application.Run(new login());
             //Application.Run(new admin());
             Application.Run(new instructor());
-
         }
     }
 }

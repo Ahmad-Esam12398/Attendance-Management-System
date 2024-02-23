@@ -26,7 +26,15 @@
 					<status>absent</status>
 				</attendanceDates>
 				<attendanceDates>
-					<date>2024-04-15</date>
+					<date>2024-04-18</date>
+					<status>present</status>
+				</attendanceDates>
+					<attendanceDates>
+					<date>2024-04-20</date>
+					<status>present</status>
+				</attendanceDates>
+				<attendanceDates>
+					<date>2024-04-14</date>
 					<status>present</status>
 				</attendanceDates>
 			</student>

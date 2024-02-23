@@ -46,6 +46,10 @@ namespace attendence_system.Instructor
                     MessageBox.Show("Data updated successfully", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     AssignUserValuesToBoxes(userNode);
                 }
+                else
+                {
+                    AssignUserValuesToBoxes(InstructorDataManipulator.GetUserNode());
+                }
             }
         }
         public void AssignUserValuesToBoxes(XmlNode data)
