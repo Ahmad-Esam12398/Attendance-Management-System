@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\repo\Attendance-C-project\Data\usersAuthenticationSchema.xsd">
   <user>
     <id>1</id>
@@ -23,5 +23,13 @@
     <phone>01125488751</phone>
     <password>12345678</password>
     <role>student</role>
+  </user>
+  <user>
+    <id>21</id>
+    <name>enveqnjv</name>
+    <email>wweoi@ljnj lnwjkrnvjknjw</email>
+    <password>wjenfj</password>
+    <role>teacher</role>
+    <class>class </class>
   </user>
 </users>
