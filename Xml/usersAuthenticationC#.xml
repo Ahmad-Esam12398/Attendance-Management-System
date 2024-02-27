@@ -48,12 +48,4 @@
     <role>teacher</role>
     <class>class </class>
   </user>
-  <user>
-    <id>24</id>
-    <name>abdousama</name>
-    <email>abdousama@gmail.com</email>
-    <password>Aabdo@1234</password>
-    <role>teacher</role>
-    <class>class </class>
-  </user>
 </users>

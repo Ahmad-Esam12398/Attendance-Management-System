@@ -7,9 +7,11 @@ namespace attendence_system.Admin.userControl
 {
     public partial class UserControlAddTeacher : UserControl
     {
+        string SID = "";
         public UserControlAddTeacher()
         {
             InitializeComponent();
+
         }
 
         private void btnAddTeacher_Click(object sender, EventArgs e)
@@ -114,8 +116,24 @@ namespace attendence_system.Admin.userControl
         {
             return Regex.IsMatch(name, @"^[a-zA-Z\s]+$");
         }
-        // Include additional validation methods as needed, e.g., IsValidPassword
 
-        // Add the rest of your UserControl code here...
+        private void dataGridViewTeacher_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridViewStudent.Rows[e.RowIndex];
+                SID = row.Cells["Column1"].Value.ToString();
+                textBoxName1.Text = row.Cells["Column2"].Value.ToString();
+                // comboBoxUpDelete.Items.Clear();
+                //  comboBoxUpDelete.SelectedItem = row.Cells["Column5"].Value.ToString();
+                textBoxEmail1.Text = row.Cells["Column3"].Value.ToString();
+                textBoxpass1.Text = row.Cells["Column4"].Value.ToString();
+
+
+            }
+
+        }
+
+        
     }
 }

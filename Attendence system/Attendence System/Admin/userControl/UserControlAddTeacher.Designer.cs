@@ -393,6 +393,7 @@
             dataGridViewStudent.ShowRowErrors = false;
             dataGridViewStudent.Size = new Size(997, 424);
             dataGridViewStudent.TabIndex = 15;
+            dataGridViewStudent.CellContentClick += dataGridViewTeacher_CellContentClick;
             // 
             // Column1
             // 
