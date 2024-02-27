@@ -176,7 +176,7 @@
             btnAddStudent.TabIndex = 42;
             btnAddStudent.Text = "Add Teacher";
             btnAddStudent.UseVisualStyleBackColor = false;
-            btnAddStudent.Click += btnAddStudent_Click;
+            btnAddStudent.Click += btnAddTeacher_Click;
             // 
             // textBoxPassTeacher
             // 

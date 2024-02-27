@@ -32,4 +32,28 @@
     <role>teacher</role>
     <class>class </class>
   </user>
+  <user>
+    <id>22</id>
+    <name>abdo</name>
+    <email>abdo@gamil.com</email>
+    <password>Aabdo1234</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
+  <user>
+    <id>23</id>
+    <name>super</name>
+    <email>abdo@gmail.com</email>
+    <password>Aabdo</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
+  <user>
+    <id>24</id>
+    <name>abdousama</name>
+    <email>abdousama@gmail.com</email>
+    <password>Aabdo@1234</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
 </users>

@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Text.RegularExpressions; // For email validation
 
 namespace attendence_system.Admin.userControl
 {
@@ -18,24 +12,57 @@ namespace attendence_system.Admin.userControl
             InitializeComponent();
         }
 
-        private void btnAddStudent_Click(object sender, EventArgs e)
+        private void btnAddTeacher_Click(object sender, EventArgs e)
         {
             // Reading input values from text boxes and combo box
-            string name = textBoxTeacherName.Text; // Teacher's name
-            string email = textBoxEmailTeacher.Text; // Teacher's email
-            //string phone = textBoxPhoneTeacher.Text; // Teacher's phone (assuming you have this text box)
+            string name = textBoxTeacherName.Text.Trim(); // Teacher's name
+            string email = textBoxEmailTeacher.Text.Trim(); // Teacher's email
             string password = textBoxPassTeacher.Text; // Teacher's password
-            string classAssigned = comboBoxClassTeacher.SelectedItem.ToString(); // Class assigned to the teacher
+            string classAssigned = comboBoxClassTeacher.SelectedIndex >= 0 ? comboBoxClassTeacher.SelectedItem.ToString() : ""; // Ensuring a class is selected
 
-            // Path to your XML file
+            // Basic validation checks
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(classAssigned))
+            {
+                MessageBox.Show("Please fill out all fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsValidName(name))
+            {
+                MessageBox.Show("Name must contain only letters and spaces.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsValidPassword(password))
+            {
+                MessageBox.Show("Password must be at least 8 characters long and include a mix of uppercase and lowercase letters, digits, and special characters.", "Weak Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            // Email format validation
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Assuming you have a method to validate password strength
+            // if (!IsValidPassword(password)) { ... }
+
+            // Assuming the path to your XML file is correct
             string xmlFilePath = @"D:\badya gdeda\Xml\usersAuthenticationC#.xml";
 
             try
             {
-                // Load the existing XML document
                 XDocument xmlDoc = XDocument.Load(xmlFilePath);
 
-                // Find the highest current ID to assign a new unique ID
                 int maxId = 0;
                 foreach (var elem in xmlDoc.Descendants("user"))
                 {
@@ -45,19 +72,15 @@ namespace attendence_system.Admin.userControl
                 }
                 int newId = maxId + 1;
 
-                // Create a new user element with the role of "teacher"
                 XElement newUser = new XElement("user",
-                                    new XElement("id", newId.ToString()),
-                                    new XElement("name", name),
-                                    new XElement("email", email),
-                                    new XElement("password", password),
-                                    new XElement("role", "teacher"),
-                                    new XElement("class", classAssigned)); // Including class information
+                    new XElement("id", newId.ToString()),
+                    new XElement("name", name),
+                    new XElement("email", email),
+                    new XElement("password", password),
+                    new XElement("role", "teacher"),
+                    new XElement("class", classAssigned));
 
-                // Add the new user element to the root
                 xmlDoc.Root.Add(newUser);
-
-                // Save the document
                 xmlDoc.Save(xmlFilePath);
 
                 MessageBox.Show("Teacher added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -66,8 +89,33 @@ namespace attendence_system.Admin.userControl
             {
                 MessageBox.Show($"Failed to add teacher: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
+        }
 
+        // Email validation method
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private bool IsValidPassword(string password)
+        {
+            // Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+            return Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+        }
+
+        private bool IsValidName(string name)
+        {
+            return Regex.IsMatch(name, @"^[a-zA-Z\s]+$");
+        }
+        // Include additional validation methods as needed, e.g., IsValidPassword
+
+        // Add the rest of your UserControl code here...
     }
-}
 }
