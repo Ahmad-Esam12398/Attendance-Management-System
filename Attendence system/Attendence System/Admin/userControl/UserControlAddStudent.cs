@@ -21,8 +21,8 @@ namespace attendence_system.Admin.userControl
 {
     public partial class UserControlAddStudent : UserControl
     {
-
         string SIDString = "";
+
         public UserControlAddStudent()
         {
             InitializeComponent();
@@ -227,6 +227,7 @@ namespace attendence_system.Admin.userControl
             }
         }
 
+
         // ======================= Delete Specific User =======================
         private void DeleteUser(string id)
         {
@@ -418,6 +419,7 @@ namespace attendence_system.Admin.userControl
                     emailNode.InnerText = textBoxEmail1.Text;
                     newUserNode.AppendChild(emailNode);
 
+
                     XmlNode phoneNode = doc.CreateElement("phone");
                     phoneNode.InnerText = textBoxphoneNumber1.Text;
                     newUserNode.AppendChild(phoneNode);
@@ -472,6 +474,7 @@ namespace attendence_system.Admin.userControl
 
                     ClearText1();
                 }
+
                 else
                 {
                     MessageBox.Show("User with ID " + userId + " not found.", "User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);

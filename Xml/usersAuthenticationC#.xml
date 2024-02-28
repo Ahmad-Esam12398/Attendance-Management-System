@@ -1,5 +1,7 @@
+
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\usersAuthenticationSchema.xsd">
+
   <user>
     <id>1</id>
     <name>Ahmed ess</name>
@@ -85,5 +87,29 @@
     <gender>m</gender>
     <role>student</role>
     <class id="1">L1</class>
+  </user>
+  <user>
+    <id>21</id>
+    <name>enveqnjv</name>
+    <email>wweoi@ljnj lnwjkrnvjknjw</email>
+    <password>wjenfj</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
+  <user>
+    <id>22</id>
+    <name>abdo</name>
+    <email>abdo@gamil.com</email>
+    <password>Aabdo1234</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
+  <user>
+    <id>23</id>
+    <name>super</name>
+    <email>abdo@gmail.com</email>
+    <password>Aabdo</password>
+    <role>teacher</role>
+    <class>class </class>
   </user>
 </users>
