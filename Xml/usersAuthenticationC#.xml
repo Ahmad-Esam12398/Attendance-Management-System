@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\usersAuthenticationSchema.xsd">
   <user>
     <id>1</id>
@@ -29,6 +29,10 @@
     </attendanceDates>
     <attendanceDates>
       <date>2024-02-28</date>
+      <status>absent</status>
+    </attendanceDates>
+    <attendanceDates>
+      <date>2024-02-29</date>
       <status>absent</status>
     </attendanceDates>
   </user>
