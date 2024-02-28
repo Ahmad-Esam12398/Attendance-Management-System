@@ -22,7 +22,7 @@ namespace attendence_system.Instructor.userControl
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 6 && e.RowIndex != -1)
+            if (e.ColumnIndex == 6 && e.RowIndex != -1)
             {
                 string id = dataGridViewAttendance.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string date = dataGridViewAttendance.Rows[e.RowIndex].Cells[5].Value.ToString();
@@ -46,7 +46,7 @@ namespace attendence_system.Instructor.userControl
         {
             //DataSet AttendanceData = new DataSet();
             //AttendanceData.ReadXml("D:\\ITI\\Projects\\XML&C#\\new repo\\mine\\Attendance-Management-System\\XmldummyData.xml");
-            string dummyDataPath = Path.Combine(Application.StartupPath, @"../../../../../Xml/dummyData.xml");
+            //string dummyDataPath = Path.Combine(Application.StartupPath, @"../../../../../Xml/dummyData.xml");
             //DataSet dataSet = new DataSet();
             //dataSet.ReadXml(path);
             //dataGridViewAttendance.DataSource = dataSet.Tables[1];
@@ -65,7 +65,7 @@ namespace attendence_system.Instructor.userControl
             combinedTable.Columns.Add("phone", typeof(string));
             combinedTable.Columns.Add("gender", typeof(string));
             combinedTable.Columns.Add("Class", typeof(string));
-            combinedTable.Columns.Add("Date", typeof(string));
+            combinedTable.Columns.Add("Date", typeof(DateTime));
             DataColumn checkBoxColumn = new DataColumn("Status", typeof(bool));
             combinedTable.Columns.Add(checkBoxColumn);
             //combinedTable.Columns.Add("Status", typeof(string));
@@ -75,13 +75,15 @@ namespace attendence_system.Instructor.userControl
                 string[,] studentData = getStudentData(students[i]);
                 for (int j = 0; j < studentData.GetLength(0); j++)
                 {
+                    DateTime date = DateTime.Parse(studentData[j, 5]);
                     bool status = studentData[j, 6] == "present" ? true : false;
-                    combinedTable.Rows.Add(studentData[j, 0], studentData[j, 1], studentData[j, 2], studentData[j, 3], studentData[j, 4], studentData[j, 5], status);
+                    combinedTable.Rows.Add(studentData[j, 0], studentData[j, 1], studentData[j, 2], studentData[j, 3], studentData[j, 4], date, status);
                 }
             }
             //combinedTable.Rows.Add("1", "Ahmed", "01010101010", 'M', "2021-05-01", "Present");
             dataGridViewAttendance.DataSource = combinedTable;
-            for(int i = 0; i < dataGridViewAttendance.Columns.Count - 1; i++)
+            dataGridViewAttendance.Columns["Date"].DefaultCellStyle.Format = "dd-MM-yyyy";
+            for (int i = 0; i < dataGridViewAttendance.Columns.Count - 1; i++)
             {
                 dataGridViewAttendance.Columns[i].ReadOnly = true;
             }
@@ -103,7 +105,29 @@ namespace attendence_system.Instructor.userControl
             string StudentClass = node.SelectSingleNode("class").InnerText;
             string gender = node.SelectSingleNode("gender").InnerText;
             XmlNodeList attendanceDates = node.SelectNodes("attendanceDates");
-            for (int i = 0; i < dateCounts; i++)
+            bool today = false;
+            for(int i = 0; i < attendanceDates.Count; i++)
+            {
+                if (attendanceDates[i].SelectSingleNode("date").InnerText == DateTime.Now.ToString("yyyy-MM-dd"))
+                {
+                    today = true;
+                    break;
+                }
+            }
+            if(!today)
+            {
+                XmlNode dateNode = node.OwnerDocument.CreateElement("date");
+                dateNode.InnerText = DateTime.Now.ToString("yyyy-MM-dd");
+                XmlNode statusNode = node.OwnerDocument.CreateElement("status");
+                statusNode.InnerText = "absent";
+                XmlNode attendanceNode = node.OwnerDocument.CreateElement("attendanceDates");
+                attendanceNode.AppendChild(dateNode);
+                attendanceNode.AppendChild(statusNode);
+                node.AppendChild(attendanceNode);
+                InstructorDataManipulator.SaveChangesInFile();
+                attendanceDates = node.SelectNodes("attendanceDates");
+            }
+            for (int i = 0; i < attendanceDates.Count; i++)
             {
                 target[i, 0] = id;
                 target[i, 1] = name;
@@ -122,23 +146,63 @@ namespace attendence_system.Instructor.userControl
         }
         private void assignClassesToComboBox()
         {
-            HashSet<string> classes = InstructorDataManipulator.GetClassesSet();
-            foreach (string item in classes)
+            comboBoxClass.Items.Clear();
+            comboBoxClass.Items.Add("All");
+            XmlNodeList teacherClasses = InstructorDataManipulator.GetUserNode().SelectNodes("class");
+            //HashSet<string> classes = InstructorDataManipulator.GetClassesSet();
+            foreach (XmlNode item in teacherClasses)
             {
-                comboBoxClass.Items.Add(item);
+                comboBoxClass.Items.Add(item.InnerText);
             }
         }
-        private void filterRows(string criteria, string column = "class")
+        private void filterRows(string criteria, string column = "class", string comparison = "=", DateTime dateCriteria = default)
         {
-            if(criteria == "All")
+            if (column == "Date")
             {
-                combinedTable.DefaultView.RowFilter = string.Empty;
-                return;
+                var formattedDate = dateCriteria.ToString("MM-d-yyyy");
+                combinedTable.DefaultView.RowFilter = $"{column} {comparison} #{formattedDate}#";
             }
-            // To clear the filter
-            combinedTable.DefaultView.RowFilter = string.Empty;
-            // Assuming 'dataTable' is the DataTable bound to your DataGridView
-            combinedTable.DefaultView.RowFilter = string.Format($"{column} = '{criteria}'");
+            else
+            {
+                if (criteria == "All")
+                {
+                    combinedTable.DefaultView.RowFilter = string.Empty;
+                    return;
+                }
+
+                // To clear the filter
+                combinedTable.DefaultView.RowFilter = string.Empty;
+                // Assuming 'dataTable' is the DataTable bound to your DataGridView
+                combinedTable.DefaultView.RowFilter = string.Format($"{column} {comparison} '{criteria}'");
+            }
+        }
+        private void filterRowsByTwoColumns(string criteria, string column1, string column2)
+        {
+            combinedTable.DefaultView.RowFilter = $"{column1} = '{criteria}' OR {column2} = '{criteria}'";
+        }
+
+        private void dateTimePickerFrom_ValueChanged(object sender, EventArgs e)
+        {
+            filterRows("", "Date", ">=", dateTimePickerFrom.Value);
+        }
+
+        private void dateTimePickerTo_ValueChanged(object sender, EventArgs e)
+        {
+            filterRows("", "Date", "<=", dateTimePickerTo.Value);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            string searchValue = textBoxSearchValue.Text;
+            string searchColumn = comboBoxSearchBy.SelectedItem.ToString();
+            if(searchColumn == "Both" || searchColumn == "")
+            {
+                filterRowsByTwoColumns(searchValue, "name", "phone");
+            }
+            else
+            {
+                filterRows(searchValue, searchColumn);
+            }
         }
     }
 }

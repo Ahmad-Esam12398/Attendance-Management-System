@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-<xs:simpleType name="id">
-	<xs:restriction base="xs:integer">
-		<xs:minExclusive value="0"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="name">
-	<xs:restriction base="xs:token">
-		<xs:pattern value="[a-zA-Z][0-99]"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="maxNumber">
-	<xs:restriction base="xs:integer">
-		<xs:minInclusive value="10"/>
-		<xs:maxInclusive value="100"/>
-	</xs:restriction>
-</xs:simpleType>
+	<xs:simpleType name="id">
+		<xs:restriction base="xs:integer">
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="name">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[a-zA-Z][0-99]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="maxNumber">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="10"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:element name="classes">
 		<xs:complexType>
 			<xs:sequence>
