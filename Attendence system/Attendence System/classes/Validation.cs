@@ -50,6 +50,14 @@ namespace attendence_system.classes
 
             return regex.IsMatch(email);
         }
+        public static bool IsValidPhone(string phone)
+        {
+            // Define a regular expression pattern for a typical phone number
+            var regex = new Regex(@"^\d{11}$");
+
+            // Check if the phone number matches the pattern
+            return regex.IsMatch(phone);
+        }
         public static bool IsValidPassword(string password)
         {
            if (password.Length < 8 || password.Length > 20)

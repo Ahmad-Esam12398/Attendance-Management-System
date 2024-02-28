@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using attendence_system;
 using attendence_system.Admin.userControl;
+
 
 namespace AttendanceManagmentProject.Admin
 {
@@ -62,13 +64,15 @@ namespace AttendanceManagmentProject.Admin
 
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
-          //  UserControlDashboard.labelTotalStudents.Text= UserControlAddStudent.gitCountStudent().ToString();
-           
+            //UserControlDashboard.labelTotalStudents.Text= UserControlAddStudent.gitCountStudent().ToString();
+
             userControlDashboard1.Visible = true;
             userControlAddClass1.Visible = false;
             userControlAddTeacher1.Visible = false;
             userControlAddStudent1.Visible = false;
-            MoveSidePanel(buttonDashboard);
+
+            MoveSidePanel(PanelDashboard);
+
 
         }
 
@@ -79,7 +83,7 @@ namespace AttendanceManagmentProject.Admin
             userControlAddStudent1.Visible = false;
             userControlAddTeacher1.Visible = false;
 
-            MoveSidePanel(buttonAttendance);
+            MoveSidePanel(panelAttendance);
 
 
 
@@ -91,7 +95,7 @@ namespace AttendanceManagmentProject.Admin
             userControlAddStudent1.Visible = false;
             userControlAddTeacher1.Visible = false;
             userControlDashboard1.Visible = false;
-            MoveSidePanel(butnAddClass);
+            MoveSidePanel(panelAddClass);
 
         }
 
@@ -121,7 +125,7 @@ namespace AttendanceManagmentProject.Admin
             userControlAddStudent1.Visible = false;
             userControlAddClass1.Visible = false;
             userControlDashboard1.Visible = false;
-            MoveSidePanel(butnAddTeacher);
+            MoveSidePanel(panelAddTeacher);
 
 
         }
@@ -134,11 +138,16 @@ namespace AttendanceManagmentProject.Admin
             userControlDashboard1.Visible = false;
             userControlAddTeacher1.Visible = false;
             userControlAddStudent1.Visible = true;
-            MoveSidePanel(buttonAddStudent);
+            MoveSidePanel(panelAddstudent);
 
         }
 
         private void userControlAddTeacher1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void parentPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }

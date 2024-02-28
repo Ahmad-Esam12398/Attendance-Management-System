@@ -32,19 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin));
             panel1 = new Panel();
             panel4 = new Panel();
-            panel9 = new Panel();
+            panelAddTeacher = new Panel();
             butnAddTeacher = new Button();
             pictureBox9 = new PictureBox();
-            panel8 = new Panel();
+            panelAddClass = new Panel();
             butnAddClass = new Button();
             pictureBox8 = new PictureBox();
-            panel7 = new Panel();
+            panelAddstudent = new Panel();
             buttonAddStudent = new Button();
             pictureBox7 = new PictureBox();
-            panel6 = new Panel();
+            panelAttendance = new Panel();
             buttonAttendance = new Button();
             pictureBox6 = new PictureBox();
-            panel5 = new Panel();
+            PanelDashboard = new Panel();
             buttonDashboard = new Button();
             pictureBox5 = new PictureBox();
             panelSide = new Panel();
@@ -73,15 +73,15 @@
             userControlAddTeacher1 = new attendence_system.Admin.userControl.UserControlAddTeacher();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
-            panel9.SuspendLayout();
+            panelAddTeacher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            panel8.SuspendLayout();
+            panelAddClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            panel7.SuspendLayout();
+            panelAddstudent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            panel6.SuspendLayout();
+            panelAttendance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            panel5.SuspendLayout();
+            PanelDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -108,11 +108,11 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(67, 3, 105);
-            panel4.Controls.Add(panel9);
-            panel4.Controls.Add(panel8);
-            panel4.Controls.Add(panel7);
-            panel4.Controls.Add(panel6);
-            panel4.Controls.Add(panel5);
+            panel4.Controls.Add(panelAddTeacher);
+            panel4.Controls.Add(panelAddClass);
+            panel4.Controls.Add(panelAddstudent);
+            panel4.Controls.Add(panelAttendance);
+            panel4.Controls.Add(PanelDashboard);
             panel4.Controls.Add(panelSide);
             panel4.Cursor = Cursors.Hand;
             panel4.Dock = DockStyle.Left;
@@ -121,14 +121,14 @@
             panel4.Size = new Size(287, 390);
             panel4.TabIndex = 0;
             // 
-            // panel9
+            // panelAddTeacher
             // 
-            panel9.Controls.Add(butnAddTeacher);
-            panel9.Controls.Add(pictureBox9);
-            panel9.Location = new Point(29, 289);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(200, 75);
-            panel9.TabIndex = 4;
+            panelAddTeacher.Controls.Add(butnAddTeacher);
+            panelAddTeacher.Controls.Add(pictureBox9);
+            panelAddTeacher.Location = new Point(29, 289);
+            panelAddTeacher.Name = "panelAddTeacher";
+            panelAddTeacher.Size = new Size(200, 75);
+            panelAddTeacher.TabIndex = 4;
             // 
             // butnAddTeacher
             // 
@@ -155,14 +155,14 @@
             pictureBox9.TabIndex = 0;
             pictureBox9.TabStop = false;
             // 
-            // panel8
+            // panelAddClass
             // 
-            panel8.Controls.Add(butnAddClass);
-            panel8.Controls.Add(pictureBox8);
-            panel8.Location = new Point(29, 195);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(200, 75);
-            panel8.TabIndex = 3;
+            panelAddClass.Controls.Add(butnAddClass);
+            panelAddClass.Controls.Add(pictureBox8);
+            panelAddClass.Location = new Point(29, 195);
+            panelAddClass.Name = "panelAddClass";
+            panelAddClass.Size = new Size(200, 75);
+            panelAddClass.TabIndex = 3;
             // 
             // butnAddClass
             // 
@@ -190,14 +190,14 @@
             pictureBox8.TabIndex = 0;
             pictureBox8.TabStop = false;
             // 
-            // panel7
+            // panelAddstudent
             // 
-            panel7.Controls.Add(buttonAddStudent);
-            panel7.Controls.Add(pictureBox7);
-            panel7.Location = new Point(29, 382);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(200, 75);
-            panel7.TabIndex = 2;
+            panelAddstudent.Controls.Add(buttonAddStudent);
+            panelAddstudent.Controls.Add(pictureBox7);
+            panelAddstudent.Location = new Point(29, 382);
+            panelAddstudent.Name = "panelAddstudent";
+            panelAddstudent.Size = new Size(200, 75);
+            panelAddstudent.TabIndex = 2;
             // 
             // buttonAddStudent
             // 
@@ -224,14 +224,14 @@
             pictureBox7.TabIndex = 0;
             pictureBox7.TabStop = false;
             // 
-            // panel6
+            // panelAttendance
             // 
-            panel6.Controls.Add(buttonAttendance);
-            panel6.Controls.Add(pictureBox6);
-            panel6.Location = new Point(29, 96);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(200, 75);
-            panel6.TabIndex = 2;
+            panelAttendance.Controls.Add(buttonAttendance);
+            panelAttendance.Controls.Add(pictureBox6);
+            panelAttendance.Location = new Point(29, 96);
+            panelAttendance.Name = "panelAttendance";
+            panelAttendance.Size = new Size(200, 75);
+            panelAttendance.TabIndex = 2;
             // 
             // buttonAttendance
             // 
@@ -258,14 +258,15 @@
             pictureBox6.TabIndex = 0;
             pictureBox6.TabStop = false;
             // 
-            // panel5
+            // PanelDashboard
             // 
-            panel5.Controls.Add(buttonDashboard);
-            panel5.Controls.Add(pictureBox5);
-            panel5.Location = new Point(29, 6);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(200, 66);
-            panel5.TabIndex = 1;
+            PanelDashboard.Controls.Add(buttonDashboard);
+            PanelDashboard.Controls.Add(pictureBox5);
+            PanelDashboard.Location = new Point(29, 6);
+            PanelDashboard.Name = "PanelDashboard";
+            PanelDashboard.Size = new Size(200, 66);
+            PanelDashboard.TabIndex = 1;
+            PanelDashboard.Paint += parentPanel_Paint;
             // 
             // buttonDashboard
             // 
@@ -584,15 +585,15 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel4.ResumeLayout(false);
-            panel9.ResumeLayout(false);
+            panelAddTeacher.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            panel8.ResumeLayout(false);
+            panelAddClass.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            panel7.ResumeLayout(false);
+            panelAddstudent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            panel6.ResumeLayout(false);
+            panelAttendance.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            panel5.ResumeLayout(false);
+            PanelDashboard.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -627,19 +628,19 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBoxExpand;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panelAddTeacher;
         private System.Windows.Forms.Button butnAddTeacher;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panelAddClass;
         private System.Windows.Forms.Button butnAddClass;
         private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panelAddstudent;
         private System.Windows.Forms.Button buttonAddStudent;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panelAttendance;
         private System.Windows.Forms.Button buttonAttendance;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel PanelDashboard;
         private System.Windows.Forms.Button buttonDashboard;
         private System.Windows.Forms.Panel panelSide;
         private System.Windows.Forms.PictureBox pictureBox5;

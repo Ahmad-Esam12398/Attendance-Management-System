@@ -111,10 +111,10 @@
             tabPageSearchStudent.Controls.Add(panel5);
             tabPageSearchStudent.Controls.Add(srearch);
             tabPageSearchStudent.Controls.Add(label8);
-            tabPageSearchStudent.Location = new Point(4, 24);
+            tabPageSearchStudent.Location = new Point(4, 26);
             tabPageSearchStudent.Name = "tabPageSearchStudent";
             tabPageSearchStudent.Padding = new Padding(3);
-            tabPageSearchStudent.Size = new Size(935, 443);
+            tabPageSearchStudent.Size = new Size(935, 441);
             tabPageSearchStudent.TabIndex = 1;
             tabPageSearchStudent.Text = "SrearchStudent ";
             tabPageSearchStudent.Enter += tabPageSearchStudent_Enter;
@@ -193,6 +193,7 @@
             dataGridViewStudent.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewStudent.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column5, Column6, Column4 });
+            dataGridViewStudent.GridColor = SystemColors.InactiveCaption;
             dataGridViewStudent.Location = new Point(31, 119);
             dataGridViewStudent.Name = "dataGridViewStudent";
             dataGridViewStudent.ReadOnly = true;
@@ -272,9 +273,9 @@
             label8.ForeColor = Color.MidnightBlue;
             label8.Location = new Point(31, 23);
             label8.Name = "label8";
-            label8.Size = new Size(94, 17);
+            label8.Size = new Size(107, 17);
             label8.TabIndex = 11;
-            label8.Text = "Search Class";
+            label8.Text = "Search Student";
             // 
             // tabPageAddStudent
             // 
@@ -546,10 +547,10 @@
             tabPageUpdateAndDelete.Controls.Add(textBoxName1);
             tabPageUpdateAndDelete.Controls.Add(label10);
             tabPageUpdateAndDelete.Controls.Add(panel9);
-            tabPageUpdateAndDelete.Location = new Point(4, 26);
+            tabPageUpdateAndDelete.Location = new Point(4, 24);
             tabPageUpdateAndDelete.Name = "tabPageUpdateAndDelete";
             tabPageUpdateAndDelete.Padding = new Padding(3);
-            tabPageUpdateAndDelete.Size = new Size(935, 441);
+            tabPageUpdateAndDelete.Size = new Size(935, 443);
             tabPageUpdateAndDelete.TabIndex = 2;
             tabPageUpdateAndDelete.Text = "Update&Delete";
             tabPageUpdateAndDelete.Enter += tabPageUpdateAndDelete_Enter;

@@ -38,7 +38,7 @@
             label3 = new Label();
             pictureBox2 = new PictureBox();
             panel3 = new Panel();
-            label4 = new Label();
+            adminRole = new Label();
             labelTotalRole = new Label();
             pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
@@ -145,7 +145,7 @@
             // 
             panel3.Anchor = AnchorStyles.None;
             panel3.BackColor = Color.PaleGreen;
-            panel3.Controls.Add(label4);
+            panel3.Controls.Add(adminRole);
             panel3.Controls.Add(labelTotalRole);
             panel3.Controls.Add(pictureBox3);
             panel3.Location = new Point(212, 299);
@@ -153,17 +153,17 @@
             panel3.Size = new Size(259, 128);
             panel3.TabIndex = 4;
             // 
-            // label4
+            // adminRole
             // 
-            label4.Anchor = AnchorStyles.None;
-            label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(153, 81);
-            label4.Name = "label4";
-            label4.Size = new Size(22, 16);
-            label4.TabIndex = 2;
-            label4.Text = "{?}";
+            adminRole.Anchor = AnchorStyles.None;
+            adminRole.AutoSize = true;
+            adminRole.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            adminRole.ForeColor = Color.White;
+            adminRole.Location = new Point(153, 81);
+            adminRole.Name = "adminRole";
+            adminRole.Size = new Size(22, 16);
+            adminRole.TabIndex = 2;
+            adminRole.Text = "{?}";
             // 
             // labelTotalRole
             // 
@@ -198,7 +198,7 @@
             Font = new Font("Century Gothic", 9.75F);
             Name = "UserControlDashboard";
             Size = new Size(942, 501);
-            Load += UserControlDashboard_Load;
+            Load += UserControlDashboard1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -218,12 +218,12 @@
         public Label labelTotalClasses;
         private Label label1;
         private Panel panel2;
-        public static Label labelTotalStudents;
         private Label label3;
         private PictureBox pictureBox2;
         private Panel panel3;
-        private Label label4;
+        private Label adminRole;
         private Label labelTotalRole;
         private PictureBox pictureBox3;
+        public Label labelTotalStudents;
     }
 }

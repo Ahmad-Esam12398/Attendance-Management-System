@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using attendence_system;
 
 namespace attendence_system.Admin.userControl
 {
@@ -18,13 +18,26 @@ namespace attendence_system.Admin.userControl
         {
             InitializeComponent();
             labelTotalStudents.Text = "3";
+            adminRole.Text = "Admin";
         }
 
-        private void UserControlDashboard_Load(object sender, EventArgs e)
+        /*  private void UserControlDashboard_Load(object sender, EventArgs e)
+          {
+              labelTotalStudents.Text = InstructorDataManipulator.GetCountStudents().ToString();
+
+          }
+
+          private void UserControlDashboard_Click(object sender, EventArgs e)
+          {
+              labelTotalStudents.Text = InstructorDataManipulator.GetCountStudents().ToString();
+
+          }
+        */
+
+        private void UserControlDashboard1_Load(object sender, EventArgs e)
         {
-         /*   List<SystemUser> students = UserControlAddStudent.GetUsers();
-            labelTotalStudents.Text =students.Count().ToString() ;
-         */
+            labelTotalStudents.Text = InstructorDataManipulator.GetCountStudents().ToString();
+
         }
     }
 }

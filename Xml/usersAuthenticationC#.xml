@@ -10,7 +10,9 @@
     <role>instructor</role>
     <class id="1">L1</class>
   </user>
-  <user>
+
+
+	<user>
     <id>2</id>
     <name>Mohamed</name>
     <email>mohamed.esam1231998@gmail.com</email>
@@ -47,26 +49,6 @@
     <role>admin</role>
   </user>
   <user>
-    <id>6</id>
-    <name>selim</name>
-    <email>selim@gmail.com</email>
-    <phone>123456789777</phone>
-    <password>1234567aa#</password>
-    <gender>f</gender>
-    <role>student</role>
-    <class id="1">L1</class>
-  </user>
-  <user>
-    <id>7</id>
-    <name>bosy</name>
-    <email>bosy@gmail.com</email>
-    <phone>12345678977</phone>
-    <password>1234567aa#</password>
-    <gender>f</gender>
-    <role>student</role>
-    <class id="1">L1</class>
-  </user>
-  <user>
     <id>8</id>
     <name>omar</name>
     <email>omarahmed@gmail.com</email>
@@ -82,6 +64,16 @@
     <email>mahmoud@gmail.com</email>
     <phone>01020228030</phone>
     <password>1234567aa#</password>
+    <gender>m</gender>
+    <role>student</role>
+    <class id="1">L1</class>
+  </user>
+  <user>
+    <id>10</id>
+    <name>Abeer</name>
+    <email>abeerss@gmail.com</email>
+    <phone>01020228030</phone>
+    <password>1234567@d</password>
     <gender>m</gender>
     <role>student</role>
     <class id="1">L1</class>
