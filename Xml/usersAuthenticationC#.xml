@@ -1,83 +1,49 @@
-
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\usersAuthenticationSchema.xsd">
-
-  <user>
-    <id>1</id>
-    <name>Ahmed ess</name>
-    <email>ahmad.esam1231998@gmail.com</email>
-    <phone>01015328933</phone>
-    <password>12345678</password>
-    <gender>m</gender>
-    <role>instructor</role>
-    <class id="1">L1</class>
-  </user>
-
-
 	<user>
-    <id>2</id>
-    <name>Mohamed</name>
-    <email>mohamed.esam1231998@gmail.com</email>
-    <phone>01015328930</phone>
-    <password>12345678</password>
-    <gender>m</gender>
-    <role>student</role>
-    <class id="1">L1</class>
-    <attendanceDates>
-      <date>2024-03-12</date>
-      <status>present</status>
-    </attendanceDates>
-    <attendanceDates>
-      <date>2024-04-12</date>
-      <status>absent</status>
-    </attendanceDates>
-  </user>
-  <user>
-    <id>3</id>
-    <name>Abdo</name>
-    <email>abdo.osama123@gmail.com</email>
-    <phone>01125488751</phone>
-    <password>12345678</password>
-    <gender>m</gender>
-    <role>admin</role>
-  </user>
-  <user>
-    <id>4</id>
-    <name>Habiba</name>
-    <email>habiba122@gmail.com</email>
-    <phone>01254882366</phone>
-    <password>12345678</password>
-    <gender>f</gender>
-    <role>admin</role>
-  </user>
-  <user>
-    <id>8</id>
-    <name>omar</name>
-    <email>omarahmed@gmail.com</email>
-    <phone>12345678922</phone>
-    <password>1234567aa#</password>
-    <gender>m</gender>
-    <role>student</role>
-    <class id="1">L1</class>
-  </user>
-  <user>
-    <id>9</id>
-    <name>mahmoud</name>
-    <email>mahmoud@gmail.com</email>
-    <phone>01020228030</phone>
-    <password>1234567aa#</password>
-    <gender>m</gender>
-    <role>student</role>
-    <class id="1">L1</class>
-  </user>
-  <user>
-    <id>10</id>
-    <name>Abeer</name>
-    <email>abeerss@gmail.com</email>
-    <phone>01020228030</phone>
-    <password>1234567@d</password>
-    <gender>m</gender>
-    <role>student</role>
-    <class id="1">L1</class>
-  </user>
+		<id>1</id>
+		<name>Ahmed</name>
+		<email>ahmad.esam1231998@gmail.com</email>
+		<phone>01015328933</phone>
+		<password>12345678</password>
+		<gender>m</gender>
+		<role>instructor</role>
+		<class id="1">L1</class>
+	</user>
+	<user>
+		<id>2</id>
+		<name>Mohamed</name>
+		<email>mohamed.esam1231998@gmail.com</email>
+		<phone>01015328930</phone>
+		<password>12345678</password>
+		<gender>m</gender>
+		<role>student</role>
+		<class id="1">L1</class>
+		<attendanceDates>
+			<date>2024-03-12</date>
+			<status>present</status>
+		</attendanceDates>
+		<attendanceDates>
+			<date>2024-04-12</date>
+			<status>present</status>
+		</attendanceDates>
+	</user>
+	<user>
+		<id>3</id>
+		<name>Abdo</name>
+		<email>abdo.osama123@gmail.com</email>
+		<phone>01125488751</phone>
+		<password>12345678</password>
+		<gender>m</gender>
+		<role>admin</role>
+	</user>
+	<user>
+		<id>4</id>
+		<name>Habiba</name>
+		<email>habiba122@gmail.com</email>
+		<phone>01254882366</phone>
+		<password>12345678</password>
+		<gender>f</gender>
+		<role>admin</role>
+	</user>
 </users>
