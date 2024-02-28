@@ -76,4 +76,14 @@
     <role>student</role>
     <class id="1">L1</class>
   </user>
+  <user>
+    <id>9</id>
+    <name>mahmoud</name>
+    <email>mahmoud@gmail.com</email>
+    <phone>01020228030</phone>
+    <password>1234567aa#</password>
+    <gender>m</gender>
+    <role>student</role>
+    <class id="1">L1</class>
+  </user>
 </users>
