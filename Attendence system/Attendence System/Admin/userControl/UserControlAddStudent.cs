@@ -44,7 +44,7 @@ namespace attendence_system.Admin.userControl
                      ).ToList();
             return users;
         }
-       
+
         // save data in Xml file
         public static void addNewUser(SystemUser Newuser)
         {
@@ -65,8 +65,8 @@ namespace attendence_system.Admin.userControl
 
         public static int gitCountStudent()
         {
-            List <SystemUser> users=GetUsers();
-           return  users.Count();
+            List<SystemUser> users = GetUsers();
+            return users.Count();
         }
 
         // Method to retrieve a user by ID from the XML data source
@@ -119,7 +119,7 @@ namespace attendence_system.Admin.userControl
             comboBoxUpDelete.SelectedIndex = -1;
             SID = "";
         }
-     
+
 
         private void tabControlAddStudent_Enter(object sender, EventArgs e)
         {
@@ -178,7 +178,7 @@ namespace attendence_system.Admin.userControl
 
             }
         }
-    
+
         // 
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
@@ -281,44 +281,44 @@ namespace attendence_system.Admin.userControl
             }
 
         }
-    
+
         // Method to Delete a user in the XML data source
         private void btnDeleteStudent_Click(object sender, EventArgs e)
-        
+
         {
-                if (!string.IsNullOrEmpty(SID))
+            if (!string.IsNullOrEmpty(SID))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete this student?", "Delete Student", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
+
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete this student?", "Delete Student", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    XDocument dataFile = XDocument.Load(path);
 
-                    if (dialogResult == DialogResult.Yes)
+                    // Find the user element with the matching ID and remove it
+                    XElement userToRemove = dataFile.Root.Elements("user")
+                        .FirstOrDefault(user => (string)user.Element("id") == SID);
 
+                    if (userToRemove != null)
                     {
-                        XDocument dataFile = XDocument.Load(path);
+                        userToRemove.Remove(); // Remove the user element
 
-                        // Find the user element with the matching ID and remove it
-                        XElement userToRemove = dataFile.Root.Elements("user")
-                            .FirstOrDefault(user => (string)user.Element("id") == SID);
-
-                        if (userToRemove != null)
-                        {
-                            userToRemove.Remove(); // Remove the user element
-
-                            // Save the updated XML data back to the file
-                            dataFile.Save(path);
-                             ClearText1();
-                            MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("User with ID " + SID + " not found.", "User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        // Save the updated XML data back to the file
+                        dataFile.Save(path);
+                        ClearText1();
+                        MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("User with ID " + SID + " not found.", "User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            
+            }
+            else
+            {
+                MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
 
         }
 

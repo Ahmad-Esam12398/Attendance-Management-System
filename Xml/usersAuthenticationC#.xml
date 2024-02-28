@@ -46,4 +46,28 @@
     <gender>f</gender>
     <role>admin</role>
   </user>
+  <user>
+    <id>21</id>
+    <name>enveqnjv</name>
+    <email>wweoi@ljnj lnwjkrnvjknjw</email>
+    <password>wjenfj</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
+  <user>
+    <id>22</id>
+    <name>abdo</name>
+    <email>abdo@gamil.com</email>
+    <password>Aabdo1234</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
+  <user>
+    <id>23</id>
+    <name>super</name>
+    <email>abdo@gmail.com</email>
+    <password>Aabdo</password>
+    <role>teacher</role>
+    <class>class </class>
+  </user>
 </users>
