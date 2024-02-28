@@ -31,6 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(instructor));
             panel1 = new Panel();
+            panelSettings = new Panel();
+            buttonSettings = new Button();
+            pictureBox2 = new PictureBox();
             panelSide = new Panel();
             panelAttendance = new Panel();
             buttonAttendance = new Button();
@@ -59,8 +62,12 @@
             label5 = new Label();
             label4 = new Label();
             timerDateAndTime = new System.Windows.Forms.Timer(components);
-            userControlDashboard1 = new Admin.userControl.UserControlDashboard();
+            setAttendance = new userControl.setAttendance();
+            userControlDashboard = new Admin.userControl.UserControlDashboard();
+            userControlChangeUserData1 = new UserControlChangeUserData();
             panel1.SuspendLayout();
+            panelSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panelAttendance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panelDashBoard.SuspendLayout();
@@ -80,6 +87,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(67, 3, 125);
+            panel1.Controls.Add(panelSettings);
             panel1.Controls.Add(panelSide);
             panel1.Controls.Add(panelAttendance);
             panel1.Controls.Add(panelDashBoard);
@@ -92,6 +100,44 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(333, 720);
             panel1.TabIndex = 0;
+            // 
+            // panelSettings
+            // 
+            panelSettings.Controls.Add(buttonSettings);
+            panelSettings.Controls.Add(pictureBox2);
+            panelSettings.Location = new Point(22, 559);
+            panelSettings.Name = "panelSettings";
+            panelSettings.Size = new Size(299, 75);
+            panelSettings.TabIndex = 8;
+            // 
+            // buttonSettings
+            // 
+            buttonSettings.BackColor = Color.Transparent;
+            buttonSettings.Cursor = Cursors.Hand;
+            buttonSettings.FlatAppearance.BorderSize = 0;
+            buttonSettings.FlatStyle = FlatStyle.Flat;
+            buttonSettings.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
+            buttonSettings.ForeColor = Color.White;
+            buttonSettings.Location = new Point(73, 12);
+            buttonSettings.Name = "buttonSettings";
+            buttonSettings.Size = new Size(162, 50);
+            buttonSettings.TabIndex = 1;
+            buttonSettings.Text = "Settings";
+            buttonSettings.UseVisualStyleBackColor = false;
+            buttonSettings.Click += buttonSettings_Click;
+            buttonSettings.MouseLeave += button1_MouseLeave;
+            buttonSettings.MouseHover += buttonDashboard_MouseHover;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.FromArgb(67, 23, 125);
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(9, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(61, 53);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
             // 
             // panelSide
             // 
@@ -125,6 +171,8 @@
             buttonAttendance.Text = "Attendance";
             buttonAttendance.UseVisualStyleBackColor = false;
             buttonAttendance.Click += buttonAttendance_Click;
+            buttonAttendance.MouseLeave += button1_MouseLeave;
+            buttonAttendance.MouseHover += buttonDashboard_MouseHover;
             // 
             // pictureBox6
             // 
@@ -153,13 +201,15 @@
             buttonDashboard.FlatStyle = FlatStyle.Flat;
             buttonDashboard.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             buttonDashboard.ForeColor = Color.White;
-            buttonDashboard.Location = new Point(73, 3);
+            buttonDashboard.Location = new Point(73, 8);
             buttonDashboard.Name = "buttonDashboard";
             buttonDashboard.Size = new Size(162, 50);
             buttonDashboard.TabIndex = 1;
             buttonDashboard.Text = "Dashboard";
             buttonDashboard.UseVisualStyleBackColor = false;
             buttonDashboard.Click += buttonDashboard_Click;
+            buttonDashboard.MouseLeave += button1_MouseLeave;
+            buttonDashboard.MouseHover += buttonDashboard_MouseHover;
             // 
             // pictureBox5
             // 
@@ -195,6 +245,8 @@
             buttonAddStudent.Text = "Add Student";
             buttonAddStudent.UseVisualStyleBackColor = false;
             buttonAddStudent.Click += buttonAddStudent_Click;
+            buttonAddStudent.MouseLeave += button1_MouseLeave;
+            buttonAddStudent.MouseHover += buttonDashboard_MouseHover;
             // 
             // pictureBox8
             // 
@@ -260,7 +312,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1175, 179);
             panel3.TabIndex = 1;
-            panel3.Paint += panel3_Paint;
             // 
             // panelExpand
             // 
@@ -411,23 +462,41 @@
             // 
             timerDateAndTime.Tick += timerDateAndTime_Tick;
             // 
-            // userControlDashboard1
+            // setAttendance
             // 
-            userControlDashboard1.BackColor = Color.White;
-            userControlDashboard1.Dock = DockStyle.Fill;
-            userControlDashboard1.Font = new Font("Century Gothic", 9.75F);
-            userControlDashboard1.Location = new Point(333, 179);
-            userControlDashboard1.Margin = new Padding(4, 4, 4, 4);
-            userControlDashboard1.Name = "userControlDashboard1";
-            userControlDashboard1.Size = new Size(1175, 541);
-            userControlDashboard1.TabIndex = 2;
+            setAttendance.BackColor = Color.White;
+            setAttendance.Location = new Point(382, 454);
+            setAttendance.Name = "setAttendance";
+            setAttendance.Size = new Size(362, 209);
+            setAttendance.TabIndex = 2;
+            setAttendance.Load += setAttendance_Load;
+            // 
+            // userControlDashboard
+            // 
+            userControlDashboard.BackColor = Color.White;
+            userControlDashboard.Font = new Font("Century Gothic", 9.75F);
+            userControlDashboard.Location = new Point(382, 265);
+            userControlDashboard.Margin = new Padding(4, 4, 4, 4);
+            userControlDashboard.Name = "userControlDashboard";
+            userControlDashboard.Size = new Size(362, 167);
+            userControlDashboard.TabIndex = 3;
+            // 
+            // userControlChangeUserData1
+            // 
+            userControlChangeUserData1.BackColor = Color.White;
+            userControlChangeUserData1.Location = new Point(768, 265);
+            userControlChangeUserData1.Name = "userControlChangeUserData1";
+            userControlChangeUserData1.Size = new Size(362, 165);
+            userControlChangeUserData1.TabIndex = 4;
             // 
             // instructor
             // 
             AutoScaleDimensions = new SizeF(12F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1508, 720);
-            Controls.Add(userControlDashboard1);
+            Controls.Add(userControlChangeUserData1);
+            Controls.Add(userControlDashboard);
+            Controls.Add(setAttendance);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -440,6 +509,8 @@
             Load += Instructor_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panelSettings.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panelAttendance.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panelDashBoard.ResumeLayout(false);
@@ -491,6 +562,11 @@
         private Button buttonLogOut;
         private Button buttonMinimize;
         private System.Windows.Forms.Timer timerDateAndTime;
-        private Admin.userControl.UserControlDashboard userControlDashboard1;
+        private Panel panelSettings;
+        private Button buttonSettings;
+        private PictureBox pictureBox2;
+        private userControl.setAttendance setAttendance;
+        private Admin.userControl.UserControlDashboard userControlDashboard;
+        private UserControlChangeUserData userControlChangeUserData1;
     }
 }

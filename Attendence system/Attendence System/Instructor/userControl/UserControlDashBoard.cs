@@ -16,5 +16,10 @@ namespace attendence_system.Instructor
         {
             InitializeComponent();
         }
+
+        private void UserControlDashBoard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

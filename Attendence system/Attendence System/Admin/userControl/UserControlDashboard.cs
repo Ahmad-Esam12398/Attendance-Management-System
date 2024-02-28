@@ -22,9 +22,9 @@ namespace attendence_system.Admin.userControl
 
         private void UserControlDashboard_Load(object sender, EventArgs e)
         {
-            List<SystemUser> students = UserControlAddStudent.GetUsers();
+         /*   List<SystemUser> students = UserControlAddStudent.GetUsers();
             labelTotalStudents.Text =students.Count().ToString() ;
-
+         */
         }
     }
 }

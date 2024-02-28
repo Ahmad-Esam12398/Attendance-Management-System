@@ -146,9 +146,6 @@
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(270, 17);
             textBoxName.TabIndex = 2;
-
-         //   textBoxName.TextChanged += this.textBoxName_TextChanged;
-
             // 
             // label2
             // 

@@ -62,7 +62,7 @@ namespace AttendanceManagmentProject.Admin
 
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
-            UserControlDashboard.labelTotalStudents.Text= UserControlAddStudent.gitCountStudent().ToString();
+          //  UserControlDashboard.labelTotalStudents.Text= UserControlAddStudent.gitCountStudent().ToString();
            
             userControlDashboard1.Visible = true;
             userControlAddClass1.Visible = false;

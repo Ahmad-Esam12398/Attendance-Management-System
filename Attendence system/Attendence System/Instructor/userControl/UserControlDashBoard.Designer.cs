@@ -197,6 +197,7 @@
             Controls.Add(panel1);
             Name = "UserControlDashBoard";
             Size = new Size(942, 501);
+            Load += UserControlDashBoard_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

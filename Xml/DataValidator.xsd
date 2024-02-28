@@ -5,9 +5,15 @@
 			<xs:minInclusive value="1"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="className">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[A-Z][1-999]"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="status">
 		<xs:restriction base="xs:token">
-			<xs:pattern value="[ap]"/>
+			<xs:enumeration value="absent"/>
+			<xs:enumeration value="present"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:element name="studentsRecords">
@@ -19,7 +25,7 @@
 							<xs:element name="students">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="student">
+										<xs:element name="student" maxOccurs="unbounded">
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="id" type="id"/>
@@ -37,8 +43,16 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
+							<xs:element name="instructors">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="id" type="id" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
 						</xs:sequence>
-						<xs:attribute name="id" type="id"/>
+						<xs:attribute name="id" type="id" use="required"/>
+						<xs:attribute name="name" type="className" use="required"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
