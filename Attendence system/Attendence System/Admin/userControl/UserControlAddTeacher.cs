@@ -8,6 +8,8 @@ namespace attendence_system.Admin.userControl
     public partial class UserControlAddTeacher : UserControl
     {
         string SID = "";
+        BindingSource teacherBindingSource = new BindingSource();
+
         public UserControlAddTeacher()
         {
             InitializeComponent();
@@ -136,4 +138,7 @@ namespace attendence_system.Admin.userControl
 
         
     }
+
+
+
 }
