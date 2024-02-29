@@ -52,7 +52,6 @@
             label1 = new Label();
             tabPageSearchTeacher = new TabPage();
             textBoxSearch = new TextBox();
-            textBox6 = new TextBox();
             comboBoxSearchBy = new ComboBox();
             panel11 = new Panel();
             label7 = new Label();
@@ -357,7 +356,6 @@
             // 
             tabPageSearchTeacher.BackColor = Color.White;
             tabPageSearchTeacher.Controls.Add(textBoxSearch);
-            tabPageSearchTeacher.Controls.Add(textBox6);
             tabPageSearchTeacher.Controls.Add(comboBoxSearchBy);
             tabPageSearchTeacher.Controls.Add(panel11);
             tabPageSearchTeacher.Controls.Add(label7);
@@ -385,17 +383,7 @@
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(309, 21);
             textBoxSearch.TabIndex = 58;
-            // 
-            // textBox6
-            // 
-            textBox6.BackColor = Color.White;
-            textBox6.BorderStyle = BorderStyle.None;
-            textBox6.Font = new Font("Century Gothic", 10F);
-            textBox6.Location = new Point(457, 103);
-            textBox6.Margin = new Padding(3, 4, 3, 4);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(309, 21);
-            textBox6.TabIndex = 55;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // comboBoxSearchBy
             // 
@@ -687,6 +675,7 @@
             btnUpdateTeachers.TabIndex = 67;
             btnUpdateTeachers.Text = "Update";
             btnUpdateTeachers.UseVisualStyleBackColor = false;
+            btnUpdateTeachers.Click += btnUpdateTeachers_Click;
             // 
             // panel7
             // 
@@ -813,7 +802,6 @@
         private Label label1;
         private TabPage tabPageSearchTeacher;
         private TextBox textBoxSearch;
-        private TextBox textBox6;
         private ComboBox comboBoxSearchBy;
         private Panel panel11;
         private Label label7;

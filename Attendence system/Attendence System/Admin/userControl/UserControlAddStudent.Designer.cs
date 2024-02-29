@@ -111,10 +111,10 @@
             tabPageSearchStudent.Controls.Add(panel5);
             tabPageSearchStudent.Controls.Add(srearch);
             tabPageSearchStudent.Controls.Add(label8);
-            tabPageSearchStudent.Location = new Point(4, 30);
+            tabPageSearchStudent.Location = new Point(4, 29);
             tabPageSearchStudent.Name = "tabPageSearchStudent";
             tabPageSearchStudent.Padding = new Padding(3);
-            tabPageSearchStudent.Size = new Size(935, 437);
+            tabPageSearchStudent.Size = new Size(935, 438);
             tabPageSearchStudent.TabIndex = 1;
             tabPageSearchStudent.Text = "SrearchStudent ";
             tabPageSearchStudent.Enter += tabPageSearchStudent_Enter;
@@ -313,6 +313,7 @@
             tabPageAddStudent.Size = new Size(935, 437);
             tabPageAddStudent.TabIndex = 0;
             tabPageAddStudent.Text = "Add Student";
+            tabPageAddStudent.Click += tabPageAddStudent_Click;
             tabPageAddStudent.Leave += tabPageAddStudent_Leave;
             // 
             // comboBoxGender
@@ -560,7 +561,6 @@
             tabPageUpdateAndDelete.Size = new Size(935, 438);
             tabPageUpdateAndDelete.TabIndex = 2;
             tabPageUpdateAndDelete.Text = "Update&Delete";
-          //  tabPageUpdateAndDelete.Enter += tabPageUpdateAndDelete_Enter;
             tabPageUpdateAndDelete.Leave += tabPageUpdateAndDelete_Leave;
             // 
             // comboBoxGender1

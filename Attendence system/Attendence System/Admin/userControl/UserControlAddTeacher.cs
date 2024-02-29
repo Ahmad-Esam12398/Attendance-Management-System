@@ -21,8 +21,9 @@ namespace attendence_system.Admin.userControl
 
         public UserControlAddTeacher()
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            this.tabPageSearchTeacher.Enter += new System.EventHandler(this.tabPageSearchTeacher_Enter);
         }
         XmlDocument data = InstructorDataManipulator.usersData;
         List<XmlNode> instructors = InstructorDataManipulator.GetinstructorList();
@@ -185,14 +186,12 @@ namespace attendence_system.Admin.userControl
                 comboBoxClassTeacher.Items.Add(className);
 
             }
-
+            DataTable teacherData = GetStudentsDataTable(); // This method needs to be defined similar to GetStudentsDataTable but for teachers
+            dataGridViewStudent.DataSource = teacherData;
             textBoxSearch.Clear();
             comboBoxSearchBy.SelectedIndex = -1;
             // Call the function to get the student data
-            DataTable studentData = GetStudentsDataTable();
-            // Assuming dataGridViewStudent is your DataGridView control
-            dataGridViewStudent.DataSource = studentData;
-            labelTotalStudents.Text = dataGridViewStudent.Rows.Count.ToString();
+            
         }
 
         private void btnDeleteTeacher_Click(object sender, EventArgs e)
@@ -231,6 +230,17 @@ namespace attendence_system.Admin.userControl
         }
 
         private void tabPageAddTeacher_Click(object sender, EventArgs e)
+        {
+
+        }
+       
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void btnUpdateTeachers_Click(object sender, EventArgs e)
         {
 
         }

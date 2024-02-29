@@ -34,7 +34,7 @@ namespace attendence_system.Admin.userControl
             textBoxEmailstudent.Clear();
             textBoxPassStudent.Clear();
             textBoxphoneNumber.Clear();
-             comboBoxClassStudent.SelectedIndex = -1;
+            comboBoxClassStudent.SelectedIndex = -1;
             comboBoxGender.SelectedIndex = -1;
             tabControlAddStudent.SelectedTab = tabPageAddStudent;
         }
@@ -58,7 +58,7 @@ namespace attendence_system.Admin.userControl
 
             // Call the method to get the unique class values
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
-
+             
             // Add the class values to the ComboBox
             foreach (XmlNode classNode in classes)
             {
@@ -86,7 +86,7 @@ namespace attendence_system.Admin.userControl
 
         private void UdateAndDelete_Enter(object sender, EventArgs e)
         {
-          //  ClearText();
+            //  ClearText();
 
 
             // Call the method to get the unique class values
@@ -98,16 +98,16 @@ namespace attendence_system.Admin.userControl
                 string className = classNode.SelectSingleNode("name").InnerText;
                 comboBoxClassStudent.Items.Add(className);
             }
-/*
-            // Call the method to get the unique class values
-            HashSet<string> classes = InstructorDataManipulator.GetClassesSet();
+            /*
+                        // Call the method to get the unique class values
+                        HashSet<string> classes = InstructorDataManipulator.GetClassesSet();
 
-            // Add the class values to the ComboBox
-            foreach (string className in classes)
-            {
-                comboBoxClassStudent.Items.Add(className);
-            }
-*/
+                        // Add the class values to the ComboBox
+                        foreach (string className in classes)
+                        {
+                            comboBoxClassStudent.Items.Add(className);
+                        }
+            */
         }
 
 
@@ -385,8 +385,8 @@ namespace attendence_system.Admin.userControl
 
         private void dataGridViewStudent_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-             comboBoxClasses1.Items.Clear();
-             comboBoxGender1.Items.Clear();
+            comboBoxClasses1.Items.Clear();
+            comboBoxGender1.Items.Clear();
             // Call the method to get the unique class values
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
 
@@ -430,7 +430,7 @@ namespace attendence_system.Admin.userControl
                 {
                     comboBoxClasses1.SelectedItem = classValue;
                 }
-          
+
                 textBoxphoneNumber1.Text = row.Cells["Column6"].Value.ToString();
 
                 // Retrieve and display password
@@ -444,7 +444,7 @@ namespace attendence_system.Admin.userControl
                     }
 
                 }
-      
+
             }
         }
 
@@ -496,26 +496,26 @@ namespace attendence_system.Admin.userControl
 
                     // Append the class node to the newUser node
                     newUserNode.AppendChild(classNode);
-                  /*  if (!string.IsNullOrEmpty(selectedClass))
-                    {
-                        var result = InstructorDataManipulator.GetClassIdByName(selectedClass);
-                        if (result != null)
-                        {
-                            XmlNode classNode = doc.CreateElement("class");
+                    /*  if (!string.IsNullOrEmpty(selectedClass))
+                      {
+                          var result = InstructorDataManipulator.GetClassIdByName(selectedClass);
+                          if (result != null)
+                          {
+                              XmlNode classNode = doc.CreateElement("class");
 
-                            // Set the ID attribute for the class node
-                            XmlAttribute idAttribute = doc.CreateAttribute("id");
-                            idAttribute.Value = result;
-                            classNode.Attributes.Append(idAttribute);
+                              // Set the ID attribute for the class node
+                              XmlAttribute idAttribute = doc.CreateAttribute("id");
+                              idAttribute.Value = result;
+                              classNode.Attributes.Append(idAttribute);
 
-                            // Set the text content (class name) for the class node
-                            classNode.InnerText = selectedClass;
+                              // Set the text content (class name) for the class node
+                              classNode.InnerText = selectedClass;
 
-                            // Append the class node to the newUser node
-                            newUserNode.AppendChild(classNode);
-                        }
-                    }
-                  */
+                              // Append the class node to the newUser node
+                              newUserNode.AppendChild(classNode);
+                          }
+                      }
+                    */
                     // Handle gender selection
                     XmlNode genderNode = doc.CreateElement("gender");
                     if (comboBoxGender1.SelectedItem?.ToString() == "female")
@@ -532,20 +532,20 @@ namespace attendence_system.Admin.userControl
                     newUserNode.AppendChild(genderNode);
 
 
-                
-                        if (InstructorDataManipulator.validateUserData(newUserNode))
-                        {
-                            // Call the UpdateUserData function with the new user node
-                            InstructorDataManipulator.UpdateUserData(newUserNode);
 
-                            MessageBox.Show("Updated successfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (InstructorDataManipulator.validateUserData(newUserNode))
+                    {
+                        // Call the UpdateUserData function with the new user node
+                        InstructorDataManipulator.UpdateUserData(newUserNode);
 
-                            ClearText1();
+                        MessageBox.Show("Updated successfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        }
-                    
-                  
-             
+                        ClearText1();
+
+                    }
+
+
+
                 }
 
                 else
@@ -566,7 +566,10 @@ namespace attendence_system.Admin.userControl
 
         }
 
-        
+        private void tabPageAddStudent_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
