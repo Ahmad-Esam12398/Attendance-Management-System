@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\usersAuthenticationSchema.xsd">
+<users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="usersAuthenticationSchema.xsd">
 	<user>
 		<id>1</id>
 		<name>Ahmed</name>
@@ -8,7 +8,7 @@
 		<password>12345678</password>
 		<gender>m</gender>
 		<role>instructor</role>
-		<class id="1">L1</class>
+		<class>L1</class>
 	</user>
 	<user>
 		<id>2</id>
@@ -18,7 +18,7 @@
 		<password>12345678</password>
 		<gender>m</gender>
 		<role>student</role>
-		<class id="1">L1</class>
+		<class>L1</class>
 		<attendanceDates>
 			<date>2024-03-12</date>
 			<status>present</status>

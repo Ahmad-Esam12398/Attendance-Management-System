@@ -27,6 +27,16 @@
       <date>2024-04-12</date>
       <status>present</status>
     </attendanceDates>
+
+    <attendanceDates>
+      <date>2024-02-28</date>
+      <status>absent</status>
+    </attendanceDates>
+    <attendanceDates>
+      <date>2024-02-29</date>
+      <status>absent</status>
+    </attendanceDates>
+
   </user>
   <user>
     <id>3</id>
@@ -46,6 +56,7 @@
     <gender>f</gender>
     <role>admin</role>
   </user>
+
   <user>
     <id>5</id>
     <name>hoda</name>
@@ -76,4 +87,5 @@
     <role>student</role>
     <class>A1</class>
   </user>
+
 </users>
