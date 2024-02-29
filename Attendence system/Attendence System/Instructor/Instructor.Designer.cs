@@ -480,6 +480,7 @@
             userControlDashboard.Name = "userControlDashboard";
             userControlDashboard.Size = new Size(362, 167);
             userControlDashboard.TabIndex = 3;
+            userControlDashboard.Load += userControlDashboard_Load_1;
             // 
             // userControlChangeUserData1
             // 

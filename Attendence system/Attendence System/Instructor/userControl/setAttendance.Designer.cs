@@ -49,9 +49,10 @@
             labelDateFrom = new Label();
             labelAddStudent = new Label();
             tabPage1 = new TabPage();
-            buttonExportExcel = new Button();
-            buttonExportPDF = new Button();
-            buttonExportCSV = new Button();
+            label1 = new Label();
+            buttonSaveAs = new Button();
+            comboBoxFileType = new ComboBox();
+            label2 = new Label();
             tabControlSetAttendance.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttendance).BeginInit();
@@ -107,6 +108,7 @@
             dataGridViewAttendance.RowHeadersWidth = 51;
             dataGridViewAttendance.Size = new Size(927, 290);
             dataGridViewAttendance.TabIndex = 50;
+            dataGridViewAttendance.CellContentClick += dataGridViewAttendance_CellContentClick;
             // 
             // pictureBox1
             // 
@@ -200,6 +202,7 @@
             dateTimePickerTo.Size = new Size(142, 27);
             dateTimePickerTo.TabIndex = 43;
             dateTimePickerTo.Value = new DateTime(2024, 2, 28, 9, 33, 48, 0);
+            dateTimePickerTo.ValueChanged += dateTimePickerTo_ValueChanged;
             // 
             // labelDateTo
             // 
@@ -273,7 +276,7 @@
             labelAddStudent.AutoSize = true;
             labelAddStudent.BackColor = Color.Transparent;
             labelAddStudent.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelAddStudent.Location = new Point(4, 26);
+            labelAddStudent.Location = new Point(3, 13);
             labelAddStudent.Name = "labelAddStudent";
             labelAddStudent.Size = new Size(144, 19);
             labelAddStudent.TabIndex = 33;
@@ -281,9 +284,10 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(buttonExportCSV);
-            tabPage1.Controls.Add(buttonExportExcel);
-            tabPage1.Controls.Add(buttonExportPDF);
+            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(buttonSaveAs);
+            tabPage1.Controls.Add(comboBoxFileType);
+            tabPage1.Controls.Add(label2);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -292,35 +296,49 @@
             tabPage1.Text = "Export";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // buttonExportExcel
+            // label1
             // 
-            buttonExportExcel.Location = new Point(130, 145);
-            buttonExportExcel.Name = "buttonExportExcel";
-            buttonExportExcel.Size = new Size(189, 103);
-            buttonExportExcel.TabIndex = 1;
-            buttonExportExcel.Text = "Excel";
-            buttonExportExcel.UseVisualStyleBackColor = true;
-            buttonExportExcel.Click += buttonExportExcel_Click;
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label1.Location = new Point(611, 61);
+            label1.Name = "label1";
+            label1.Size = new Size(81, 19);
+            label1.TabIndex = 37;
+            label1.Text = "Save As:";
             // 
-            // buttonExportPDF
+            // buttonSaveAs
             // 
-            buttonExportPDF.Location = new Point(441, 145);
-            buttonExportPDF.Name = "buttonExportPDF";
-            buttonExportPDF.Size = new Size(224, 103);
-            buttonExportPDF.TabIndex = 0;
-            buttonExportPDF.Text = "PDF";
-            buttonExportPDF.UseVisualStyleBackColor = true;
-            buttonExportPDF.Click += buttonExportPDF_Click;
+            buttonSaveAs.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonSaveAs.Location = new Point(790, 99);
+            buttonSaveAs.Name = "buttonSaveAs";
+            buttonSaveAs.Size = new Size(113, 28);
+            buttonSaveAs.TabIndex = 36;
+            buttonSaveAs.Text = "Save";
+            buttonSaveAs.UseVisualStyleBackColor = true;
+            buttonSaveAs.Click += buttonSaveAs_Click;
             // 
-            // buttonExportCSV
+            // comboBoxFileType
             // 
-            buttonExportCSV.Location = new Point(130, 284);
-            buttonExportCSV.Name = "buttonExportCSV";
-            buttonExportCSV.Size = new Size(189, 78);
-            buttonExportCSV.TabIndex = 2;
-            buttonExportCSV.Text = "CSV";
-            buttonExportCSV.UseVisualStyleBackColor = true;
-            buttonExportCSV.Click += buttonExportCSV_Click;
+            comboBoxFileType.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            comboBoxFileType.FormattingEnabled = true;
+            comboBoxFileType.Items.AddRange(new object[] { "PDF", "Excel", "CSV" });
+            comboBoxFileType.Location = new Point(611, 99);
+            comboBoxFileType.Name = "comboBoxFileType";
+            comboBoxFileType.Size = new Size(151, 28);
+            comboBoxFileType.TabIndex = 35;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label2.Location = new Point(6, 15);
+            label2.Name = "label2";
+            label2.Size = new Size(107, 19);
+            label2.TabIndex = 34;
+            label2.Text = "Export Data:";
             // 
             // setAttendance
             // 
@@ -338,6 +356,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttendance).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -365,9 +384,10 @@
         private Label labelClass;
         private Label labelDateFrom;
         private Label labelAddStudent;
-        private Button buttonExportExcel;
-        private Button buttonExportPDF;
         private Button button1;
-        private Button buttonExportCSV;
+        private Button buttonSaveAs;
+        private ComboBox comboBoxFileType;
+        private Label label2;
+        private Label label1;
     }
 }

@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 using System.Xml.Schema;
 using System.Xml;
 using attendence_system.Instructor;
+using OfficeOpenXml;
+using System.Data;
+using iText.Kernel.Pdf;
+using iText.Layout.Element;
+using System.Reflection.Metadata;
+using iText.Layout;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
+using Document = iText.Layout.Document;
 
 namespace attendence_system
 {
@@ -22,6 +31,8 @@ namespace attendence_system
         static private XmlNode userNode;
         // This field represents a dictionary that maps class names to their corresponding IDs.
         static private Dictionary<string, string> classIdByName = new Dictionary<string, string>();
+        //Id field of User
+        static private string id = "-1";
 
         static InstructorDataManipulator()
         {
@@ -30,37 +41,54 @@ namespace attendence_system
             usersSchemaSet.Add("", XmlReader.Create(new StreamReader(path + "/" + usersSchema)));
             XmlReaderUsersSettings.Schemas = usersSchemaSet;
             XmlReaderUsersSettings.ValidationType = ValidationType.Schema;
-            userNode = GetUserNode("1");
-            classIdByName.Add("L1", "1");
+            classIdByName.Add("L1", "1"); //Should be Removed
 
         }
-
-        static public XmlNode GetUserNode(string id)
+        static public void setId(string _id)
         {
-            XmlNode target = usersData.SelectSingleNode($"/users/user[id='{id}']");
+            id = _id;
+        }
+        static public XmlNode GetUserNode()
+        {
+            userNode = usersData.SelectSingleNode($"/users/user[id='{id}']");
+            XmlNode duplicate = userNode.CloneNode(true);
+            return duplicate;
+        }
+        static public XmlNode GetUserNode(string _id)
+        {
+            XmlNode target = usersData.SelectSingleNode($"/users/user[id='{_id}']");
             return target;
         }
 
-        public static bool validateUserData(XmlNode underTest)
+        public static bool validateUserData(XmlNode underTest, bool update = false)
         {
-            XmlNode rootNode = testUserDoc.SelectSingleNode("/users");
-            XmlNode importedNode = testUserDoc.ImportNode(underTest, true);
+            XmlNode rootNode = usersData.SelectSingleNode("/users");
+            XmlNode importedNode = usersData.ImportNode(underTest, true);
             //XmlNode nameNode = importedNode.SelectSingleNode("name");
             //XmlNode emailNode = importedNode.SelectSingleNode("email");
             //XmlNode phoneNode = importedNode.SelectSingleNode("phone");
-            rootNode.AppendChild(importedNode);
-            XmlReader reader = XmlReader.Create(new StringReader(testUserDoc.OuterXml), XmlReaderUsersSettings);
+            if (update)
+            {
+                rootNode.ReplaceChild(importedNode, GetUserNode(underTest.SelectSingleNode("id").InnerText));
+            }
+            else
+            {
+                rootNode.AppendChild(importedNode);
+            }  
+            XmlReader reader = XmlReader.Create(new StringReader(usersData.OuterXml), XmlReaderUsersSettings);
             try
             {
                 while (reader.Read()) { }
-                testUserDoc.Load(path + "/" + testUser);
                 return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                testUserDoc.Load(path + "/" + testUser);
                 return false;
+            }
+            finally
+            {
+                usersData.Load(path + "/" + userData);
             }
         }
         /*   static public void UpdateUserData(XmlNode newOne)
@@ -118,12 +146,6 @@ namespace attendence_system
             // Replace the existing user node with the updated user node
             usersData.SelectSingleNode("/users").ReplaceChild(oneWillBeAppended, GetUserNode(id));
             SaveChangesInFile();
-        }
-
-        static public XmlNode GetUserNode()
-        {
-            XmlNode duplicate = userNode.CloneNode(true);
-            return duplicate;
         }
         static public XmlDocument GetUsersData()
         {
@@ -185,6 +207,16 @@ namespace attendence_system
             }
             return classes;
         }
+        static public HashSet<string> GetClassesForInstructor(XmlNode instructorNode)
+        {
+            HashSet<string> result = new HashSet<string>();
+            var classes = instructorNode.SelectNodes("class");
+            foreach (XmlNode classNode in classes)
+            {
+                result.Add(classNode.InnerText);
+            }
+            return result;
+        }
         // Add New User
         static public void AddNewUser(XmlNode newUser)
         {
@@ -242,7 +274,137 @@ namespace attendence_system
                 return null; 
             }
         }
+        //======================================================= Methods For Exporting Data =======================================================
+
+        static public void SaveFileDialogCustom(string typo, string extension, string title, Action<DataGridView, string> execute, DataGridView dataGridView)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = typo + "|*." + extension;
+            saveFileDialog.Title = title;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string outputPath = saveFileDialog.FileName;
+                    execute(dataGridView, outputPath);
+                    MessageBox.Show("File has been saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+         static public void ExportDataGridViewToCsv(DataGridView dgv, string filename)
+        {
+            using (StreamWriter writer = new StreamWriter(filename))
+            {
+                // Write column headers
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    writer.Write(dgv.Columns[i].HeaderText);
+                    if (i < dgv.Columns.Count - 1)
+                    {
+                        writer.Write(",");
+                    }
+                }
+                writer.WriteLine();
+
+                // Write rows
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.Index == dgv.Rows.Count - 1)
+                    {
+                        break;
+                    }
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+                        if (i == 5)
+                            writer.Write(Convert.ToDateTime(row.Cells[i].Value).ToString("dd-MM-yyyy"));
+                        else if (i == 6)
+                            writer.Write(row.Cells[i].Value.ToString() == "True" ? "Absent" : "Present");
+                        else
+                            writer.Write(row.Cells[i].Value);
+                        if (i < row.Cells.Count - 1)
+                        {
+                            writer.Write(",");
+                        }
+                    }
+                    writer.WriteLine();
+                }
+            }
+        }
+        static public void ExportDataToExcel(DataGridView dataGridView, string fileName)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells["A1"].LoadFromDataTable((DataTable)dataGridView.DataSource, true);
+                ws.Column(6).Style.Numberformat.Format = "dd-MM-yyyy";
+                for (int row = 2; row <= ws.Dimension.End.Row; row++)
+                {
+                    if (ws.Cells[row, 7].Value.ToString().ToLower() == "true")
+                    {
+                        ws.Cells[row, 7].Value = "Absent";
+                    }
+                    else
+                    {
+                        ws.Cells[row, 7].Value = "Present";
+                    }
+                }
+                using (var stream = File.Create(fileName))
+                {
+                    pck.SaveAs(stream);
+                }
+            }
+        }
+        static public void GeneratePdfFromDataGridView(DataGridView dataGridView, string outputPath)
+        {
+            // Initialize a new PDF writer
+            PdfWriter writer = new PdfWriter(outputPath);
+
+            // Initialize a new PDF document
+            PdfDocument pdf = new PdfDocument(writer);
+
+            // Initialize a new document
+            Document document = new Document(pdf);
+
+            // Create a new table with the same number of columns as the data grid view
+            Table table = new Table(dataGridView.ColumnCount);
+
+            // Add the headers to the table
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                table.AddCell(new Cell().Add(new Paragraph(column.HeaderText)));
+            }
+
+            // Add the rows to the table
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Index == dataGridView.Rows.Count - 1)
+                {
+                    break;
+                }
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.ColumnIndex == 6)
+                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString() == "True" ? "Absent" : "Present")));
+                    else if (cell.ColumnIndex == 5)
+                        table.AddCell(new Cell().Add(new Paragraph(Convert.ToDateTime(cell.Value).ToString("dd-MM-yyyy"))));
+                    else
+                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString())));
+                }
+            }
+
+            // Add the table to the document
+            document.Add(table);
+
+            // Close the document
+            document.Close();
+        }
 
 
     }
+    //===============================================================================================
 }
