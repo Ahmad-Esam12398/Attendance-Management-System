@@ -40,7 +40,7 @@ namespace attendence_system.Instructor
                 userNode.SelectSingleNode("name").InnerText = textBoxName.Text.Trim();
                 userNode.SelectSingleNode("email").InnerText = textBoxEmail.Text.Trim();
                 userNode.SelectSingleNode("phone").InnerText = textBoxPhone.Text.Trim();
-                if (InstructorDataManipulator.validateUserData(userNode))
+                if (InstructorDataManipulator.validateUserData(userNode, true))
                 {
                     InstructorDataManipulator.UpdateUserData(userNode);
                     MessageBox.Show("Data updated successfully", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -92,7 +92,7 @@ namespace attendence_system.Instructor
                 if (textBoxPasswordNew.Text == textBoxPasswordConfirm.Text)
                 {
                     userNode.SelectSingleNode("password").InnerText = textBoxPasswordNew.Text;
-                    if (InstructorDataManipulator.validateUserData(userNode))
+                    if (InstructorDataManipulator.validateUserData(userNode, true))
                     {
                         InstructorDataManipulator.UpdateUserData(userNode);
                         MessageBox.Show("Password updated successfully", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);

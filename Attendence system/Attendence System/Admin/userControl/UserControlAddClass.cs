@@ -41,13 +41,6 @@ namespace attendence_system.Admin.userControl
             }
             else
             {
-
-                // Check if the class name is unique
-                if (!InstructorDataManipulator.IsClassNameAvailable(textBoxClassName.Text.Trim()))
-                {
-                    MessageBox.Show("Class name already exists. Please choose a different name.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
                 // Create a new class node
                 XmlDocument doc = new XmlDocument();
                 XmlNode newClass = doc.CreateElement("class");
@@ -88,41 +81,15 @@ namespace attendence_system.Admin.userControl
 
                 if (existingClassNode != null)
                 {
-                    // Create a new XML node to hold the updated user information
-                    XmlDocument doc = existingClassNode.OwnerDocument;
-                    XmlNode newClassNode = doc.CreateElement("class");
 
-                    // Populate the new XML node with updated information
-                    XmlNode idNode = doc.CreateElement("id");
-                    idNode.InnerText = userId.ToString().Trim();
-                    newClassNode.AppendChild(idNode);
+                    existingClassNode.SelectSingleNode("name").InnerText = textBoxClassName1.Text.Trim();
+                    existingClassNode.SelectSingleNode("max").InnerText = textBoxHMstudent1.Text.Trim();
 
-                    XmlNode nameNode = doc.CreateElement("name");
-                    nameNode.InnerText = textBoxClassName1.Text.Trim();
-                    newClassNode.AppendChild(nameNode);
-
-                    XmlNode maxNode = doc.CreateElement("max");
-                    maxNode.InnerText = textBoxHMstudent1.Text.Trim();
-                    newClassNode.AppendChild(maxNode);
-
-                    // Check if the updated class name is unique
-                    if (InstructorDataManipulator.IsClassNameAvailable(textBoxClassName1.Text.Trim()))
+                    if (InstructorDataManipulator.validateClassesData(existingClassNode))
                     {
-                        if (InstructorDataManipulator.validateClassesData(newClassNode))
-                        {
-                            InstructorDataManipulator.UpdateClassData(newClassNode);
-                            MessageBox.Show("Class updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        InstructorDataManipulator.UpdateClassData(existingClassNode);
+                        MessageBox.Show("Class updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else
-                    {
-                        MessageBox.Show("Class name already exists. Please choose a different name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-
-                else
-                {
-                    MessageBox.Show("Class with ID " + userId + " not found.", "Class Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
@@ -167,6 +134,9 @@ namespace attendence_system.Admin.userControl
                 InstructorDataManipulator.SaveChangesClassesInFile();
 
                 MessageBox.Show("Class deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearText1();
+
+
             }
 
         }
@@ -178,7 +148,12 @@ namespace attendence_system.Admin.userControl
 
         private void tabControlAddClass_Leave(object sender, EventArgs e)
         {
-            textBoxSearchClass.Clear();
+            textBoxSearchBox.Clear();
+
+        }
+
+        private void tabPageAddClass_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -261,8 +236,10 @@ namespace attendence_system.Admin.userControl
                 textBoxHMstudent1.Text = row.Cells["Column3"].Value.ToString();
             }
         }
-   
-    
-    
+        // get specified class 
+
+
+
+
     }
 }

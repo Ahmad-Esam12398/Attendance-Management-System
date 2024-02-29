@@ -71,6 +71,7 @@
             userControlAddClass1 = new attendence_system.Admin.userControl.UserControlAddClass();
             userControlAddStudent1 = new attendence_system.Admin.userControl.UserControlAddStudent();
             userControlAddTeacher1 = new attendence_system.Admin.userControl.UserControlAddTeacher();
+            userControlAttendance1 = new attendence_system.Admin.userControl.UserControlAttendance();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panelAddTeacher.SuspendLayout();
@@ -116,9 +117,9 @@
             panel4.Controls.Add(panelSide);
             panel4.Cursor = Cursors.Hand;
             panel4.Dock = DockStyle.Left;
-            panel4.Location = new Point(0, 172);
+            panel4.Location = new Point(0, 177);
             panel4.Name = "panel4";
-            panel4.Size = new Size(287, 390);
+            panel4.Size = new Size(287, 385);
             panel4.TabIndex = 0;
             // 
             // panelAddTeacher
@@ -266,7 +267,7 @@
             PanelDashboard.Name = "PanelDashboard";
             PanelDashboard.Size = new Size(200, 66);
             PanelDashboard.TabIndex = 1;
-            PanelDashboard.Paint += parentPanel_Paint;
+        //    PanelDashboard.Paint += parentPanel_Paint;
             // 
             // buttonDashboard
             // 
@@ -311,7 +312,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(287, 172);
+            panel2.Size = new Size(287, 177);
             panel2.TabIndex = 0;
             // 
             // label4
@@ -321,7 +322,7 @@
             label4.ForeColor = Color.White;
             label4.Location = new Point(26, 136);
             label4.Name = "label4";
-            label4.Size = new Size(189, 18);
+            label4.Size = new Size(239, 23);
             label4.TabIndex = 3;
             label4.Text = "Attendance Managment";
             // 
@@ -332,7 +333,7 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(84, 154);
             label2.Name = "label2";
-            label2.Size = new Size(59, 18);
+            label2.Size = new Size(75, 23);
             label2.TabIndex = 2;
             label2.Text = "System";
             // 
@@ -353,7 +354,7 @@
             labelTime.ForeColor = Color.FromArgb(67, 3, 125);
             labelTime.Location = new Point(17, 29);
             labelTime.Name = "labelTime";
-            labelTime.Size = new Size(26, 18);
+            labelTime.Size = new Size(33, 23);
             labelTime.TabIndex = 1;
             labelTime.Text = "{?}";
             // 
@@ -370,6 +371,7 @@
             panelBack.Name = "panelBack";
             panelBack.Size = new Size(1046, 173);
             panelBack.TabIndex = 1;
+            panelBack.Paint += panelBack_Paint;
             // 
             // panelExpand
             // 
@@ -456,7 +458,7 @@
             labelRole.ForeColor = Color.White;
             labelRole.Location = new Point(131, 77);
             labelRole.Name = "labelRole";
-            labelRole.Size = new Size(26, 18);
+            labelRole.Size = new Size(33, 23);
             labelRole.TabIndex = 5;
             labelRole.Text = "{?}";
             // 
@@ -467,7 +469,7 @@
             labelR.ForeColor = Color.White;
             labelR.Location = new Point(17, 77);
             labelR.Name = "labelR";
-            labelR.Size = new Size(45, 18);
+            labelR.Size = new Size(55, 23);
             labelR.TabIndex = 4;
             labelR.Text = "Role:";
             // 
@@ -478,7 +480,7 @@
             LabelUserName.ForeColor = Color.White;
             LabelUserName.Location = new Point(131, 35);
             LabelUserName.Name = "LabelUserName";
-            LabelUserName.Size = new Size(26, 18);
+            LabelUserName.Size = new Size(33, 23);
             LabelUserName.TabIndex = 3;
             LabelUserName.Text = "{?}";
             // 
@@ -489,7 +491,7 @@
             labelUN.ForeColor = Color.White;
             labelUN.Location = new Point(17, 35);
             labelUN.Name = "labelUN";
-            labelUN.Size = new Size(84, 18);
+            labelUN.Size = new Size(103, 23);
             labelUN.TabIndex = 2;
             labelUN.Text = "Welcome:";
             // 
@@ -522,6 +524,7 @@
             userControlDashboard1.Dock = DockStyle.Fill;
             userControlDashboard1.Font = new Font("Century Gothic", 9.75F);
             userControlDashboard1.Location = new Point(287, 173);
+            userControlDashboard1.Margin = new Padding(4, 4, 4, 4);
             userControlDashboard1.Name = "userControlDashboard1";
             userControlDashboard1.Size = new Size(1046, 389);
             userControlDashboard1.TabIndex = 0;
@@ -532,6 +535,7 @@
             userControlAddClass1.Dock = DockStyle.Fill;
             userControlAddClass1.Font = new Font("Century Gothic", 9.75F);
             userControlAddClass1.Location = new Point(287, 173);
+            userControlAddClass1.Margin = new Padding(4, 4, 4, 4);
             userControlAddClass1.Name = "userControlAddClass1";
             userControlAddClass1.Size = new Size(1046, 389);
             userControlAddClass1.TabIndex = 0;
@@ -543,6 +547,7 @@
             userControlAddStudent1.Dock = DockStyle.Fill;
             userControlAddStudent1.Font = new Font("Century Gothic", 9.75F);
             userControlAddStudent1.Location = new Point(287, 173);
+            userControlAddStudent1.Margin = new Padding(4, 4, 4, 4);
             userControlAddStudent1.Name = "userControlAddStudent1";
             userControlAddStudent1.Size = new Size(1046, 389);
             userControlAddStudent1.TabIndex = 0;
@@ -558,14 +563,25 @@
             userControlAddTeacher1.Size = new Size(1046, 389);
             userControlAddTeacher1.TabIndex = 0;
             userControlAddTeacher1.Visible = false;
-            userControlAddTeacher1.Load += userControlAddTeacher1_Load;
+         //   userControlAddTeacher1.Load += userControlAddTeacher1_Load;
+            // 
+            // userControlAttendance1
+            // 
+            userControlAttendance1.BackColor = Color.White;
+            userControlAttendance1.Location = new Point(287, 173);
+            userControlAttendance1.Margin = new Padding(4, 4, 4, 4);
+            userControlAttendance1.Name = "userControlAttendance1";
+            userControlAttendance1.Size = new Size(1336, 620);
+            userControlAttendance1.TabIndex = 6;
+            userControlAttendance1.Visible = false;
             // 
             // admin
             // 
-            AutoScaleDimensions = new SizeF(10F, 21F);
+            AutoScaleDimensions = new SizeF(12F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1333, 562);
+            Controls.Add(userControlAttendance1);
             Controls.Add(userControlAddTeacher1);
             Controls.Add(userControlAddStudent1);
             Controls.Add(userControlAddClass1);
@@ -653,6 +669,7 @@
         private attendence_system.Admin.userControl.UserControlAddClass userControlAddClass1;
         private attendence_system.Admin.userControl.UserControlAddStudent userControlAddStudent1;
         private attendence_system.Admin.userControl.UserControlAddTeacher userControlAddTeacher1;
+        private attendence_system.Admin.userControl.UserControlAttendance userControlAttendance1;
         //  private System.Windows.Forms.Timer timerDateAndTime;
     }
 }

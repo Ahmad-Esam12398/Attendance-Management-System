@@ -13,6 +13,9 @@
     <Compile Update="Admin\userControl\UserControlAddTeacher.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Admin\userControl\UserControlAttendance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Admin\userControl\UserControlDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -20,9 +23,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Instructor\userControl\setAttendance.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Instructor\userControl\UserControlAddStudent.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Instructor\userControl\UserControlChangeUserData.cs">

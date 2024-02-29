@@ -47,13 +47,18 @@ namespace attendence_system
                     case "instructor":
                         MessageBox.Show("Login Successful as Instructor!");
                         this.Hide();
-                        // Create and show the admin form
+                        // Create and show the instructor form
                         instructor instructorform = new instructor();
-                        instructorform.FormClosed += (s, args) => this.Close(); // Close the login form when the admin form is closed
+                        instructorform.FormClosed += (s, args) => this.Close(); // Close the login form when the instructor form is closed
                         instructorform.Show();
                         break;
                     case "student":
                         MessageBox.Show("Login Successful as Student!");
+                        this.Hide();
+                        // Create and show the student form
+                        instructor instructorformStudent = new instructor();
+                        instructorformStudent.FormClosed += (s, args) => this.Close(); // Close the login form when the student form is closed
+                        instructorformStudent.Show();
                         break;
                     default:
                         MessageBox.Show("Login Successful. Role: " + userRole);
@@ -81,16 +86,18 @@ namespace attendence_system
         private string AuthenticateUser(string email, string password)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("D:\\newprocjectattendance\\new-attendance-project-repo\\Xml\\usersAuthentication.xml"); // Adjust the path as necessary
+            doc.Load(@"./../../../../../Xml/usersAuthentication.xml"); // Adjust the path as necessary
 
             XmlNodeList users = doc.SelectNodes("//user");
             foreach (XmlNode user in users)
             {
                 string userEmail = user.SelectSingleNode("email")?.InnerText;
                 string userPassword = user.SelectSingleNode("password")?.InnerText;
+                string userId = user.SelectSingleNode("id")?.InnerText;
                 if (userEmail == email && userPassword == password)
                 {
                     // Return the role of the user if authentication is successful
+                    InstructorDataManipulator.setId(userId);
                     return user.SelectSingleNode("role")?.InnerText;
                 }
             }
