@@ -25,6 +25,10 @@
       <date>2024-02-29</date>
       <status>absent</status>
     </attendanceDates>
+    <attendanceDates>
+      <date>2024-03-01</date>
+      <status>absent</status>
+    </attendanceDates>
   </user>
   <user>
     <id>3</id>
@@ -55,6 +59,10 @@
     <class>R1</class>
     <attendanceDates>
       <date>2024-02-29</date>
+      <status>absent</status>
+    </attendanceDates>
+    <attendanceDates>
+      <date>2024-03-01</date>
       <status>absent</status>
     </attendanceDates>
   </user>
