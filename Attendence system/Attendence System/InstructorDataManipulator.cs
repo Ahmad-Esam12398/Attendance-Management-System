@@ -92,8 +92,12 @@ namespace attendence_system
         public static bool validateClassesData(XmlNode underTest)
         {
             XmlNode rootNode = classesData.SelectSingleNode("/classes");
+
+
             XmlNode importedNode = classesData.ImportNode(underTest, true);
-            rootNode.AppendChild(importedNode);
+           // rootNode.AppendChild(importedNode);
+            classesData.SelectSingleNode("/classes").ReplaceChild(importedNode, underTest);
+
             XmlReader reader = XmlReader.Create(new StringReader(classesData.OuterXml), XmlReaderClassesSettings);
             try
             {
