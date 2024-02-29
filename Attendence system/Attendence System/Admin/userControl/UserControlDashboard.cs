@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using attendence_system;
 
 namespace attendence_system.Admin.userControl
@@ -17,6 +18,7 @@ namespace attendence_system.Admin.userControl
         {
             InitializeComponent();
             labelTotalStudents.Text = "3";
+            labelTotalClasses.Text = "4";
             adminRole.Text = "Admin";
         }
 
@@ -24,6 +26,8 @@ namespace attendence_system.Admin.userControl
 
         private void UserControlDashboard1_Load(object sender, EventArgs e)
         {
+            List<XmlNode> allClasses = InstructorDataManipulator.GetClassessList();
+            labelTotalClasses.Text = allClasses.Count.ToString();
             labelTotalStudents.Text = InstructorDataManipulator.GetCountStudents().ToString();
 
         }
