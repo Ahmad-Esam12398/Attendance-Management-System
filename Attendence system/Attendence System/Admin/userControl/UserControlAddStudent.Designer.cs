@@ -561,7 +561,7 @@
             tabPageUpdateAndDelete.Size = new Size(935, 438);
             tabPageUpdateAndDelete.TabIndex = 2;
             tabPageUpdateAndDelete.Text = "Update&Delete";
-            tabPageUpdateAndDelete.Enter += tabPageUpdateAndDelete_Enter;
+          //  tabPageUpdateAndDelete.Enter += tabPageUpdateAndDelete_Enter;
             tabPageUpdateAndDelete.Leave += tabPageUpdateAndDelete_Leave;
             // 
             // comboBoxGender1

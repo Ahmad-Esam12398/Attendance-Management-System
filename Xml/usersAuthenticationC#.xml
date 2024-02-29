@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\usersAuthenticationSchema.xsd">
   <user>
     <id>1</id>
@@ -27,6 +27,7 @@
       <date>2024-04-12</date>
       <status>present</status>
     </attendanceDates>
+
     <attendanceDates>
       <date>2024-02-28</date>
       <status>absent</status>
@@ -35,6 +36,7 @@
       <date>2024-02-29</date>
       <status>absent</status>
     </attendanceDates>
+
   </user>
   <user>
     <id>3</id>
@@ -54,4 +56,36 @@
     <gender>f</gender>
     <role>admin</role>
   </user>
+
+  <user>
+    <id>5</id>
+    <name>hoda</name>
+    <email>hodamohsen@gmail.com</email>
+    <phone>01022302033</phone>
+    <password>1234567aaa#</password>
+    <gender>f</gender>
+    <role>student</role>
+    <class>F1</class>
+  </user>
+  <user>
+    <id>6</id>
+    <name>habiba</name>
+    <email>habibahelmy@gmail.com</email>
+    <phone>01020228030</phone>
+    <password>1234567aa#</password>
+    <gender>m</gender>
+    <role>student</role>
+    <class>F1</class>
+  </user>
+  <user>
+    <id>7</id>
+    <name>Alaa</name>
+    <email>AlaaRashed@gmail.com</email>
+    <phone>01020228030</phone>
+    <password>1234567aa#</password>
+    <gender>f</gender>
+    <role>student</role>
+    <class>A1</class>
+  </user>
+
 </users>
