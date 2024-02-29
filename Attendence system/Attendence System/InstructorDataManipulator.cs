@@ -24,10 +24,15 @@ namespace attendence_system
         static string userData = "usersAuthenticationC#.xml";
         static string testUser = "userAuthenticationTester.xml";
         static string usersSchema = "usersAuthenticationSchema.xsd";
+        static string classSchema = "ClassesSchema.xsd";
+        static string classData = "ClassesTester.xml";
+        static public XmlDocument classesData = new();
         static public XmlDocument usersData = new();
         static private XmlDocument testUserDoc = new();
         static private XmlSchemaSet usersSchemaSet = new();
+        static private XmlSchemaSet classSchemaSet = new();
         static private XmlReaderSettings XmlReaderUsersSettings = new();
+        static private XmlReaderSettings XmlReaderClassesSettings = new();
         static private XmlNode userNode;
         // This field represents a dictionary that maps class names to their corresponding IDs.
         static private Dictionary<string, string> classIdByName = new Dictionary<string, string>();
@@ -39,9 +44,18 @@ namespace attendence_system
             usersData.Load(path + "/" + userData);
             testUserDoc.Load(path + "/" + testUser);
             usersSchemaSet.Add("", XmlReader.Create(new StreamReader(path + "/" + usersSchema)));
+            // class
+            classSchemaSet.Add("", XmlReader.Create(new StreamReader(path + "/" + classSchema)));
+
             XmlReaderUsersSettings.Schemas = usersSchemaSet;
             XmlReaderUsersSettings.ValidationType = ValidationType.Schema;
-            classIdByName.Add("L1", "1"); //Should be Removed
+            //class
+            XmlReaderClassesSettings.Schemas = classSchemaSet;
+            XmlReaderClassesSettings.ValidationType= ValidationType.Schema;
+            //class 
+            classesData.Load(path + "/" + classData);
+            userNode = GetUserNode("1");
+            classIdByName.Add("L1", "1");
 
         }
         static public void setId(string _id)
@@ -60,7 +74,7 @@ namespace attendence_system
             return target;
         }
 
-        public static bool validateUserData(XmlNode underTest, bool update = false)
+        public static bool validateUserData(XmlNode underTest)
         {
             XmlNode rootNode = usersData.SelectSingleNode("/users");
             XmlNode importedNode = usersData.ImportNode(underTest, true);
@@ -91,41 +105,27 @@ namespace attendence_system
                 usersData.Load(path + "/" + userData);
             }
         }
-        /*   static public void UpdateUserData(XmlNode newOne)
-           {
 
-               string id = newOne.SelectSingleNode("id").InnerText;
-               XmlNode oneWillBeAppended = usersData.ImportNode(GetUserNode(id), true);
-               oneWillBeAppended.SelectSingleNode("name").InnerText = newOne.SelectSingleNode("name").InnerText;
-               oneWillBeAppended.SelectSingleNode("email").InnerText = newOne.SelectSingleNode("email").InnerText;
-               oneWillBeAppended.SelectSingleNode("phone").InnerText = newOne.SelectSingleNode("phone").InnerText;
-               oneWillBeAppended.SelectSingleNode("password").InnerText = newOne.SelectSingleNode("password").InnerText;
-               //oneWillBeAppended.SelectSingleNode("role").InnerText = newOne.SelectSingleNode("role").InnerText;
-                if (newOne.SelectSingleNode("class") != null)
-                {
-                 oneWillBeAppended.SelectSingleNode("class").InnerText = newOne.SelectSingleNode("class").InnerText;
-                 oneWillBeAppended.SelectSingleNode("class").Attributes["id"].Value = newOne.SelectSingleNode("class").Attributes["id"].Value;
-                }
-               oneWillBeAppended.SelectSingleNode("gender").InnerText = newOne.SelectSingleNode("gender").InnerText;
-
-               //if(newOne.SelectNodes("attendanceDates").Count != 0)
-               //{
-               //    for (int i = 0; i < oneWillBeAppended.SelectNodes("attendanceDates").Count; i++)
-               //    {
-               //        oneWillBeAppended.SelectNodes("attendanceDates")[i].ParentNode.RemoveChild(oneWillBeAppended.SelectNodes("attendanceDates")[i]);
-               //    }
-               //    for (int i = 0; i < newOne.SelectNodes("attendanceDates").Count; i++)
-               //    {
-               //        XmlNode importedNode = usersData.ImportNode(newOne.SelectNodes("attendanceDates")[i], true);
-               //        oneWillBeAppended.AppendChild(importedNode);
-               //    }
-               //}
-
-               usersData.SelectSingleNode("/users").ReplaceChild(oneWillBeAppended, userNode);
-               SaveChangesInFile();
-           }*/
-
-
+        //validate classes 
+        public static bool validateClassesData(XmlNode underTest)
+        {
+            XmlNode rootNode = classesData.SelectSingleNode("/classes");
+            XmlNode importedNode = classesData.ImportNode(underTest, true);
+            rootNode.AppendChild(importedNode);
+            XmlReader reader = XmlReader.Create(new StringReader(classesData.OuterXml), XmlReaderClassesSettings);
+            try
+            {
+                while (reader.Read()) { }
+                classesData.Load(path + "/" + classData);
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                classesData.Load(path + "/" + classData);
+                return false;
+            }
+        }
         static public void UpdateUserData(XmlNode newOne)
         {
             string id = newOne.SelectSingleNode("id").InnerText;
@@ -147,9 +147,22 @@ namespace attendence_system
             usersData.SelectSingleNode("/users").ReplaceChild(oneWillBeAppended, GetUserNode(id));
             SaveChangesInFile();
         }
+
+        static public XmlNode GetUserNode()
+        {
+            XmlNode duplicate = userNode.CloneNode(true);
+            return duplicate;
+        }
         static public XmlDocument GetUsersData()
         {
             return usersData;
+        }
+
+
+        // get all Classes From class xml 
+        static public XmlDocument GetAllClasses()
+        {
+            return classesData;
         }
         static public List<XmlNode> GetStudentsList() { 
             int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
@@ -159,6 +172,19 @@ namespace attendence_system
                 students.Add(usersData.SelectNodes("/users/user[role='student']")[i]);
             }
             return students;
+        }
+
+
+        // get all classes  from class.xml 
+        static public List<XmlNode> GetClassessList()
+        {
+            int classesCount = classesData.SelectNodes("/classes/class").Count;
+            List<XmlNode> classes = new List<XmlNode>();
+            for (int i = 0; i < classesCount; i++)
+            {
+                classes.Add(classesData.SelectNodes("/classes/class")[i]);
+            }
+            return classes;
         }
         // get count student
         static public int GetCountStudents()
@@ -197,6 +223,34 @@ namespace attendence_system
             return lastId;
         }
 
+
+        // Function to retrieve the last ID in classes.xml
+
+        public static int GetLastClassId()
+        {
+            int lastId = 0;
+
+            // Select all "class" nodes
+            XmlNodeList classNodes = classesData.SelectNodes("//class/id");
+
+            if (classNodes != null && classNodes.Count > 0)
+            {
+                // Iterate through all class nodes to find the last ID
+                foreach (XmlNode classIdNode in classNodes)
+                {
+                    // Parse the ID value to an integer
+                    if (int.TryParse(classIdNode.InnerText, out int id))
+                    {
+                        // Update lastId if the current ID is greater
+                        lastId = Math.Max(lastId, id);
+                    }
+                }
+            }
+
+            return lastId;
+        }
+     
+        // to display  it --drop
         static public HashSet<string> GetClassesSet()
         {
             List<XmlNode> Students = GetStudentsList();
@@ -206,16 +260,6 @@ namespace attendence_system
                 classes.Add(Students[i].SelectSingleNode("class").InnerText);
             }
             return classes;
-        }
-        static public HashSet<string> GetClassesForInstructor(XmlNode instructorNode)
-        {
-            HashSet<string> result = new HashSet<string>();
-            var classes = instructorNode.SelectNodes("class");
-            foreach (XmlNode classNode in classes)
-            {
-                result.Add(classNode.InnerText);
-            }
-            return result;
         }
         // Add New User
         static public void AddNewUser(XmlNode newUser)
@@ -230,8 +274,19 @@ namespace attendence_system
             usersData.Save(@"./../../../../../Xml/usersAuthenticationC#.xml");
             userNode = GetUserNode("1");
         }
-       
-        
+        // Add New Class
+        static public void AddNewClass(XmlNode newClass)
+        {
+            XmlNode root = classesData.SelectSingleNode("/classes");
+            XmlNode importedUser = classesData.ImportNode(newClass, true);
+            root.AppendChild(importedUser);
+            classesData.Save(@"./../../../../../Xml/ClassesTester.xml");
+        }
+        //========== save changes in classes  
+        static public void SaveChangesClassesInFile()
+        {
+            classesData.Save(@"./../../../../../Xml/ClassesTester.xml");
+        }
         // This  method initializes the mapping between class names and their corresponding IDs.
         // 1. Retrieves a list of student nodes from the XML data.
         // 2. Clears any existing mappings in the classIdByName dictionary.
@@ -273,6 +328,44 @@ namespace attendence_system
             {
                 return null; 
             }
+        }
+
+
+        //============ Checks if the provided email is available or already exists in the users' data.====
+        public static bool IsEmailAvailable(string email)
+        {
+
+            XmlNodeList emailNodes = usersData.SelectNodes("/users/user/email");
+
+            foreach (XmlNode emailNode in emailNodes)
+            {
+                if (emailNode.InnerText.Equals(email, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Email already exists, not available
+                    return false;
+                }
+            }
+            // Email does not exist and is available
+            return true;
+        }
+
+
+        public static bool IsClassNameAvailable(string className)
+        {
+
+            XmlNodeList nameNodes = classesData.SelectNodes("/classes/class/name");
+
+            foreach (XmlNode nameNode in nameNodes)
+            {
+                
+                if (nameNode.InnerText.Equals(className, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Class name already exists, not available
+                    return false;
+                }
+            }
+            // Class name does not exist and is available
+            return true;
         }
         //======================================================= Methods For Exporting Data =======================================================
 
