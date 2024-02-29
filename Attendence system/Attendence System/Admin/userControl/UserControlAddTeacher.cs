@@ -143,7 +143,7 @@ namespace attendence_system.Admin.userControl
 
             return studentNode;
         }
-        private void dataGridViewStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewStudent_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
             DataGridViewRow row = dataGridViewStudent.Rows[e.RowIndex];
@@ -191,7 +191,7 @@ namespace attendence_system.Admin.userControl
             textBoxSearch.Clear();
             comboBoxSearchBy.SelectedIndex = -1;
             // Call the function to get the student data
-            
+
         }
 
         private void btnDeleteTeacher_Click(object sender, EventArgs e)
@@ -233,17 +233,19 @@ namespace attendence_system.Admin.userControl
         {
 
         }
-       
+
 
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
-          
+
         }
 
         private void btnUpdateTeachers_Click(object sender, EventArgs e)
         {
 
         }
+
+        
     }
 
 

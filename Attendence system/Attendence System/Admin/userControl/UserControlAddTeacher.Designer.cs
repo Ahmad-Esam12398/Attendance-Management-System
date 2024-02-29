@@ -461,6 +461,7 @@
             dataGridViewStudent.ShowRowErrors = false;
             dataGridViewStudent.Size = new Size(997, 424);
             dataGridViewStudent.TabIndex = 15;
+            dataGridViewStudent.CellContentClick += dataGridViewStudent_CellContentClick_1;
             // 
             // idcol
             // 
