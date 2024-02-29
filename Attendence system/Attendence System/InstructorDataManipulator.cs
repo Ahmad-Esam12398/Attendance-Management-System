@@ -68,7 +68,7 @@ namespace attendence_system
             return target;
         }
 
-        public static bool validateUserData(XmlNode underTest)
+        public static bool validateUserData(XmlNode underTest, bool update = false)
         {
             XmlNode rootNode = usersData.SelectSingleNode("/users");
             XmlNode importedNode = usersData.ImportNode(underTest, true);
@@ -140,16 +140,6 @@ namespace attendence_system
             // Replace the existing user node with the updated user node
             usersData.SelectSingleNode("/users").ReplaceChild(oneWillBeAppended, GetUserNode(id));
             SaveChangesInFile();
-        }
-
-        static public XmlNode GetUserNode()
-        {
-            XmlNode duplicate = userNode.CloneNode(true);
-            return duplicate;
-        }
-        static public XmlDocument GetUsersData()
-        {
-            return usersData;
         }
 
 
@@ -489,6 +479,22 @@ namespace attendence_system
 
             // Close the document
             document.Close();
+        }
+        static public XmlNode GetClassNode(string id)
+        {
+            XmlNode target = classesData.SelectSingleNode($"/classes/class[id='{id}']");
+            return target;
+        }
+        static public void UpdateClassData(XmlNode newOne)
+        {
+            string id = newOne.SelectSingleNode("id").InnerText;
+            XmlNode oneWillBeAppended = classesData.ImportNode(GetClassNode(id), true);
+            oneWillBeAppended.SelectSingleNode("name").InnerText = newOne.SelectSingleNode("name").InnerText;
+            oneWillBeAppended.SelectSingleNode("max").InnerText = newOne.SelectSingleNode("max").InnerText;
+
+            // Replace the existing user node with the updated user node
+            classesData.SelectSingleNode("/classes").ReplaceChild(oneWillBeAppended, GetClassNode(id));
+            SaveChangesClassesInFile();
         }
 
 
