@@ -127,7 +127,7 @@ namespace attendence_system.Admin.userControl
             XmlDocument usersData = InstructorDataManipulator.usersData;
 
             // Find the student node with the matching ID
-            XmlNode studentNode = usersData.SelectSingleNode($"/users/user[id={studentId} and role='student']");
+            XmlNode studentNode = usersData.SelectSingleNode($"/users/user[id={studentId} and role='instructor']");
 
             return studentNode;
         }

@@ -8,7 +8,7 @@
     <password>12345678</password>
     <gender>m</gender>
     <role>instructor</role>
-    <class id="1">L1</class>
+    <class>L1</class>
   </user>
   <user>
     <id>2</id>
@@ -18,7 +18,7 @@
     <password>12345678</password>
     <gender>m</gender>
     <role>student</role>
-    <class id="1">L1</class>
+    <class>L1</class>
     <attendanceDates>
       <date>2024-03-12</date>
       <status>present</status>
@@ -26,6 +26,14 @@
     <attendanceDates>
       <date>2024-04-12</date>
       <status>present</status>
+    </attendanceDates>
+    <attendanceDates>
+      <date>2024-02-28</date>
+      <status>absent</status>
+    </attendanceDates>
+    <attendanceDates>
+      <date>2024-02-29</date>
+      <status>absent</status>
     </attendanceDates>
   </user>
   <user>
@@ -45,14 +53,5 @@
     <password>12345678</password>
     <gender>f</gender>
     <role>admin</role>
-  </user>
-  <user>
-    <id>5</id>
-    <name>afasfasf</name>
-    <email>abdo@gmail.com</email>
-    <phone>01056014124</phone>
-    <password>Aabdo@1234</password>
-    <gender>m</gender>
-    <role>instructor</role>
   </user>
 </users>

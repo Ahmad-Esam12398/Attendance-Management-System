@@ -69,15 +69,7 @@
 							<xs:element name="password" type="password"/>
 							<xs:element name="gender" type="gender"/>
 							<xs:element name="role" type="role"/>
-							<xs:element name="class" minOccurs="0" maxOccurs="unbounded">
-								<xs:complexType>
-									<xs:simpleContent>
-										<xs:extension base="className">
-											<xs:attribute name="id" type="id"/>
-										</xs:extension>
-									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
+							<xs:element name="class" minOccurs="0" maxOccurs="unbounded" type="className"/>
 							<xs:element name="attendanceDates" minOccurs="0" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>

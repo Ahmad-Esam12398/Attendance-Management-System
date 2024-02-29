@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\ClassesSchema.xsd">
+	<class>
+		<id>1</id>
+		<name>L1</name>
+		<max>45</max>
+	</class>
+</classes>

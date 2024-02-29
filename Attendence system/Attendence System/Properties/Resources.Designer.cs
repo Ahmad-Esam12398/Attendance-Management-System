@@ -173,6 +173,16 @@ namespace attendence_system.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap searchInstructor {
+            get {
+                object obj = ResourceManager.GetObject("searchInstructor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap team {
             get {
                 object obj = ResourceManager.GetObject("team", resourceCulture);
