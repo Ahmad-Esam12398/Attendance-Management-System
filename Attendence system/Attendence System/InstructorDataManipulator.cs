@@ -73,6 +73,17 @@ namespace attendence_system
             XmlNode target = usersData.SelectSingleNode($"/users/user[id='{_id}']");
             return target;
         }
+        static public HashSet<string> GetClassesForInstructor(XmlNode node)
+        {
+            HashSet<string> classes = new HashSet<string>();
+            string id = node.SelectSingleNode("id").InnerText;
+            XmlNodeList classNodes = usersData.SelectNodes($"/users/user[id='{id}']/class");
+            foreach (XmlNode classNode in classNodes)
+            {
+                classes.Add(classNode.InnerText);
+            }
+            return classes;
+        }
 
         public static bool validateUserData(XmlNode underTest, bool update = false)
         {
@@ -339,15 +350,15 @@ namespace attendence_system
 
             if (classNode != null)
             {
-                
-                if (nameNode.InnerText.Equals(className, StringComparison.OrdinalIgnoreCase))
-                {
-                    // Class name already exists, not available
-                    return false;
-                }
+                int maxUsers = int.Parse(classNode.SelectSingleNode("max").InnerText);
+                int currentUsers = usersData.SelectNodes($"/users/user[class='{className}']").Count;
+
+                // Check if adding a new user exceeds the maximum limit
+                return currentUsers < maxUsers;
             }
-            // Class name does not exist and is available
-            return true;
+
+            // Return false if the class is not found or if an error occurred
+            return false;
         }
         //======================================================= Methods For Exporting Data =======================================================
 
@@ -493,18 +504,8 @@ namespace attendence_system
             // Replace the existing user node with the updated user node
             classesData.SelectSingleNode("/classes").ReplaceChild(oneWillBeAppended, GetClassNode(id));
             SaveChangesClassesInFile();
-        
-                int maxUsers = int.Parse(classNode.SelectSingleNode("max").InnerText);
-                int currentUsers = usersData.SelectNodes($"/users/user[class='{className}']").Count;
-
-                // Check if adding a new user exceeds the maximum limit
-                return currentUsers < maxUsers;
-            }
-
-            // Return false if the class is not found or if an error occurred
-            return false;
         }
 
-    }
+}
     //===============================================================================================
 }
