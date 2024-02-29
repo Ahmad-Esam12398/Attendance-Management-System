@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="usersAuthenticationSchema.xsd">
   <user>
-    <id>1</id>
-    <name>Ahmed</name>
-    <email>ahmad.esam1231998@gmail.com</email>
-    <phone>01015328933</phone>
-    <password>12345678</password>
-    <gender>m</gender>
-    <role>instructor</role>
-    <class>L1</class>
-  </user>
-  <user>
     <id>2</id>
     <name>Mohamed</name>
     <email>mohamed.esam1231998@gmail.com</email>
@@ -68,4 +58,5 @@
       <status>absent</status>
     </attendanceDates>
   </user>
+
 </users>
