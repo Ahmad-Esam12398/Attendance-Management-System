@@ -53,16 +53,14 @@ namespace attendence_system
             id = "1";
         }
         static public void setId(string _id)
+        {
+            id = _id;
+        }
         // get count student
         static public int GetCountStudents()
         {
             int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
             return studentsCount;
-        }
-
-        static public XmlNode GetUserNode(string id)
-        {
-            id = _id;
         }
         static public XmlNode GetUserNode()
         {
@@ -495,7 +493,7 @@ namespace attendence_system
             // Replace the existing user node with the updated user node
             classesData.SelectSingleNode("/classes").ReplaceChild(oneWillBeAppended, GetClassNode(id));
             SaveChangesClassesInFile();
-        }
+        
                 int maxUsers = int.Parse(classNode.SelectSingleNode("max").InnerText);
                 int currentUsers = usersData.SelectNodes($"/users/user[class='{className}']").Count;
 
