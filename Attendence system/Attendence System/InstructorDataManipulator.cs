@@ -138,6 +138,17 @@ namespace attendence_system
             }
             return students;
         }
+        static public List<XmlNode> GetinstructorList()
+        {
+            int instructorCount = usersData.SelectNodes("/users/user[role='instructor']").Count;
+            List<XmlNode> instructor = new List<XmlNode>();
+            for (int i = 0; i < instructorCount; i++)
+            {
+                instructor.Add(usersData.SelectNodes("/users/user[role='instructor']")[i]);
+            }
+            return instructor;
+        }
+
         // get count student
         static public int GetCountStudents()
         {

@@ -2,7 +2,14 @@
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Text.RegularExpressions; // For email validation
-
+using attendence_system;
+using System.Xml;
+using System.Collections.Generic;
+using attendence_system.classes;
+using System.Data;
+using attendence_system.Instructor;
+using System.Net;
+using System.Data.SqlTypes;
 namespace attendence_system.Admin.userControl
 {
     public partial class UserControlAddTeacher : UserControl
@@ -15,130 +22,166 @@ namespace attendence_system.Admin.userControl
             InitializeComponent();
 
         }
-
+        XmlDocument data = InstructorDataManipulator.usersData;
+        List<XmlNode> instructors = InstructorDataManipulator.GetinstructorList();
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
-            // Reading input values from text boxes and combo box
-            string name = textBoxTeacherName.Text.Trim(); // Teacher's name
-            string email = textBoxEmailTeacher.Text.Trim(); // Teacher's email
-            string password = textBoxPassTeacher.Text; // Teacher's password
-            string classAssigned = comboBoxClassTeacher.SelectedIndex >= 0 ? comboBoxClassTeacher.SelectedItem.ToString() : ""; // Ensuring a class is selected
-
-            // Basic validation checks
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(classAssigned))
+            if (!(Validation.IsValidName(textBoxTeacherName.Text)
+                && Validation.IsValidEmail(textBoxEmailTeacher.Text)
+                && Validation.IsValidPassword(textBoxPassTeacher.Text)
+                && Validation.IsValidPhone(phonenumbertextBox.Text)
+                && comboBoxClassTeacher.SelectedIndex != -1
+                && gendercomboBox1.SelectedIndex != -1))
             {
-                MessageBox.Show("Please fill out all fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("First fill out all fields.", "Required all fields", MessageBoxButtons.OK);
                 return;
             }
-
-            if (!IsValidName(name))
+            else
             {
-                MessageBox.Show("Name must contain only letters and spaces.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                XmlNode newUser = InstructorDataManipulator.usersData.CreateElement("user");
 
-            if (!IsValidEmail(email))
-            {
-                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                XmlNode idNode = InstructorDataManipulator.usersData.CreateElement("id");
+                idNode.InnerText = (InstructorDataManipulator.GetLastUserId() + 1).ToString();
+                newUser.AppendChild(idNode);
 
-            if (!IsValidPassword(password))
-            {
-                MessageBox.Show("Password must be at least 8 characters long and include a mix of uppercase and lowercase letters, digits, and special characters.", "Weak Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                XmlNode nameNode = InstructorDataManipulator.usersData.CreateElement("name");
+                nameNode.InnerText = textBoxTeacherName.Text;
+                newUser.AppendChild(nameNode);
 
+                XmlNode emailNode = InstructorDataManipulator.usersData.CreateElement("email");
+                emailNode.InnerText = textBoxEmailTeacher.Text;
+                newUser.AppendChild(emailNode);
 
-            // Email format validation
-            if (!IsValidEmail(email))
-            {
-                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                XmlNode phoneNode = InstructorDataManipulator.usersData.CreateElement("phone");
+                phoneNode.InnerText = phonenumbertextBox.Text;
+                newUser.AppendChild(phoneNode);
 
-            // Assuming you have a method to validate password strength
-            // if (!IsValidPassword(password)) { ... }
+                XmlNode passwordNode = InstructorDataManipulator.usersData.CreateElement("password");
+                passwordNode.InnerText = textBoxPassTeacher.Text;
+                newUser.AppendChild(passwordNode);
 
-            // Assuming the path to your XML file is correct
-            string xmlFilePath = @"D:\badya gdeda\Xml\usersAuthenticationC#.xml";
+                XmlNode genderNode = InstructorDataManipulator.usersData.CreateElement("gender");
+                genderNode.InnerText = gendercomboBox1.SelectedItem.ToString() == "female" ? "f" : "m";
+                newUser.AppendChild(genderNode);
 
-            try
-            {
-                XDocument xmlDoc = XDocument.Load(xmlFilePath);
+                XmlNode roleNode = InstructorDataManipulator.usersData.CreateElement("role");
+                roleNode.InnerText = "instructor"; // Set role as instructor
+                newUser.AppendChild(roleNode);
 
-                int maxId = 0;
-                foreach (var elem in xmlDoc.Descendants("user"))
+                string selectedClass = comboBoxClassTeacher.SelectedItem.ToString();
+                Console.WriteLine(selectedClass);
+                var result = InstructorDataManipulator.GetClassIdByName(selectedClass);
+                Console.WriteLine(result);
+                if (result != null)
                 {
-                    int currentId = int.Parse(elem.Element("id").Value);
-                    if (currentId > maxId)
-                        maxId = currentId;
+                    XmlNode classNode = InstructorDataManipulator.usersData.CreateElement("class");
+                    XmlAttribute idAttribute = InstructorDataManipulator.usersData.CreateAttribute("id");
+                    idAttribute.Value = result;
+                    classNode.Attributes.Append(idAttribute);
+                    classNode.InnerText = selectedClass;
+                    newUser.AppendChild(classNode);
                 }
-                int newId = maxId + 1;
+                else
+                {
+                    MessageBox.Show("Class not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                XElement newUser = new XElement("user",
-                    new XElement("id", newId.ToString()),
-                    new XElement("name", name),
-                    new XElement("email", email),
-                    new XElement("password", password),
-                    new XElement("role", "teacher"),
-                    new XElement("class", classAssigned));
-
-                xmlDoc.Root.Add(newUser);
-                xmlDoc.Save(xmlFilePath);
-
-                MessageBox.Show("Teacher added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to add teacher: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                InstructorDataManipulator.AddNewUser(newUser);
+                MessageBox.Show("Teacher added successfully", "Success", MessageBoxButtons.OK);
             }
         }
 
-        // Email validation method
-        private bool IsValidEmail(string email)
+        static public DataTable GetStudentsDataTable()
         {
-            try
+            XmlDocument usersData = InstructorDataManipulator.usersData;
+
+            DataTable dtStudents = new DataTable();
+            dtStudents.Columns.Add("id", typeof(int));
+            dtStudents.Columns.Add("name", typeof(string));
+            dtStudents.Columns.Add("email", typeof(string));
+            // dtStudents.Columns.Add("class", typeof(string));
+            dtStudents.Columns.Add("phone", typeof(string));
+            dtStudents.Columns.Add("gender", typeof(string));
+
+
+            // Select all user nodes with role 'student'
+            XmlNodeList instructors = usersData.SelectNodes("/users/user[role='instructor']");
+
+            foreach (XmlNode ins in instructors)
             {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        private bool IsValidPassword(string password)
-        {
-            // Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
-            return Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
-        }
-
-        private bool IsValidName(string name)
-        {
-            return Regex.IsMatch(name, @"^[a-zA-Z\s]+$");
-        }
-
-        private void dataGridViewTeacher_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridViewStudent.Rows[e.RowIndex];
-                SID = row.Cells["Column1"].Value.ToString();
-                textBoxName1.Text = row.Cells["Column2"].Value.ToString();
-                // comboBoxUpDelete.Items.Clear();
-                //  comboBoxUpDelete.SelectedItem = row.Cells["Column5"].Value.ToString();
-                textBoxEmail1.Text = row.Cells["Column3"].Value.ToString();
-                textBoxpass1.Text = row.Cells["Column4"].Value.ToString();
-
-
+                DataRow dr = dtStudents.NewRow();
+                dr["id"] = int.Parse(ins.SelectSingleNode("id").InnerText);
+                dr["name"] = ins.SelectSingleNode("name").InnerText;
+                dr["email"] = ins.SelectSingleNode("email").InnerText;
+                // dr["class"] = ins.SelectSingleNode("class").InnerText;
+                dr["phone"] = ins.SelectSingleNode("phone").InnerText;
+                dr["gender"] = ins.SelectSingleNode("gender").InnerText;
+                dtStudents.Rows.Add(dr);
             }
 
+            return dtStudents;
+        }
+        private XmlNode GetStudentById(int studentId)
+        {
+            XmlDocument usersData = InstructorDataManipulator.usersData;
+
+            // Find the student node with the matching ID
+            XmlNode studentNode = usersData.SelectSingleNode($"/users/user[id={studentId} and role='student']");
+
+            return studentNode;
+        }
+        private void dataGridViewStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            DataGridViewRow row = dataGridViewStudent.Rows[e.RowIndex];
+          string  SIDString = row.Cells["idcol"].Value.ToString(); // Assuming SID is a string
+            int SID;
+            if (int.TryParse(SIDString, out SID))
+            {
+                textBoxName1.Text = row.Cells["namecol"].Value.ToString();
+                textBoxEmail1.Text = row.Cells["emailcol"].Value.ToString();
+                //  comboBoxClasses1.SelectedItem = comboBoxClassStudent.SelectedItem;
+
+                // comboBoxGender1.SelectedItem = row.Cells["Column4"].Value.ToString();
+                // comboBoxUpDelete1.SelectedItem = row.Cells["Column5"].Value.ToString();
+                //phonetextBox2.Text = row.Cells["Column5"].Value.ToString();
+
+                // Retrieve and display password
+                XmlNode currentNode = GetStudentById(SID);
+                if (currentNode != null)
+                {
+                    XmlNode passwordNode = currentNode.SelectSingleNode("password");
+                    if (passwordNode != null)
+                    {
+                        textBoxpass1.Text = passwordNode.InnerText;
+                    }
+
+                }
+
+            }
+
+            
+        }
+        private void tabPageSearchTeacher_Enter(object sender, EventArgs e)
+        {
+            textBoxSearch.Clear();
+            comboBoxSearchBy.SelectedIndex = -1;
+            // Call the function to get the student data
+            DataTable studentData = GetStudentsDataTable();
+            // Assuming dataGridViewStudent is your DataGridView control
+            dataGridViewStudent.DataSource = studentData;
+            labelTotalStudents.Text = dataGridViewStudent.Rows.Count.ToString();
         }
 
-        
-    }
-
-
+    } 
 
 }
+
+
+
+
+
+
+
+

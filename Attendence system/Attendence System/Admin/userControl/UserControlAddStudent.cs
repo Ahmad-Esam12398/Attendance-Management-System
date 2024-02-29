@@ -144,10 +144,10 @@ namespace attendence_system.Admin.userControl
 
         //===============Method to add a user in the XML data source===============
         private void btnAddStudent_Click_1(object sender, EventArgs e)
-        { 
+        {
 
             XmlDocument usersData = InstructorDataManipulator.usersData;
-            if (!(Validation.IsValidName(textBoxNameStudent.Text) && Validation.IsValidEmail(textBoxEmailstudent.Text) && Validation.IsValidPassword(textBoxPassStudent.Text)&&Validation.IsValidPhone(textBoxphoneNumber.Text) && comboBoxClassStudent.SelectedIndex != -1&&comboBoxGender.SelectedIndex!=-1))
+            if (!(Validation.IsValidName(textBoxNameStudent.Text) && Validation.IsValidEmail(textBoxEmailstudent.Text) && Validation.IsValidPassword(textBoxPassStudent.Text) && Validation.IsValidPhone(textBoxphoneNumber.Text) && comboBoxClassStudent.SelectedIndex != -1 && comboBoxGender.SelectedIndex != -1))
             {
                 MessageBox.Show("First fill out all fields.", "Required all fields", MessageBoxButtons.OK);
                 return;
@@ -492,6 +492,8 @@ namespace attendence_system.Admin.userControl
             ClearText1();
 
         }
+
+        
     }
 
 }
