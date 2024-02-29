@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\ITI\Projects\XML&amp;C#\new repo\mine\Attendance-Management-System\Xml\usersAuthenticationSchema.xsd">
   <user>
-    <id>1</id>
-    <name>Ahmed</name>
-    <email>ahmad.esam1231998@gmail.com</email>
-    <phone>01015328933</phone>
-    <password>12345678</password>
-    <gender>m</gender>
-    <role>instructor</role>
-    <class>L1</class>
-  </user>
-  <user>
     <id>2</id>
     <name>Mohamed</name>
     <email>mohamed.esam1231998@gmail.com</email>
@@ -27,7 +17,6 @@
       <date>2024-04-12</date>
       <status>present</status>
     </attendanceDates>
-
     <attendanceDates>
       <date>2024-02-28</date>
       <status>absent</status>
@@ -36,7 +25,6 @@
       <date>2024-02-29</date>
       <status>absent</status>
     </attendanceDates>
-
   </user>
   <user>
     <id>3</id>
@@ -56,7 +44,6 @@
     <gender>f</gender>
     <role>admin</role>
   </user>
-
   <user>
     <id>5</id>
     <name>hoda</name>
@@ -87,5 +74,14 @@
     <role>student</role>
     <class>A1</class>
   </user>
-
+  <user>
+    <id>8</id>
+    <name>abdo</name>
+    <email>abdo@gmail.com</email>
+    <phone>01065014124</phone>
+    <password>Aabdo@1234</password>
+    <gender>m</gender>
+    <role>instructor</role>
+    <class id="1">L1</class>
+  </user>
 </users>

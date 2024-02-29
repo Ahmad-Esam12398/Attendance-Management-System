@@ -5,16 +5,18 @@ using System.Text.RegularExpressions; // For email validation
 using attendence_system;
 using System.Xml;
 using System.Collections.Generic;
-using attendence_system.classes;
 using System.Data;
 using attendence_system.Instructor;
 using System.Net;
 using System.Data.SqlTypes;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 namespace attendence_system.Admin.userControl
 {
     public partial class UserControlAddTeacher : UserControl
     {
         string SID = "";
+        string SIDString = "";
+
         BindingSource teacherBindingSource = new BindingSource();
 
         public UserControlAddTeacher()
@@ -26,18 +28,21 @@ namespace attendence_system.Admin.userControl
         List<XmlNode> instructors = InstructorDataManipulator.GetinstructorList();
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
-            if (!(Validation.IsValidName(textBoxTeacherName.Text)
-                && Validation.IsValidEmail(textBoxEmailTeacher.Text)
-                && Validation.IsValidPassword(textBoxPassTeacher.Text)
-                && Validation.IsValidPhone(phonenumbertextBox.Text)
-                && comboBoxClassTeacher.SelectedIndex != -1
-                && gendercomboBox1.SelectedIndex != -1))
+            if (textBoxTeacherName.Text == "" || textBoxEmailTeacher.Text == "" || textBoxPassTeacher.Text == "" || phonenumbertextBox.Text == "" || comboBoxClassTeacher.SelectedIndex == -1 || gendercomboBox1.SelectedIndex == -1)
             {
                 MessageBox.Show("First fill out all fields.", "Required all fields", MessageBoxButtons.OK);
                 return;
             }
             else
             {
+                // Check if the Email is unique
+                if (!InstructorDataManipulator.IsEmailAvailable(textBoxEmailTeacher.Text.Trim()))
+                {
+                    MessageBox.Show("Email already exists. Please choose a different mail.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+
                 XmlNode newUser = InstructorDataManipulator.usersData.CreateElement("user");
 
                 XmlNode idNode = InstructorDataManipulator.usersData.CreateElement("id");
@@ -86,9 +91,15 @@ namespace attendence_system.Admin.userControl
                     MessageBox.Show("Class not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                InstructorDataManipulator.AddNewUser(newUser);
-                MessageBox.Show("Teacher added successfully", "Success", MessageBoxButtons.OK);
+                if (InstructorDataManipulator.validateUserData(newUser))
+                {
+                    InstructorDataManipulator.AddNewUser(newUser);
+                    MessageBox.Show("Added succesfully", "", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("check data");
+                }
             }
         }
 
@@ -100,7 +111,7 @@ namespace attendence_system.Admin.userControl
             dtStudents.Columns.Add("id", typeof(int));
             dtStudents.Columns.Add("name", typeof(string));
             dtStudents.Columns.Add("email", typeof(string));
-            // dtStudents.Columns.Add("class", typeof(string));
+            dtStudents.Columns.Add("class", typeof(string));
             dtStudents.Columns.Add("phone", typeof(string));
             dtStudents.Columns.Add("gender", typeof(string));
 
@@ -114,7 +125,7 @@ namespace attendence_system.Admin.userControl
                 dr["id"] = int.Parse(ins.SelectSingleNode("id").InnerText);
                 dr["name"] = ins.SelectSingleNode("name").InnerText;
                 dr["email"] = ins.SelectSingleNode("email").InnerText;
-                // dr["class"] = ins.SelectSingleNode("class").InnerText;
+                dr["class"] = ins.SelectSingleNode("class").InnerText;
                 dr["phone"] = ins.SelectSingleNode("phone").InnerText;
                 dr["gender"] = ins.SelectSingleNode("gender").InnerText;
                 dtStudents.Rows.Add(dr);
@@ -133,9 +144,9 @@ namespace attendence_system.Admin.userControl
         }
         private void dataGridViewStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             DataGridViewRow row = dataGridViewStudent.Rows[e.RowIndex];
-          string  SIDString = row.Cells["idcol"].Value.ToString(); // Assuming SID is a string
+            SIDString = row.Cells["idcol"].Value.ToString(); // Assuming SID is a string
             int SID;
             if (int.TryParse(SIDString, out SID))
             {
@@ -161,10 +172,20 @@ namespace attendence_system.Admin.userControl
 
             }
 
-            
+
         }
         private void tabPageSearchTeacher_Enter(object sender, EventArgs e)
         {
+            comboBoxClassTeacher.Items.Clear();
+            List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
+
+            foreach (XmlNode classNode in classes)
+            {
+                string className = classNode.SelectSingleNode("name").InnerText;
+                comboBoxClassTeacher.Items.Add(className);
+
+            }
+
             textBoxSearch.Clear();
             comboBoxSearchBy.SelectedIndex = -1;
             // Call the function to get the student data
@@ -174,7 +195,48 @@ namespace attendence_system.Admin.userControl
             labelTotalStudents.Text = dataGridViewStudent.Rows.Count.ToString();
         }
 
-    } 
+        private void btnDeleteTeacher_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(SIDString))
+            {
+                // Change the dialog message to reflect teacher deletion
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete this teacher?", "Delete Teacher", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    DeleteUser(SIDString, "instructor"); // Note the added role parameter
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void DeleteUser(string id, string role)
+        {
+            // Find the user node by ID and role
+            XmlNode userNodeToDelete = InstructorDataManipulator.GetUserNode(id); // Assume GetUserNode is adjusted to accept role
+
+            // Check if the user node exists
+            if (userNodeToDelete != null)
+            {
+                XmlNode parentNode = userNodeToDelete.ParentNode;
+                parentNode.RemoveChild(userNodeToDelete);
+
+                InstructorDataManipulator.SaveChangesInFile();
+
+                MessageBox.Show(role + " deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void tabPageAddTeacher_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+
 
 }
 

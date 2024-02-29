@@ -59,6 +59,11 @@
             labelTotalStudents = new Label();
             label6 = new Label();
             dataGridViewStudent = new DataGridView();
+            idcol = new DataGridViewTextBoxColumn();
+            namecol = new DataGridViewTextBoxColumn();
+            classcol = new DataGridViewTextBoxColumn();
+            emailcol = new DataGridViewTextBoxColumn();
+            passcol = new DataGridViewTextBoxColumn();
             panel5 = new Panel();
             srearch = new Label();
             label8 = new Label();
@@ -81,11 +86,6 @@
             textBoxName1 = new TextBox();
             label10 = new Label();
             panel9 = new Panel();
-            idcol = new DataGridViewTextBoxColumn();
-            namecol = new DataGridViewTextBoxColumn();
-            classcol = new DataGridViewTextBoxColumn();
-            emailcol = new DataGridViewTextBoxColumn();
-            passcol = new DataGridViewTextBoxColumn();
             tabControlAddTeacher.SuspendLayout();
             tabPageAddTeacher.SuspendLayout();
             tabPageSearchTeacher.SuspendLayout();
@@ -135,6 +135,7 @@
             tabPageAddTeacher.Size = new Size(1070, 595);
             tabPageAddTeacher.TabIndex = 0;
             tabPageAddTeacher.Text = "Add Teacher";
+            tabPageAddTeacher.Click += tabPageAddTeacher_Click;
             // 
             // phonenumbertextBox
             // 
@@ -373,7 +374,6 @@
             tabPageSearchTeacher.Size = new Size(1070, 595);
             tabPageSearchTeacher.TabIndex = 1;
             tabPageSearchTeacher.Text = "SrearchTeacher";
-            tabPageSearchTeacher.Enter += tabPageSearchTeacher_Enter;
             // 
             // textBoxSearch
             // 
@@ -473,7 +473,46 @@
             dataGridViewStudent.ShowRowErrors = false;
             dataGridViewStudent.Size = new Size(997, 424);
             dataGridViewStudent.TabIndex = 15;
-            dataGridViewStudent.CellContentClick += dataGridViewStudent_CellContentClick;
+            // 
+            // idcol
+            // 
+            idcol.DataPropertyName = "id";
+            idcol.HeaderText = "ID";
+            idcol.MinimumWidth = 6;
+            idcol.Name = "idcol";
+            idcol.ReadOnly = true;
+            // 
+            // namecol
+            // 
+            namecol.DataPropertyName = "name";
+            namecol.HeaderText = "Name";
+            namecol.MinimumWidth = 6;
+            namecol.Name = "namecol";
+            namecol.ReadOnly = true;
+            // 
+            // classcol
+            // 
+            classcol.DataPropertyName = "class";
+            classcol.HeaderText = "Class";
+            classcol.MinimumWidth = 6;
+            classcol.Name = "classcol";
+            classcol.ReadOnly = true;
+            // 
+            // emailcol
+            // 
+            emailcol.DataPropertyName = "email";
+            emailcol.HeaderText = "Email";
+            emailcol.MinimumWidth = 6;
+            emailcol.Name = "emailcol";
+            emailcol.ReadOnly = true;
+            // 
+            // passcol
+            // 
+            passcol.DataPropertyName = "password";
+            passcol.HeaderText = "password";
+            passcol.MinimumWidth = 6;
+            passcol.Name = "passcol";
+            passcol.ReadOnly = true;
             // 
             // panel5
             // 
@@ -621,6 +660,7 @@
             btnDeleteTeacher.TabIndex = 68;
             btnDeleteTeacher.Text = "Delete";
             btnDeleteTeacher.UseVisualStyleBackColor = false;
+            btnDeleteTeacher.Click += btnDeleteTeacher_Click;
             // 
             // textBoxpass1
             // 
@@ -732,46 +772,6 @@
             panel9.Name = "panel9";
             panel9.Size = new Size(309, 3);
             panel9.TabIndex = 71;
-            // 
-            // idcol
-            // 
-            idcol.DataPropertyName = "id";
-            idcol.HeaderText = "ID";
-            idcol.MinimumWidth = 6;
-            idcol.Name = "idcol";
-            idcol.ReadOnly = true;
-            // 
-            // namecol
-            // 
-            namecol.DataPropertyName = "name";
-            namecol.HeaderText = "Name";
-            namecol.MinimumWidth = 6;
-            namecol.Name = "namecol";
-            namecol.ReadOnly = true;
-            // 
-            // classcol
-            // 
-            classcol.DataPropertyName = "class";
-            classcol.HeaderText = "Class";
-            classcol.MinimumWidth = 6;
-            classcol.Name = "classcol";
-            classcol.ReadOnly = true;
-            // 
-            // emailcol
-            // 
-            emailcol.DataPropertyName = "email";
-            emailcol.HeaderText = "Email";
-            emailcol.MinimumWidth = 6;
-            emailcol.Name = "emailcol";
-            emailcol.ReadOnly = true;
-            // 
-            // passcol
-            // 
-            passcol.DataPropertyName = "password";
-            passcol.HeaderText = "password";
-            passcol.MinimumWidth = 6;
-            passcol.Name = "passcol";
-            passcol.ReadOnly = true;
             // 
             // UserControlAddTeacher
             // 
