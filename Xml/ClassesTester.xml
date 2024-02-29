@@ -1,8 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <classes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ClassesSchema.xsd">
-	<class>
-		<id>1</id>
-		<name>F1</name>
-		<max>15</max>
-	</class>
+  <class>
+    <id>1</id>
+    <name>F1</name>
+    <max>15</max>
+  </class>
+  <class>
+    <id>3</id>
+    <name>A1</name>
+    <max>10</max>
+  </class>
+  <class>
+    <id>4</id>
+    <name>R1</name>
+    <max>10</max>
+  </class>
+  <class>
+    <id>5</id>
+    <name>U1</name>
+    <max>10</max>
+  </class>
+  <class>
+    <id>6</id>
+    <name>S1</name>
+    <max>13</max>
+  </class>
 </classes>

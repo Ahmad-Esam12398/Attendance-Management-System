@@ -1,5 +1,4 @@
-﻿using attendence_system.classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,18 +20,7 @@ namespace attendence_system.Admin.userControl
             adminRole.Text = "Admin";
         }
 
-        /*  private void UserControlDashboard_Load(object sender, EventArgs e)
-          {
-              labelTotalStudents.Text = InstructorDataManipulator.GetCountStudents().ToString();
 
-          }
-
-          private void UserControlDashboard_Click(object sender, EventArgs e)
-          {
-              labelTotalStudents.Text = InstructorDataManipulator.GetCountStudents().ToString();
-
-          }
-        */
 
         private void UserControlDashboard1_Load(object sender, EventArgs e)
         {
