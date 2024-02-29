@@ -50,7 +50,12 @@ namespace attendence_system.Admin.userControl
 
         private void tabControlAddClass_Leave(object sender, EventArgs e)
         {
-            textBoxSearchBox.Clear();   
+            textBoxSearchBox.Clear();
+
+        }
+
+        private void tabPageAddClass_Click(object sender, EventArgs e)
+        {
 
         }
     }

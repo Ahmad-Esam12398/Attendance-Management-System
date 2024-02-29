@@ -22,9 +22,6 @@
     <Compile Update="Instructor\userControl\setAttendance.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Instructor\userControl\UserControlAddStudent.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Instructor\userControl\UserControlChangeUserData.cs">
       <SubType>UserControl</SubType>
     </Compile>

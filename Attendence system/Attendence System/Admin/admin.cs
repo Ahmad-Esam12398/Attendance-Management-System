@@ -151,5 +151,10 @@ namespace AttendanceManagmentProject.Admin
         {
 
         }
+
+        private void panelBack_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

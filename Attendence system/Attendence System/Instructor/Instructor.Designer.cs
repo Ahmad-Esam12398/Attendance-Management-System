@@ -65,6 +65,7 @@
             setAttendance = new userControl.setAttendance();
             userControlDashboard = new Admin.userControl.UserControlDashboard();
             userControlChangeUserData1 = new UserControlChangeUserData();
+            userControlAddStudent1 = new Admin.userControl.UserControlAddStudent();
             panel1.SuspendLayout();
             panelSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -467,7 +468,7 @@
             setAttendance.BackColor = Color.White;
             setAttendance.Location = new Point(382, 454);
             setAttendance.Name = "setAttendance";
-            setAttendance.Size = new Size(362, 209);
+            setAttendance.Size = new Size(362, 167);
             setAttendance.TabIndex = 2;
             setAttendance.Load += setAttendance_Load;
             // 
@@ -480,7 +481,6 @@
             userControlDashboard.Name = "userControlDashboard";
             userControlDashboard.Size = new Size(362, 167);
             userControlDashboard.TabIndex = 3;
-            userControlDashboard.Load += userControlDashboard_Load_1;
             // 
             // userControlChangeUserData1
             // 
@@ -490,11 +490,22 @@
             userControlChangeUserData1.Size = new Size(362, 165);
             userControlChangeUserData1.TabIndex = 4;
             // 
+            // userControlAddStudent1
+            // 
+            userControlAddStudent1.BackColor = Color.White;
+            userControlAddStudent1.Font = new Font("Century Gothic", 9.75F);
+            userControlAddStudent1.Location = new Point(768, 456);
+            userControlAddStudent1.Margin = new Padding(4, 4, 4, 4);
+            userControlAddStudent1.Name = "userControlAddStudent1";
+            userControlAddStudent1.Size = new Size(362, 165);
+            userControlAddStudent1.TabIndex = 5;
+            // 
             // instructor
             // 
             AutoScaleDimensions = new SizeF(12F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1508, 720);
+            Controls.Add(userControlAddStudent1);
             Controls.Add(userControlChangeUserData1);
             Controls.Add(userControlDashboard);
             Controls.Add(setAttendance);
@@ -569,5 +580,6 @@
         private userControl.setAttendance setAttendance;
         private Admin.userControl.UserControlDashboard userControlDashboard;
         private UserControlChangeUserData userControlChangeUserData1;
+        private Admin.userControl.UserControlAddStudent userControlAddStudent1;
     }
 }

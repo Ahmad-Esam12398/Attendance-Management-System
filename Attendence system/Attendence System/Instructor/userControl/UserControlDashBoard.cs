@@ -11,8 +11,8 @@ using System.Xml;
 
 namespace attendence_system.Instructor
 {
-    public partial class UserControlDashBoard : UserControl
-    {
+
+    public partial class UserControlDashBoard : UserControl { 
         public UserControlDashBoard()
         {
             InitializeComponent();
@@ -22,7 +22,6 @@ namespace attendence_system.Instructor
         {
             XmlNode userData = InstructorDataManipulator.GetUserNode();
             labelRole.Text = userData.SelectSingleNode("role").InnerText;
-            //InstructorDataManipulator
         }
     }
 }

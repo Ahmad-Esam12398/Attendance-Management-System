@@ -24,7 +24,8 @@ namespace attendence_system.Instructor
         {
             InitializeComponent();
             timerDateAndTime.Start();
-            //CustomizeToUserRole();
+            CustomizeToUserRole();
+            
         }
         private void Instructor_Load(object sender, EventArgs e)
         {
@@ -34,10 +35,7 @@ namespace attendence_system.Instructor
             labelRole.Text = userData.SelectSingleNode("role").InnerText;
             panelExpand.Hide();
             showUserControl(userControlDashboard);
-            HashSet<string> classes = InstructorDataManipulator.GetClassesForInstructor(userData);
-            UserControlDashBoard.labelTotalClasses.Text = classes.Count.ToString();
         }
-
         private void pictureBoxExpand_Click(object sender, EventArgs e)
         {
             //panelExpand.Visible? panelExpand.Hide(): panelExpand.Show();
@@ -90,6 +88,7 @@ namespace attendence_system.Instructor
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
             MoveSidePanel(panelAddStudent);
+            showUserControl(userControlAddStudent1);
         }
 
         private void buttonDashboard_MouseHover(object sender, EventArgs e)
@@ -135,11 +134,15 @@ namespace attendence_system.Instructor
         }
         private void showUserControl(UserControl target)
         {
-            setAttendance.Hide();
-            userControlDashboard.Hide();
-            userControlChangeUserData1.Hide();
+            hide1AllUserControl();
             target.Show();
             target.Dock = DockStyle.Fill;
+        }
+        private void hide1AllUserControl() {
+            userControlChangeUserData1.Hide();
+            userControlDashboard.Hide();
+            setAttendance.Hide();
+            userControlAddStudent1.Hide();
         }
 
         private void userControlDashboard_Load_1(object sender, EventArgs e)
@@ -148,19 +151,25 @@ namespace attendence_system.Instructor
         }
         private void CustomizeToUserRole()
         {
-            string role = InstructorDataManipulator.GetUsersData().SelectSingleNode("role")?.InnerText;
+            string role = InstructorDataManipulator.GetUserNode().SelectSingleNode("role").InnerText;
             switch (role)
             {
                 case "instructor":
-                    buttonAddStudent.Show();
+                    
                     break;
                 case "student":
-                    buttonAddStudent.Hide();
+                    panelAddStudent.Hide();
+                    panelSettings.Location = new Point(22, 454);
                     break;
                 default:
                     MessageBox.Show("Error Getting User Role", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
+        }
+
+        private void userControlChangeUserData1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -59,6 +59,16 @@ namespace attendence_system.Instructor.userControl
             //dataGridViewAttendance.DataSource = dataSet.Tables[1];
             populateDataGirdView();
             assignClassesToComboBox();
+            CustomizeToUser();
+
+        }
+        private void CustomizeToUser()
+        {
+            XmlNode userNode = InstructorDataManipulator.GetUserNode();
+            if (userNode.SelectSingleNode("role").InnerText == "student")
+            {
+                filterRows(userNode.SelectSingleNode("id").InnerText, "id");
+            }
 
         }
         private void populateDataGirdView()
@@ -234,6 +244,11 @@ namespace attendence_system.Instructor.userControl
                     InstructorDataManipulator.SaveFileDialogCustom("Excel files(*.xlsx)", "xlsx", "Save Excel", InstructorDataManipulator.ExportDataToExcel, dataGridViewAttendance);
                     break;
             }
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
 
         }
     }

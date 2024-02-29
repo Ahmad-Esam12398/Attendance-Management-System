@@ -42,7 +42,7 @@ namespace attendence_system
             XmlReaderUsersSettings.Schemas = usersSchemaSet;
             XmlReaderUsersSettings.ValidationType = ValidationType.Schema;
             classIdByName.Add("L1", "1"); //Should be Removed
-
+            id = "1";
         }
         static public void setId(string _id)
         {
