@@ -56,10 +56,8 @@ namespace attendence_system.Admin.userControl
             ClearText1();
             comboBoxClassStudent.Items.Clear();
 
-            // Call the method to get the unique class values
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
 
-            // Add the class values to the ComboBox
             foreach (XmlNode classNode in classes)
             {
                 string className = classNode.SelectSingleNode("name").InnerText;
@@ -89,10 +87,8 @@ namespace attendence_system.Admin.userControl
           //  ClearText();
 
 
-            // Call the method to get the unique class values
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
 
-            // Add the class values to the ComboBox
             foreach (XmlNode classNode in classes)
             {
                 string className = classNode.SelectSingleNode("name").InnerText;
@@ -172,7 +168,6 @@ namespace attendence_system.Admin.userControl
         private void btnAddStudent_Click_1(object sender, EventArgs e)
         { 
 
-            XmlDocument usersData = InstructorDataManipulator.usersData;
             if (textBoxNameStudent.Text == "" || textBoxEmailstudent.Text == "" || textBoxPassStudent.Text == "" || textBoxphoneNumber.Text == "" || comboBoxClassStudent.SelectedIndex == -1 || comboBoxGender.SelectedIndex == -1)
             {
                 MessageBox.Show("First fill out all fields.", "Required all fields", MessageBoxButtons.OK);
@@ -226,7 +221,6 @@ namespace attendence_system.Admin.userControl
                 }
                 //   genderNode.InnerText = comboBoxGender.SelectedItem.ToString();
                 newUser.AppendChild(genderNode);
-
                 XmlNode roleNode = doc.CreateElement("role");
                 roleNode.InnerText = "student";
                 newUser.AppendChild(roleNode);
@@ -236,7 +230,12 @@ namespace attendence_system.Admin.userControl
                 XmlNode classNode = doc.CreateElement("class");
                 classNode.InnerText = selectedClass;
                 newUser.AppendChild(classNode);
-
+                
+                if (!InstructorDataManipulator.IsClassCapacityAvailable(selectedClass))
+                {
+                    MessageBox.Show($"Class {selectedClass} has reached its maximum capacity. Cannot add more users", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 /*
                 var resault = InstructorDataManipulator.GetClassIdByName(selectedClass);
                 if (resault != null)
@@ -456,96 +455,23 @@ namespace attendence_system.Admin.userControl
             if (!string.IsNullOrEmpty(SIDString) && int.TryParse(SIDString, out int userId))
             {
                 // Retrieve the existing user node from the data source
-                XmlNode existingUserNode = InstructorDataManipulator.GetUserNode(userId.ToString());
-
+                XmlNode existingUserNode = InstructorDataManipulator.GetUserNode(userId.ToString());             
                 if (existingUserNode != null)
                 {
-                    // Create a new XML node to hold the updated user information
-                    XmlDocument doc = existingUserNode.OwnerDocument;
-                    XmlNode newUserNode = doc.CreateElement("user");
-
-                    // Populate the new XML node with updated information
-                    XmlNode idNode = doc.CreateElement("id");
-                    idNode.InnerText = userId.ToString();
-                    newUserNode.AppendChild(idNode);
-
-                    XmlNode nameNode = doc.CreateElement("name");
-                    nameNode.InnerText = textBoxName1.Text;
-                    newUserNode.AppendChild(nameNode);
-
-                    XmlNode emailNode = doc.CreateElement("email");
-                    emailNode.InnerText = textBoxEmail1.Text;
-                    newUserNode.AppendChild(emailNode);
-
-
-                    XmlNode phoneNode = doc.CreateElement("phone");
-                    phoneNode.InnerText = textBoxphoneNumber1.Text;
-                    newUserNode.AppendChild(phoneNode);
-
-
-
-                    XmlNode passwordNode = doc.CreateElement("password");
-                    passwordNode.InnerText = textBoxpass1.Text;
-                    newUserNode.AppendChild(passwordNode);
-
-                    // Handle class selection
-                    string selectedClass = comboBoxClasses1.SelectedItem?.ToString();
-                    XmlNode classNode = doc.CreateElement("class");
-                    // Set the text content (class name) for the class node
-                    classNode.InnerText = selectedClass;
-
-                    // Append the class node to the newUser node
-                    newUserNode.AppendChild(classNode);
-                  /*  if (!string.IsNullOrEmpty(selectedClass))
+                    existingUserNode.SelectSingleNode("name").InnerText = textBoxName1.Text.Trim();
+                    existingUserNode.SelectSingleNode("email").InnerText = textBoxEmail1.Text.Trim();
+                    existingUserNode.SelectSingleNode("phone").InnerText = textBoxphoneNumber1.Text.Trim();
+                    existingUserNode.SelectSingleNode("password").InnerText = textBoxpass1.Text.Trim();
+                    existingUserNode.SelectSingleNode("gender").InnerText = (comboBoxGender1.SelectedItem?.ToString() == "female") ? "f" : "m";
+                    existingUserNode.SelectSingleNode("class").InnerText = comboBoxClasses1.SelectedItem?.ToString();
+                    if (InstructorDataManipulator.validateUserData(existingUserNode))
                     {
-                        var result = InstructorDataManipulator.GetClassIdByName(selectedClass);
-                        if (result != null)
-                        {
-                            XmlNode classNode = doc.CreateElement("class");
+                        InstructorDataManipulator.UpdateUserData(existingUserNode);
+                        MessageBox.Show("Updated successfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Set the ID attribute for the class node
-                            XmlAttribute idAttribute = doc.CreateAttribute("id");
-                            idAttribute.Value = result;
-                            classNode.Attributes.Append(idAttribute);
-
-                            // Set the text content (class name) for the class node
-                            classNode.InnerText = selectedClass;
-
-                            // Append the class node to the newUser node
-                            newUserNode.AppendChild(classNode);
-                        }
+                        ClearText1();
                     }
-                  */
-                    // Handle gender selection
-                    XmlNode genderNode = doc.CreateElement("gender");
-                    if (comboBoxGender1.SelectedItem?.ToString() == "female")
-                    {
-                        genderNode.InnerText = "f";
-
-                    }
-                    else
-                    {
-                        genderNode.InnerText = "m";
-
-                    }
-
-                    newUserNode.AppendChild(genderNode);
-
-
-                
-                        if (InstructorDataManipulator.validateUserData(newUserNode))
-                        {
-                            // Call the UpdateUserData function with the new user node
-                            InstructorDataManipulator.UpdateUserData(newUserNode);
-
-                            MessageBox.Show("Updated successfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            ClearText1();
-
-                        }
-                    
-                  
-             
+                             
                 }
 
                 else

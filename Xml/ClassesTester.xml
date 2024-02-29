@@ -25,4 +25,9 @@
     <name>S1</name>
     <max>13</max>
   </class>
+  <class>
+    <id>7</id>
+    <name>B1</name>
+    <max>10</max>
+  </class>
 </classes>
