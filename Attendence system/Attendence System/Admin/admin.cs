@@ -70,6 +70,7 @@ namespace AttendanceManagmentProject.Admin
             userControlAddClass1.Visible = false;
             userControlAddTeacher1.Visible = false;
             userControlAddStudent1.Visible = false;
+            userControlAttendance1.Visible = false;
 
             MoveSidePanel(PanelDashboard);
 
@@ -78,6 +79,7 @@ namespace AttendanceManagmentProject.Admin
 
         private void buttonAttendance_Click(object sender, EventArgs e)
         {
+            userControlAttendance1.Visible = true;
             userControlDashboard1.Visible = false;
             userControlAddClass1.Visible = false;
             userControlAddStudent1.Visible = false;
@@ -95,6 +97,8 @@ namespace AttendanceManagmentProject.Admin
             userControlAddStudent1.Visible = false;
             userControlAddTeacher1.Visible = false;
             userControlDashboard1.Visible = false;
+            userControlAttendance1.Visible = false;
+
             MoveSidePanel(panelAddClass);
 
         }
@@ -125,6 +129,8 @@ namespace AttendanceManagmentProject.Admin
             userControlAddStudent1.Visible = false;
             userControlAddClass1.Visible = false;
             userControlDashboard1.Visible = false;
+            userControlAttendance1.Visible = false;
+
             MoveSidePanel(panelAddTeacher);
 
 
@@ -134,22 +140,16 @@ namespace AttendanceManagmentProject.Admin
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
 
+            userControlAddStudent1.Visible = true;
             userControlAddClass1.Visible = false;
             userControlDashboard1.Visible = false;
             userControlAddTeacher1.Visible = false;
-            userControlAddStudent1.Visible = true;
+            userControlAttendance1.Visible = false;
+
             MoveSidePanel(panelAddstudent);
 
         }
 
-        private void userControlAddTeacher1_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void parentPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

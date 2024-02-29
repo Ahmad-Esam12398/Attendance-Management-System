@@ -47,6 +47,12 @@ namespace attendence_system
             classIdByName.Add("L1", "1");
 
         }
+        // get count student
+        static public int GetCountStudents()
+        {
+            int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
+            return studentsCount;
+        }
 
         static public XmlNode GetUserNode(string id)
         {
@@ -172,12 +178,6 @@ namespace attendence_system
             }
             return classes;
         }
-        // get count student
-        static public int GetCountStudents()
-        {
-            int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
-            return studentsCount;
-        }
 
         // Function to retrieve the last ID in usersAuthenticationC#.xml
         public static int GetLastUserId()
@@ -236,7 +236,6 @@ namespace attendence_system
             return lastId;
         }
      
-        // to display  it --drop
         static public HashSet<string> GetClassesSet()
         {
             List<XmlNode> Students = GetStudentsList();
@@ -277,7 +276,7 @@ namespace attendence_system
             XmlNode root = classesData.SelectSingleNode("/classes");
             XmlNode importedUser = classesData.ImportNode(newClass, true);
             root.AppendChild(importedUser);
-            classesData.Save(@"./../../../../../Xml/ClassesTester.xml");
+            SaveChangesClassesInFile();
         }
         //========== save changes in classes  
         static public void SaveChangesClassesInFile()
@@ -345,21 +344,7 @@ namespace attendence_system
         }
 
 
-        public static bool IsClassNameAvailable(string className)
-        {
 
-            XmlNodeList nameNodes = classesData.SelectNodes("/classes/class/name");
-
-            foreach (XmlNode nameNode in nameNodes)
-            {
-                
-                if (nameNode.InnerText.Equals(className, StringComparison.OrdinalIgnoreCase))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
 
 
         public static bool IsClassCapacityAvailable(string className)

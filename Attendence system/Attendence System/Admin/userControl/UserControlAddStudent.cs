@@ -64,17 +64,6 @@ namespace attendence_system.Admin.userControl
                 comboBoxClassStudent.Items.Add(className);
             }
 
-
-
-            // Call the method to get the unique class values
-            /*  HashSet<string> classes = InstructorDataManipulator.GetClassesSet();
-
-              // Add the class values to the ComboBox
-              foreach (string className in classes)
-              {
-                  comboBoxClassStudent.Items.Add(className);
-              }*/
-
         }
 
         private void tabPageAddStudent_Leave(object sender, EventArgs e)
@@ -94,16 +83,6 @@ namespace attendence_system.Admin.userControl
                 string className = classNode.SelectSingleNode("name").InnerText;
                 comboBoxClassStudent.Items.Add(className);
             }
-/*
-            // Call the method to get the unique class values
-            HashSet<string> classes = InstructorDataManipulator.GetClassesSet();
-
-            // Add the class values to the ComboBox
-            foreach (string className in classes)
-            {
-                comboBoxClassStudent.Items.Add(className);
-            }
-*/
         }
 
 
@@ -236,28 +215,7 @@ namespace attendence_system.Admin.userControl
                     MessageBox.Show($"Class {selectedClass} has reached its maximum capacity. Cannot add more users", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                /*
-                var resault = InstructorDataManipulator.GetClassIdByName(selectedClass);
-                if (resault != null)
-                {
-                    XmlNode classNode = doc.CreateElement("class");
-
-                    // Set the ID attribute for the class node
-                    XmlAttribute idAttribute = doc.CreateAttribute("id");
-                    idAttribute.Value = resault;
-                    classNode.Attributes.Append(idAttribute);
-
-                    // Set the text content (class name) for the class node
-                    classNode.InnerText = selectedClass;
-
-                    // Append the class node to the newUser node
-                    newUser.AppendChild(classNode);
-
-                }
-                else
-                {
-                    return;
-                }*/
+  
                 if (InstructorDataManipulator.validateUserData(newUser))
                 {
                     InstructorDataManipulator.AddNewUser(newUser);
@@ -267,6 +225,44 @@ namespace attendence_system.Admin.userControl
 
 
             }
+        }
+
+
+        // ============Method to update a user in the XML data source
+        private void btnUpdateStudent_Click_1(object sender, EventArgs e)
+        {
+            // Check if SID is not empty and is a valid integer
+            if (!string.IsNullOrEmpty(SIDString) && int.TryParse(SIDString, out int userId))
+            {
+                // Retrieve the existing user node from the data source
+                XmlNode existingUserNode = InstructorDataManipulator.GetUserNode(userId.ToString());
+                if (existingUserNode != null)
+                {
+                    existingUserNode.SelectSingleNode("name").InnerText = textBoxName1.Text.Trim();
+                    existingUserNode.SelectSingleNode("email").InnerText = textBoxEmail1.Text.Trim();
+                    existingUserNode.SelectSingleNode("phone").InnerText = textBoxphoneNumber1.Text.Trim();
+                    existingUserNode.SelectSingleNode("password").InnerText = textBoxpass1.Text.Trim();
+                    existingUserNode.SelectSingleNode("gender").InnerText = (comboBoxGender1.SelectedItem?.ToString() == "female") ? "f" : "m";
+                    existingUserNode.SelectSingleNode("class").InnerText = comboBoxClasses1.SelectedItem?.ToString();
+                    if (InstructorDataManipulator.validateUserData(existingUserNode))
+                    {
+                        InstructorDataManipulator.UpdateUserData(existingUserNode);
+                        MessageBox.Show("Updated successfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        ClearText1();
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("User with ID " + userId + " not found.", "User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
 
@@ -448,44 +444,7 @@ namespace attendence_system.Admin.userControl
         }
 
 
-        // ============Method to update a user in the XML data source
-        private void btnUpdateStudent_Click_1(object sender, EventArgs e)
-        {
-            // Check if SID is not empty and is a valid integer
-            if (!string.IsNullOrEmpty(SIDString) && int.TryParse(SIDString, out int userId))
-            {
-                // Retrieve the existing user node from the data source
-                XmlNode existingUserNode = InstructorDataManipulator.GetUserNode(userId.ToString());             
-                if (existingUserNode != null)
-                {
-                    existingUserNode.SelectSingleNode("name").InnerText = textBoxName1.Text.Trim();
-                    existingUserNode.SelectSingleNode("email").InnerText = textBoxEmail1.Text.Trim();
-                    existingUserNode.SelectSingleNode("phone").InnerText = textBoxphoneNumber1.Text.Trim();
-                    existingUserNode.SelectSingleNode("password").InnerText = textBoxpass1.Text.Trim();
-                    existingUserNode.SelectSingleNode("gender").InnerText = (comboBoxGender1.SelectedItem?.ToString() == "female") ? "f" : "m";
-                    existingUserNode.SelectSingleNode("class").InnerText = comboBoxClasses1.SelectedItem?.ToString();
-                    if (InstructorDataManipulator.validateUserData(existingUserNode))
-                    {
-                        InstructorDataManipulator.UpdateUserData(existingUserNode);
-                        MessageBox.Show("Updated successfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        ClearText1();
-                    }
-                             
-                }
-
-                else
-                {
-                    MessageBox.Show("User with ID " + userId + " not found.", "User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-
+    
         private void tabPageUpdateAndDelete_Leave(object sender, EventArgs e)
         {
             ClearText1();

@@ -71,6 +71,7 @@
             userControlAddClass1 = new attendence_system.Admin.userControl.UserControlAddClass();
             userControlAddStudent1 = new attendence_system.Admin.userControl.UserControlAddStudent();
             userControlAddTeacher1 = new attendence_system.Admin.userControl.UserControlAddTeacher();
+            userControlAttendance1 = new attendence_system.Admin.userControl.UserControlAttendance();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panelAddTeacher.SuspendLayout();
@@ -266,7 +267,7 @@
             PanelDashboard.Name = "PanelDashboard";
             PanelDashboard.Size = new Size(200, 66);
             PanelDashboard.TabIndex = 1;
-            PanelDashboard.Paint += parentPanel_Paint;
+        //    PanelDashboard.Paint += parentPanel_Paint;
             // 
             // buttonDashboard
             // 
@@ -558,7 +559,17 @@
             userControlAddTeacher1.Size = new Size(1046, 389);
             userControlAddTeacher1.TabIndex = 0;
             userControlAddTeacher1.Visible = false;
-            userControlAddTeacher1.Load += userControlAddTeacher1_Load;
+         //   userControlAddTeacher1.Load += userControlAddTeacher1_Load;
+            // 
+            // userControlAttendance1
+            // 
+            userControlAttendance1.BackColor = Color.White;
+            userControlAttendance1.Location = new Point(287, 173);
+            userControlAttendance1.Margin = new Padding(4, 4, 4, 4);
+            userControlAttendance1.Name = "userControlAttendance1";
+            userControlAttendance1.Size = new Size(1336, 620);
+            userControlAttendance1.TabIndex = 6;
+            userControlAttendance1.Visible = false;
             // 
             // admin
             // 
@@ -566,6 +577,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1333, 562);
+            Controls.Add(userControlAttendance1);
             Controls.Add(userControlAddTeacher1);
             Controls.Add(userControlAddStudent1);
             Controls.Add(userControlAddClass1);
@@ -653,6 +665,7 @@
         private attendence_system.Admin.userControl.UserControlAddClass userControlAddClass1;
         private attendence_system.Admin.userControl.UserControlAddStudent userControlAddStudent1;
         private attendence_system.Admin.userControl.UserControlAddTeacher userControlAddTeacher1;
+        private attendence_system.Admin.userControl.UserControlAttendance userControlAttendance1;
         //  private System.Windows.Forms.Timer timerDateAndTime;
     }
 }
