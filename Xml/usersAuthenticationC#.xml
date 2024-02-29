@@ -27,6 +27,10 @@
       <date>2024-04-12</date>
       <status>present</status>
     </attendanceDates>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 629d1da8438cab2388dd6c877528f9468a5d415c
     <attendanceDates>
       <date>2024-02-28</date>
       <status>absent</status>
@@ -35,6 +39,10 @@
       <date>2024-02-29</date>
       <status>absent</status>
     </attendanceDates>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 629d1da8438cab2388dd6c877528f9468a5d415c
   </user>
   <user>
     <id>3</id>
@@ -54,6 +62,7 @@
     <gender>f</gender>
     <role>admin</role>
   </user>
+
   <user>
     <id>5</id>
     <name>amina</name>
@@ -64,4 +73,5 @@
     <role>student</role>
     <class>R1</class>
   </user>
+
 </users>
