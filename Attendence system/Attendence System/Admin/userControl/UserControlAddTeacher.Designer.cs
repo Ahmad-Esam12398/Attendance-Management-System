@@ -30,6 +30,12 @@
         {
             tabControlAddTeacher = new TabControl();
             tabPageAddTeacher = new TabPage();
+            phonenumbertextBox = new TextBox();
+            label14 = new Label();
+            panel12 = new Panel();
+            label5 = new Label();
+            panel4 = new Panel();
+            gendercomboBox1 = new ComboBox();
             comboBoxClassTeacher = new ComboBox();
             panel10 = new Panel();
             labelClassStudent = new Label();
@@ -46,22 +52,24 @@
             label1 = new Label();
             tabPageSearchTeacher = new TabPage();
             textBoxSearch = new TextBox();
-            textBox6 = new TextBox();
             comboBoxSearchBy = new ComboBox();
             panel11 = new Panel();
             label7 = new Label();
             labelTotalStudents = new Label();
             label6 = new Label();
             dataGridViewStudent = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
+            idcol = new DataGridViewTextBoxColumn();
+            namecol = new DataGridViewTextBoxColumn();
+            classcol = new DataGridViewTextBoxColumn();
+            emailcol = new DataGridViewTextBoxColumn();
+            passcol = new DataGridViewTextBoxColumn();
             panel5 = new Panel();
             srearch = new Label();
             label8 = new Label();
             tabPageUpdateAndDelete = new TabPage();
+            phonetextBox2 = new TextBox();
+            panel14 = new Panel();
+            label15 = new Label();
             comboBoxUpDelete = new ComboBox();
             panel8 = new Panel();
             label12 = new Label();
@@ -99,6 +107,12 @@
             // tabPageAddTeacher
             // 
             tabPageAddTeacher.BackColor = Color.White;
+            tabPageAddTeacher.Controls.Add(phonenumbertextBox);
+            tabPageAddTeacher.Controls.Add(label14);
+            tabPageAddTeacher.Controls.Add(panel12);
+            tabPageAddTeacher.Controls.Add(label5);
+            tabPageAddTeacher.Controls.Add(panel4);
+            tabPageAddTeacher.Controls.Add(gendercomboBox1);
             tabPageAddTeacher.Controls.Add(comboBoxClassTeacher);
             tabPageAddTeacher.Controls.Add(panel10);
             tabPageAddTeacher.Controls.Add(labelClassStudent);
@@ -120,14 +134,78 @@
             tabPageAddTeacher.Size = new Size(1070, 595);
             tabPageAddTeacher.TabIndex = 0;
             tabPageAddTeacher.Text = "Add Teacher";
+            tabPageAddTeacher.Click += tabPageAddTeacher_Click;
+            // 
+            // phonenumbertextBox
+            // 
+            phonenumbertextBox.BackColor = Color.White;
+            phonenumbertextBox.BorderStyle = BorderStyle.None;
+            phonenumbertextBox.Font = new Font("Century Gothic", 10F);
+            phonenumbertextBox.Location = new Point(171, 389);
+            phonenumbertextBox.Margin = new Padding(3, 4, 3, 4);
+            phonenumbertextBox.Name = "phonenumbertextBox";
+            phonenumbertextBox.Size = new Size(309, 21);
+            phonenumbertextBox.TabIndex = 64;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.BackColor = Color.White;
+            label14.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label14.Location = new Point(159, 359);
+            label14.Name = "label14";
+            label14.Size = new Size(130, 19);
+            label14.TabIndex = 63;
+            label14.Text = "phonenumber:";
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.Black;
+            panel12.Location = new Point(168, 411);
+            panel12.Margin = new Padding(3, 4, 3, 4);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(309, 3);
+            panel12.TabIndex = 62;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.White;
+            label5.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label5.Location = new Point(530, 345);
+            label5.Name = "label5";
+            label5.Size = new Size(73, 19);
+            label5.TabIndex = 61;
+            label5.Text = "gender:";
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Black;
+            panel4.Location = new Point(521, 404);
+            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(315, 10);
+            panel4.TabIndex = 60;
+            // 
+            // gendercomboBox1
+            // 
+            gendercomboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            gendercomboBox1.FlatStyle = FlatStyle.Flat;
+            gendercomboBox1.FormattingEnabled = true;
+            gendercomboBox1.Items.AddRange(new object[] { "male", "female" });
+            gendercomboBox1.Location = new Point(530, 368);
+            gendercomboBox1.Margin = new Padding(3, 4, 3, 4);
+            gendercomboBox1.Name = "gendercomboBox1";
+            gendercomboBox1.Size = new Size(308, 28);
+            gendercomboBox1.TabIndex = 59;
             // 
             // comboBoxClassTeacher
             // 
             comboBoxClassTeacher.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxClassTeacher.FlatStyle = FlatStyle.Flat;
             comboBoxClassTeacher.FormattingEnabled = true;
-            comboBoxClassTeacher.Items.AddRange(new object[] { "---Name--", "name ", "class ", "email", "" });
-            comboBoxClassTeacher.Location = new Point(168, 287);
+            comboBoxClassTeacher.Items.AddRange(new object[] { "L1", "L2", "L3" });
+            comboBoxClassTeacher.Location = new Point(167, 275);
             comboBoxClassTeacher.Margin = new Padding(3, 4, 3, 4);
             comboBoxClassTeacher.Name = "comboBoxClassTeacher";
             comboBoxClassTeacher.Size = new Size(308, 28);
@@ -136,7 +214,7 @@
             // panel10
             // 
             panel10.BackColor = Color.Black;
-            panel10.Location = new Point(168, 329);
+            panel10.Location = new Point(167, 312);
             panel10.Margin = new Padding(3, 4, 3, 4);
             panel10.Name = "panel10";
             panel10.Size = new Size(309, 3);
@@ -205,7 +283,7 @@
             textBoxTeacherName.BackColor = Color.White;
             textBoxTeacherName.BorderStyle = BorderStyle.None;
             textBoxTeacherName.Font = new Font("Century Gothic", 10F);
-            textBoxTeacherName.Location = new Point(159, 156);
+            textBoxTeacherName.Location = new Point(159, 159);
             textBoxTeacherName.Margin = new Padding(3, 4, 3, 4);
             textBoxTeacherName.Name = "textBoxTeacherName";
             textBoxTeacherName.Size = new Size(309, 21);
@@ -278,7 +356,6 @@
             // 
             tabPageSearchTeacher.BackColor = Color.White;
             tabPageSearchTeacher.Controls.Add(textBoxSearch);
-            tabPageSearchTeacher.Controls.Add(textBox6);
             tabPageSearchTeacher.Controls.Add(comboBoxSearchBy);
             tabPageSearchTeacher.Controls.Add(panel11);
             tabPageSearchTeacher.Controls.Add(label7);
@@ -306,17 +383,7 @@
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(309, 21);
             textBoxSearch.TabIndex = 58;
-            // 
-            // textBox6
-            // 
-            textBox6.BackColor = Color.White;
-            textBox6.BorderStyle = BorderStyle.None;
-            textBox6.Font = new Font("Century Gothic", 10F);
-            textBox6.Location = new Point(457, 103);
-            textBox6.Margin = new Padding(3, 4, 3, 4);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(309, 21);
-            textBox6.TabIndex = 55;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // comboBoxSearchBy
             // 
@@ -382,10 +449,11 @@
             dataGridViewStudent.BorderStyle = BorderStyle.None;
             dataGridViewStudent.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewStudent.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column5, Column3, Column4 });
+            dataGridViewStudent.Columns.AddRange(new DataGridViewColumn[] { idcol, namecol, classcol, emailcol, passcol });
             dataGridViewStudent.Location = new Point(35, 159);
             dataGridViewStudent.Margin = new Padding(3, 4, 3, 4);
             dataGridViewStudent.Name = "dataGridViewStudent";
+            dataGridViewStudent.ReadOnly = true;
             dataGridViewStudent.RowHeadersWidth = 51;
             dataGridViewStudent.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewStudent.ShowCellErrors = false;
@@ -393,42 +461,47 @@
             dataGridViewStudent.ShowRowErrors = false;
             dataGridViewStudent.Size = new Size(997, 424);
             dataGridViewStudent.TabIndex = 15;
-            dataGridViewStudent.CellContentClick += dataGridViewTeacher_CellContentClick;
+            dataGridViewStudent.CellContentClick += dataGridViewStudent_CellContentClick_1;
             // 
-            // Column1
+            // idcol
             // 
-            Column1.DataPropertyName = "id";
-            Column1.HeaderText = "ID";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
+            idcol.DataPropertyName = "id";
+            idcol.HeaderText = "ID";
+            idcol.MinimumWidth = 6;
+            idcol.Name = "idcol";
+            idcol.ReadOnly = true;
             // 
-            // Column2
+            // namecol
             // 
-            Column2.DataPropertyName = "Name";
-            Column2.HeaderText = "Name";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
+            namecol.DataPropertyName = "name";
+            namecol.HeaderText = "Name";
+            namecol.MinimumWidth = 6;
+            namecol.Name = "namecol";
+            namecol.ReadOnly = true;
             // 
-            // Column5
+            // classcol
             // 
-            Column5.DataPropertyName = "class";
-            Column5.HeaderText = "Class";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
+            classcol.DataPropertyName = "class";
+            classcol.HeaderText = "Class";
+            classcol.MinimumWidth = 6;
+            classcol.Name = "classcol";
+            classcol.ReadOnly = true;
             // 
-            // Column3
+            // emailcol
             // 
-            Column3.DataPropertyName = "Email";
-            Column3.HeaderText = "Email";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
+            emailcol.DataPropertyName = "email";
+            emailcol.HeaderText = "Email";
+            emailcol.MinimumWidth = 6;
+            emailcol.Name = "emailcol";
+            emailcol.ReadOnly = true;
             // 
-            // Column4
+            // passcol
             // 
-            Column4.DataPropertyName = "Password";
-            Column4.HeaderText = "password";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
+            passcol.DataPropertyName = "password";
+            passcol.HeaderText = "password";
+            passcol.MinimumWidth = 6;
+            passcol.Name = "passcol";
+            passcol.ReadOnly = true;
             // 
             // panel5
             // 
@@ -464,6 +537,9 @@
             // tabPageUpdateAndDelete
             // 
             tabPageUpdateAndDelete.BackColor = Color.White;
+            tabPageUpdateAndDelete.Controls.Add(phonetextBox2);
+            tabPageUpdateAndDelete.Controls.Add(panel14);
+            tabPageUpdateAndDelete.Controls.Add(label15);
             tabPageUpdateAndDelete.Controls.Add(comboBoxUpDelete);
             tabPageUpdateAndDelete.Controls.Add(panel8);
             tabPageUpdateAndDelete.Controls.Add(label12);
@@ -487,13 +563,44 @@
             tabPageUpdateAndDelete.TabIndex = 2;
             tabPageUpdateAndDelete.Text = "Update&Delete";
             // 
+            // phonetextBox2
+            // 
+            phonetextBox2.BackColor = Color.White;
+            phonetextBox2.BorderStyle = BorderStyle.None;
+            phonetextBox2.Font = new Font("Century Gothic", 10F);
+            phonetextBox2.Location = new Point(164, 403);
+            phonetextBox2.Margin = new Padding(3, 4, 3, 4);
+            phonetextBox2.Name = "phonetextBox2";
+            phonetextBox2.Size = new Size(309, 21);
+            phonetextBox2.TabIndex = 86;
+            // 
+            // panel14
+            // 
+            panel14.BackColor = Color.Black;
+            panel14.Location = new Point(164, 432);
+            panel14.Margin = new Padding(3, 4, 3, 4);
+            panel14.Name = "panel14";
+            panel14.Size = new Size(309, 3);
+            panel14.TabIndex = 84;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.White;
+            label15.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label15.Location = new Point(175, 376);
+            label15.Name = "label15";
+            label15.Size = new Size(130, 19);
+            label15.TabIndex = 81;
+            label15.Text = "phonenumber:";
+            // 
             // comboBoxUpDelete
             // 
             comboBoxUpDelete.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxUpDelete.FlatStyle = FlatStyle.Flat;
             comboBoxUpDelete.FormattingEnabled = true;
             comboBoxUpDelete.Items.AddRange(new object[] { "---Name--", "name ", "class ", "email", "" });
-            comboBoxUpDelete.Location = new Point(165, 304);
+            comboBoxUpDelete.Location = new Point(154, 302);
             comboBoxUpDelete.Margin = new Padding(3, 4, 3, 4);
             comboBoxUpDelete.Name = "comboBoxUpDelete";
             comboBoxUpDelete.Size = new Size(308, 28);
@@ -502,7 +609,7 @@
             // panel8
             // 
             panel8.BackColor = Color.Black;
-            panel8.Location = new Point(165, 347);
+            panel8.Location = new Point(153, 331);
             panel8.Margin = new Padding(3, 4, 3, 4);
             panel8.Name = "panel8";
             panel8.Size = new Size(309, 3);
@@ -522,7 +629,7 @@
             // panel6
             // 
             panel6.BackColor = Color.Black;
-            panel6.Location = new Point(505, 344);
+            panel6.Location = new Point(505, 331);
             panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
             panel6.Size = new Size(309, 3);
@@ -542,6 +649,7 @@
             btnDeleteTeacher.TabIndex = 68;
             btnDeleteTeacher.Text = "Delete";
             btnDeleteTeacher.UseVisualStyleBackColor = false;
+            btnDeleteTeacher.Click += btnDeleteTeacher_Click;
             // 
             // textBoxpass1
             // 
@@ -568,6 +676,7 @@
             btnUpdateTeachers.TabIndex = 67;
             btnUpdateTeachers.Text = "Update";
             btnUpdateTeachers.UseVisualStyleBackColor = false;
+            btnUpdateTeachers.Click += btnUpdateTeachers_Click;
             // 
             // panel7
             // 
@@ -694,18 +803,12 @@
         private Label label1;
         private TabPage tabPageSearchTeacher;
         private TextBox textBoxSearch;
-        private TextBox textBox6;
         private ComboBox comboBoxSearchBy;
         private Panel panel11;
         private Label label7;
         private Label labelTotalStudents;
         private Label label6;
         private DataGridView dataGridViewStudent;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
         private Panel panel5;
         private Label srearch;
         private Label label8;
@@ -725,5 +828,19 @@
         private TextBox textBoxName1;
         private Label label10;
         private Panel panel9;
+        private Panel panel4;
+        private ComboBox gendercomboBox1;
+        private Label label5;
+        private Label label14;
+        private Panel panel12;
+        private TextBox phonenumbertextBox;
+        private Label label15;
+        private TextBox phonetextBox2;
+        private Panel panel14;
+        private DataGridViewTextBoxColumn idcol;
+        private DataGridViewTextBoxColumn namecol;
+        private DataGridViewTextBoxColumn classcol;
+        private DataGridViewTextBoxColumn emailcol;
+        private DataGridViewTextBoxColumn passcol;
     }
 }

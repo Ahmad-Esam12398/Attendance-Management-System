@@ -121,8 +121,12 @@ namespace attendence_system
         public static bool validateClassesData(XmlNode underTest)
         {
             XmlNode rootNode = classesData.SelectSingleNode("/classes");
+
+
             XmlNode importedNode = classesData.ImportNode(underTest, true);
-            rootNode.AppendChild(importedNode);
+           // rootNode.AppendChild(importedNode);
+            classesData.SelectSingleNode("/classes").ReplaceChild(importedNode, underTest);
+
             XmlReader reader = XmlReader.Create(new StringReader(classesData.OuterXml), XmlReaderClassesSettings);
             try
             {
@@ -172,6 +176,17 @@ namespace attendence_system
             }
             return students;
         }
+        static public List<XmlNode> GetinstructorList()
+        {
+            int instructorCount = usersData.SelectNodes("/users/user[role='instructor']").Count;
+            List<XmlNode> instructor = new List<XmlNode>();
+            for (int i = 0; i < instructorCount; i++)
+            {
+                instructor.Add(usersData.SelectNodes("/users/user[role='instructor']")[i]);
+            }
+            return instructor;
+        }
+
 
 
         // get all classes  from class.xml 

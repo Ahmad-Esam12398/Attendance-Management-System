@@ -74,9 +74,7 @@ namespace attendence_system.Admin.userControl
             // Check if SID is not empty and is a valid integer
             if (!string.IsNullOrEmpty(ClsString) && int.TryParse(ClsString, out int userId))
             {
-              
-
-                // Retrieve the existing user node from the data source
+            // Retrieve the existing user node from the data source
                 XmlNode existingClassNode = InstructorDataManipulator.GetClassNode(userId.ToString());
 
                 if (existingClassNode != null)
