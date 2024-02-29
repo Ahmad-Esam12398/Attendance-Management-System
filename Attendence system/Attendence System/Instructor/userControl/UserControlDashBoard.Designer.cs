@@ -30,21 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlDashBoard));
             panel3 = new Panel();
-            label4 = new Label();
+            labelRole = new Label();
             labelTotalRole = new Label();
             pictureBox3 = new PictureBox();
-            panel2 = new Panel();
-            labelTotalStudents = new Label();
-            label3 = new Label();
-            pictureBox2 = new PictureBox();
             panel1 = new Panel();
             labelTotalClasses = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -53,25 +47,25 @@
             // 
             panel3.Anchor = AnchorStyles.None;
             panel3.BackColor = Color.PaleGreen;
-            panel3.Controls.Add(label4);
+            panel3.Controls.Add(labelRole);
             panel3.Controls.Add(labelTotalRole);
             panel3.Controls.Add(pictureBox3);
-            panel3.Location = new Point(289, 310);
+            panel3.Location = new Point(469, 63);
             panel3.Name = "panel3";
             panel3.Size = new Size(259, 128);
             panel3.TabIndex = 7;
             // 
-            // label4
+            // labelRole
             // 
-            label4.Anchor = AnchorStyles.None;
-            label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(182, 95);
-            label4.Name = "label4";
-            label4.Size = new Size(31, 19);
-            label4.TabIndex = 2;
-            label4.Text = "{?}";
+            labelRole.Anchor = AnchorStyles.None;
+            labelRole.AutoSize = true;
+            labelRole.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            labelRole.ForeColor = Color.White;
+            labelRole.Location = new Point(182, 95);
+            labelRole.Name = "labelRole";
+            labelRole.Size = new Size(31, 19);
+            labelRole.TabIndex = 2;
+            labelRole.Text = "{?}";
             // 
             // labelTotalRole
             // 
@@ -94,52 +88,6 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 1;
             pictureBox3.TabStop = false;
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.None;
-            panel2.BackColor = Color.Lavender;
-            panel2.Controls.Add(labelTotalStudents);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(pictureBox2);
-            panel2.Location = new Point(530, 63);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(259, 128);
-            panel2.TabIndex = 6;
-            // 
-            // labelTotalStudents
-            // 
-            labelTotalStudents.Anchor = AnchorStyles.None;
-            labelTotalStudents.AutoSize = true;
-            labelTotalStudents.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelTotalStudents.ForeColor = Color.White;
-            labelTotalStudents.Location = new Point(198, 98);
-            labelTotalStudents.Name = "labelTotalStudents";
-            labelTotalStudents.Size = new Size(31, 19);
-            labelTotalStudents.TabIndex = 2;
-            labelTotalStudents.Text = "{?}";
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.None;
-            label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 11F, FontStyle.Bold);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(178, 68);
-            label3.Name = "label3";
-            label3.Size = new Size(79, 23);
-            label3.TabIndex = 1;
-            label3.Text = "Student";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(25, 37);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(100, 63);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
             // 
             // panel1
             // 
@@ -193,7 +141,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(panel3);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "UserControlDashBoard";
             Size = new Size(942, 501);
@@ -201,9 +148,6 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -213,15 +157,11 @@
         #endregion
 
         private Panel panel3;
-        private Label label4;
+        public Label labelRole;
         private Label labelTotalRole;
         private PictureBox pictureBox3;
-        private Panel panel2;
-        private Label labelTotalStudents;
-        private Label label3;
-        private PictureBox pictureBox2;
         private Panel panel1;
-        private Label labelTotalClasses;
+        public Label labelTotalClasses;
         private Label label1;
         private PictureBox pictureBox1;
     }

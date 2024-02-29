@@ -27,8 +27,7 @@ namespace attendence_system.Instructor.userControl
         {
             InitializeComponent();
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewAttendance_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 6 && e.RowIndex != -1)
             {
@@ -60,6 +59,16 @@ namespace attendence_system.Instructor.userControl
             //dataGridViewAttendance.DataSource = dataSet.Tables[1];
             populateDataGirdView();
             assignClassesToComboBox();
+            CustomizeToUser();
+
+        }
+        private void CustomizeToUser()
+        {
+            XmlNode userNode = InstructorDataManipulator.GetUserNode();
+            if (userNode.SelectSingleNode("role").InnerText == "student")
+            {
+                filterRows(userNode.SelectSingleNode("id").InnerText, "id");
+            }
 
         }
         private void populateDataGirdView()
@@ -193,8 +202,7 @@ namespace attendence_system.Instructor.userControl
         {
             filterRows("", "Date", ">=", dateTimePickerFrom.Value);
         }
-
-        private void dateTimePickerTo_ValueChanged_1(object sender, EventArgs e)
+        private void dateTimePickerTo_ValueChanged(object sender, EventArgs e)
         {
             filterRows("", "Date", "<=", dateTimePickerTo.Value);
         }
@@ -213,196 +221,35 @@ namespace attendence_system.Instructor.userControl
             }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void buttonSaveAs_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void buttonExportPDF_Click(object sender, EventArgs e)
-        {
-            SaveFileDialogCustom("PDF files (*.pdf)", "pdf", "Save PDF", GeneratePdfFromDataGridView);
-        }
-        public void GeneratePdfFromDataGridView(DataGridView dataGridView, string outputPath)
-        {
-            // Initialize a new PDF writer
-            PdfWriter writer = new PdfWriter(outputPath);
-
-            // Initialize a new PDF document
-            PdfDocument pdf = new PdfDocument(writer);
-
-            // Initialize a new document
-            Document document = new Document(pdf);
-
-            // Create a new table with the same number of columns as the data grid view
-            Table table = new Table(dataGridView.ColumnCount);
-
-            // Add the headers to the table
-            foreach (DataGridViewColumn column in dataGridView.Columns)
+            if (comboBoxFileType.SelectedItem == null)
             {
-                table.AddCell(new Cell().Add(new Paragraph(column.HeaderText)));
+                MessageBox.Show("Please select a file type to save the file.", "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-
-            // Add the rows to the table
-            foreach (DataGridViewRow row in dataGridView.Rows)
+            MapSaveAsToFile(comboBoxFileType.SelectedItem.ToString());
+        }
+        private void MapSaveAsToFile(string extension)
+        {
+            switch (extension)
             {
-                if (row.Index == dataGridView.Rows.Count - 1)
-                {
+                case "PDF":
+                    InstructorDataManipulator.SaveFileDialogCustom("PDF files (*.pdf)", "pdf", "Save PDF", InstructorDataManipulator.GeneratePdfFromDataGridView, dataGridViewAttendance);
                     break;
-                }
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    if (cell.ColumnIndex == 6)
-                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString() == "True" ? "Absent" : "Present")));
-                    else if (cell.ColumnIndex == 5)
-                        table.AddCell(new Cell().Add(new Paragraph(Convert.ToDateTime(cell.Value).ToString("dd-MM-yyyy"))));
-                    else
-                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString())));
-                }
+                case "CSV":
+                    InstructorDataManipulator.SaveFileDialogCustom("CSV files", "csv", "Save CSV", InstructorDataManipulator.ExportDataGridViewToCsv, dataGridViewAttendance);
+                    break;
+                case "Excel":
+                    InstructorDataManipulator.SaveFileDialogCustom("Excel files(*.xlsx)", "xlsx", "Save Excel", InstructorDataManipulator.ExportDataToExcel, dataGridViewAttendance);
+                    break;
             }
 
-            // Add the table to the document
-            document.Add(table);
-
-            // Close the document
-            document.Close();
         }
 
-        private void buttonExportExcel_Click(object sender, EventArgs e)
+        private void tabPage2_Click(object sender, EventArgs e)
         {
-            SaveFileDialogCustom("Excel files(*.xlsx)", "xlsx", "Save Excel", ExportDataToExcel);
-        }
-        public void ExportDataGridViewToExcel(DataGridView dgv)
-        {
-            // Create a new Excel application
-            Excel.Application excel = new Excel.Application();
 
-            // Add a new workbook
-            Excel.Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Excel.Worksheet worksheet = null;
-
-            try
-            {
-                // Use the first sheet
-                worksheet = (Excel.Worksheet)workbook.ActiveSheet;
-
-                // Write the header
-                for (int i = 1; i < dgv.Columns.Count + 1; i++)
-                {
-                    worksheet.Cells[1, i] = dgv.Columns[i - 1].HeaderText;
-                }
-
-                // Write the data
-                for (int i = 0; i < dgv.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dgv.Columns.Count; j++)
-                    {
-                        worksheet.Cells[i + 2, j + 1] = dgv.Rows[i].Cells[j].Value.ToString();
-                    }
-                }
-
-                // Save the workbook
-                workbook.SaveAs("output.xsl");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                // Clean up
-                excel.Quit();
-                if (workbook != null) { Marshal.ReleaseComObject(workbook); }
-                if (worksheet != null) { Marshal.ReleaseComObject(worksheet); }
-                Marshal.ReleaseComObject(excel);
-            }
-        }
-        public void ExportDataToExcel(DataGridView dataGridView, string fileName)
-        {
-            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            using (ExcelPackage pck = new ExcelPackage())
-            {
-                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
-                ws.Cells["A1"].LoadFromDataTable((DataTable)dataGridView.DataSource, true);
-                ws.Column(6).Style.Numberformat.Format = "dd-MM-yyyy";
-                for (int row = 2; row <= ws.Dimension.End.Row; row++)
-                {
-                    if (ws.Cells[row, 7].Value.ToString().ToLower() == "true")
-                    {
-                        ws.Cells[row, 7].Value = "Absent";
-                    }
-                    else
-                    {
-                        ws.Cells[row, 7].Value = "Present";
-                    }
-                }
-                using (var stream = File.Create(fileName))
-                {
-                    pck.SaveAs(stream);
-                }
-            }
-        }
-        public void ExportDataGridViewToCsv(DataGridView dgv, string filename)
-        {
-            using (StreamWriter writer = new StreamWriter(filename))
-            {
-                // Write column headers
-                for (int i = 0; i < dgv.Columns.Count; i++)
-                {
-                    writer.Write(dgv.Columns[i].HeaderText);
-                    if (i < dgv.Columns.Count - 1)
-                    {
-                        writer.Write(",");
-                    }
-                }
-                writer.WriteLine();
-
-                // Write rows
-                foreach (DataGridViewRow row in dgv.Rows)
-                {
-                    if(row.Index == dgv.Rows.Count - 1)
-                    {
-                        break;
-                    }
-                    for (int i = 0; i < row.Cells.Count; i++)
-                    {
-                        if (i == 5)
-                            writer.Write(Convert.ToDateTime(row.Cells[i].Value).ToString("dd-MM-yyyy"));
-                        else if (i == 6)
-                            writer.Write(row.Cells[i].Value.ToString() == "True" ? "Absent" : "Present");
-                        else
-                            writer.Write(row.Cells[i].Value);
-                        if (i < row.Cells.Count - 1)
-                        {
-                            writer.Write(",");
-                        }
-                    }
-                    writer.WriteLine();
-                }
-            }
-        }
-
-        private void buttonExportCSV_Click(object sender, EventArgs e)
-        {
-            SaveFileDialogCustom("CSV files", "csv", "Save CSV", ExportDataGridViewToCsv);
-        }
-        private void SaveFileDialogCustom(string typo, string extension, string title, Action<DataGridView, string> execute)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = typo + "|*."+ extension;
-            saveFileDialog.Title = title;
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    string outputPath = saveFileDialog.FileName;
-                    execute(dataGridViewAttendance, outputPath);
-                    MessageBox.Show("File has been saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
         }
     }
 }

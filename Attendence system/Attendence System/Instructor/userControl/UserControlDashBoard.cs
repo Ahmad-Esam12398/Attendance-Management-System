@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace attendence_system.Instructor
 {
-    public partial class UserControlDashBoard : UserControl
-    {
+
+    public partial class UserControlDashBoard : UserControl { 
         public UserControlDashBoard()
         {
             InitializeComponent();
@@ -19,7 +20,8 @@ namespace attendence_system.Instructor
 
         private void UserControlDashBoard_Load(object sender, EventArgs e)
         {
-
+            XmlNode userData = InstructorDataManipulator.GetUserNode();
+            labelRole.Text = userData.SelectSingleNode("role").InnerText;
         }
     }
 }

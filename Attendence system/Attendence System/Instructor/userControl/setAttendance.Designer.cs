@@ -47,11 +47,12 @@
             panel1 = new Panel();
             labelClass = new Label();
             labelDateFrom = new Label();
-            labelAddStudent = new Label();
             tabPage1 = new TabPage();
-            buttonExportCSV = new Button();
-            buttonExportExcel = new Button();
-            buttonExportPDF = new Button();
+
+            label1 = new Label();
+            buttonSaveAs = new Button();
+            comboBoxFileType = new ComboBox();
+            label2 = new Label();
             tabControlSetAttendance.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttendance).BeginInit();
@@ -69,6 +70,7 @@
             tabControlSetAttendance.Name = "tabControlSetAttendance";
             tabControlSetAttendance.SelectedIndex = 0;
             tabControlSetAttendance.Size = new Size(817, 348);
+
             tabControlSetAttendance.TabIndex = 33;
             // 
             // tabPage2
@@ -122,6 +124,7 @@
             dataGridViewAttendance.ShowRowErrors = false;
             dataGridViewAttendance.Size = new Size(760, 195);
             dataGridViewAttendance.TabIndex = 50;
+            dataGridViewAttendance.CellContentClick += dataGridViewAttendance_CellContentClick;
             // 
             // pictureBox1
             // 
@@ -222,6 +225,7 @@
             dateTimePickerTo.Size = new Size(125, 23);
             dateTimePickerTo.TabIndex = 43;
             dateTimePickerTo.Value = new DateTime(2024, 2, 28, 9, 33, 48, 0);
+            dateTimePickerTo.ValueChanged += dateTimePickerTo_ValueChanged;
             // 
             // labelDateTo
             // 
@@ -369,6 +373,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttendance).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -395,10 +400,10 @@
         private Panel panel1;
         private Label labelClass;
         private Label labelDateFrom;
-        private Label labelAddStudent;
-        private Button buttonExportExcel;
-        private Button buttonExportPDF;
         private Button button1;
-        private Button buttonExportCSV;
+        private Button buttonSaveAs;
+        private ComboBox comboBoxFileType;
+        private Label label2;
+        private Label label1;
     }
 }

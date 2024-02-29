@@ -146,7 +146,12 @@ namespace attendence_system.Admin.userControl
 
         private void tabControlAddClass_Leave(object sender, EventArgs e)
         {
-            textBoxSearchClass.Clear();
+            textBoxSearchBox.Clear();
+
+        }
+
+        private void tabPageAddClass_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -229,8 +234,10 @@ namespace attendence_system.Admin.userControl
                 textBoxHMstudent1.Text = row.Cells["Column3"].Value.ToString();
             }
         }
-   
-    
-    
+        // get specified class 
+
+
+
+
     }
 }

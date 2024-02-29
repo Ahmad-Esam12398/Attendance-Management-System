@@ -25,16 +25,34 @@ namespace attendence_system.Admin.userControl
         public UserControlAddStudent()
         {
             InitializeComponent();
-
+            CustomizeToUser();
         }
-
+        private void CustomizeToUser()
+        {
+            XmlNode userData = InstructorDataManipulator.GetUserNode();
+            string role = userData.SelectSingleNode("role").InnerText;
+            if (role == "instructor") { 
+                tabControlAddStudent.TabPages.Remove(tabPageSearchStudent);
+                tabControlAddStudent.TabPages.Remove(tabPageUpdateAndDelete);
+                GetInstructorClasses();
+            }
+        }
+        private void GetInstructorClasses()
+        {
+            HashSet<string> classes = InstructorDataManipulator.GetClassesForInstructor(InstructorDataManipulator.GetUserNode());
+            comboBoxClassStudent.Items.Clear();
+            foreach (string className in classes)
+            {
+                comboBoxClassStudent.Items.Add(className);
+            }
+        }
         private void ClearText()
         {
             textBoxNameStudent.Clear();
             textBoxEmailstudent.Clear();
             textBoxPassStudent.Clear();
             textBoxphoneNumber.Clear();
-             comboBoxClassStudent.SelectedIndex = -1;
+            comboBoxClassStudent.SelectedIndex = -1;
             comboBoxGender.SelectedIndex = -1;
             tabControlAddStudent.SelectedTab = tabPageAddStudent;
         }
@@ -73,7 +91,7 @@ namespace attendence_system.Admin.userControl
 
         private void UdateAndDelete_Enter(object sender, EventArgs e)
         {
-          //  ClearText();
+            //  ClearText();
 
 
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
@@ -83,6 +101,7 @@ namespace attendence_system.Admin.userControl
                 string className = classNode.SelectSingleNode("name").InnerText;
                 comboBoxClassStudent.Items.Add(className);
             }
+
         }
 
 
@@ -145,7 +164,7 @@ namespace attendence_system.Admin.userControl
 
         //===============Method to add a user in the XML data source===============
         private void btnAddStudent_Click_1(object sender, EventArgs e)
-        { 
+        {
 
             if (textBoxNameStudent.Text == "" || textBoxEmailstudent.Text == "" || textBoxPassStudent.Text == "" || textBoxphoneNumber.Text == "" || comboBoxClassStudent.SelectedIndex == -1 || comboBoxGender.SelectedIndex == -1)
             {
@@ -380,8 +399,8 @@ namespace attendence_system.Admin.userControl
 
         private void dataGridViewStudent_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-             comboBoxClasses1.Items.Clear();
-             comboBoxGender1.Items.Clear();
+            comboBoxClasses1.Items.Clear();
+            comboBoxGender1.Items.Clear();
             // Call the method to get the unique class values
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
 
@@ -425,7 +444,7 @@ namespace attendence_system.Admin.userControl
                 {
                     comboBoxClasses1.SelectedItem = classValue;
                 }
-          
+
                 textBoxphoneNumber1.Text = row.Cells["Column6"].Value.ToString();
 
                 // Retrieve and display password
@@ -439,7 +458,7 @@ namespace attendence_system.Admin.userControl
                     }
 
                 }
-      
+
             }
         }
 
@@ -447,7 +466,123 @@ namespace attendence_system.Admin.userControl
     
         private void tabPageUpdateAndDelete_Leave(object sender, EventArgs e)
         {
+            // Check if SID is not empty and is a valid integer
+            if (!string.IsNullOrEmpty(SIDString) && int.TryParse(SIDString, out int userId))
+            {
+                // Retrieve the existing user node from the data source
+                XmlNode existingUserNode = InstructorDataManipulator.GetUserNode(userId.ToString());
+
+                if (existingUserNode != null)
+                {
+                    // Create a new XML node to hold the updated user information
+                    XmlDocument doc = existingUserNode.OwnerDocument;
+                    XmlNode newUserNode = doc.CreateElement("user");
+
+                    // Populate the new XML node with updated information
+                    XmlNode idNode = doc.CreateElement("id");
+                    idNode.InnerText = userId.ToString();
+                    newUserNode.AppendChild(idNode);
+
+                    XmlNode nameNode = doc.CreateElement("name");
+                    nameNode.InnerText = textBoxName1.Text;
+                    newUserNode.AppendChild(nameNode);
+
+                    XmlNode emailNode = doc.CreateElement("email");
+                    emailNode.InnerText = textBoxEmail1.Text;
+                    newUserNode.AppendChild(emailNode);
+
+
+                    XmlNode phoneNode = doc.CreateElement("phone");
+                    phoneNode.InnerText = textBoxphoneNumber1.Text;
+                    newUserNode.AppendChild(phoneNode);
+
+
+
+                    XmlNode passwordNode = doc.CreateElement("password");
+                    passwordNode.InnerText = textBoxpass1.Text;
+                    newUserNode.AppendChild(passwordNode);
+
+                    // Handle class selection
+                    string selectedClass = comboBoxClasses1.SelectedItem?.ToString();
+                    XmlNode classNode = doc.CreateElement("class");
+                    // Set the text content (class name) for the class node
+                    classNode.InnerText = selectedClass;
+
+                    // Append the class node to the newUser node
+                    newUserNode.AppendChild(classNode);
+                    /*  if (!string.IsNullOrEmpty(selectedClass))
+                      {
+                          var result = InstructorDataManipulator.GetClassIdByName(selectedClass);
+                          if (result != null)
+                          {
+                              XmlNode classNode = doc.CreateElement("class");
+
+                              // Set the ID attribute for the class node
+                              XmlAttribute idAttribute = doc.CreateAttribute("id");
+                              idAttribute.Value = result;
+                              classNode.Attributes.Append(idAttribute);
+
+                              // Set the text content (class name) for the class node
+                              classNode.InnerText = selectedClass;
+
+                              // Append the class node to the newUser node
+                              newUserNode.AppendChild(classNode);
+                          }
+                      }
+                    */
+                    // Handle gender selection
+                    XmlNode genderNode = doc.CreateElement("gender");
+                    if (comboBoxGender1.SelectedItem?.ToString() == "female")
+                    {
+                        genderNode.InnerText = "f";
+
+                    }
+                    else
+                    {
+                        genderNode.InnerText = "m";
+
+                    }
+
+                    newUserNode.AppendChild(genderNode);
+
+
+
+                    if (InstructorDataManipulator.validateUserData(newUserNode))
+                    {
+                        // Call the UpdateUserData function with the new user node
+                        InstructorDataManipulator.UpdateUserData(newUserNode);
+
+                        MessageBox.Show("Updated successfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        ClearText1();
+
+                    }
+
+
+
+                }
+
+                else
+                {
+                    MessageBox.Show("User with ID " + userId + " not found.", "User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             ClearText1();
+
+        }
+
+        private void tabPageAddStudent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPageAddStudent_Click(object sender, EventArgs e)
+        {
 
         }
     }
