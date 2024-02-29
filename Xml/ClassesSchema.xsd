@@ -30,5 +30,13 @@
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
+		<xs:unique name="UniqueClassId">
+			<xs:selector xpath="class"/>
+			<xs:field xpath="id"/>
+		</xs:unique>
+		<xs:unique name="UniqueClassName">
+			<xs:selector xpath="class"/>
+			<xs:field xpath="name"/>
+		</xs:unique>
 	</xs:element>
 </xs:schema>
