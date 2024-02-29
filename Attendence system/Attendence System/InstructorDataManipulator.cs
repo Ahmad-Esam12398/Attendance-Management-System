@@ -53,6 +53,14 @@ namespace attendence_system
             id = "1";
         }
         static public void setId(string _id)
+        // get count student
+        static public int GetCountStudents()
+        {
+            int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
+            return studentsCount;
+        }
+
+        static public XmlNode GetUserNode(string id)
         {
             id = _id;
         }
@@ -128,11 +136,9 @@ namespace attendence_system
             oneWillBeAppended.SelectSingleNode("email").InnerText = newOne.SelectSingleNode("email").InnerText;
             oneWillBeAppended.SelectSingleNode("phone").InnerText = newOne.SelectSingleNode("phone").InnerText;
             oneWillBeAppended.SelectSingleNode("password").InnerText = newOne.SelectSingleNode("password").InnerText;
-
             if (newOne.SelectSingleNode("class") != null)
             {
                 oneWillBeAppended.SelectSingleNode("class").InnerText = newOne.SelectSingleNode("class").InnerText;
-                oneWillBeAppended.SelectSingleNode("class").Attributes["id"].Value = newOne.SelectSingleNode("class").Attributes["id"].Value;
             }
 
             oneWillBeAppended.SelectSingleNode("gender").InnerText = newOne.SelectSingleNode("gender").InnerText;
@@ -169,12 +175,6 @@ namespace attendence_system
                 classes.Add(classesData.SelectNodes("/classes/class")[i]);
             }
             return classes;
-        }
-        // get count student
-        static public int GetCountStudents()
-        {
-            int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
-            return studentsCount;
         }
 
         // Function to retrieve the last ID in usersAuthenticationC#.xml
@@ -234,7 +234,6 @@ namespace attendence_system
             return lastId;
         }
      
-        // to display  it --drop
         static public HashSet<string> GetClassesSet()
         {
             List<XmlNode> Students = GetStudentsList();
@@ -264,7 +263,7 @@ namespace attendence_system
             XmlNode root = classesData.SelectSingleNode("/classes");
             XmlNode importedUser = classesData.ImportNode(newClass, true);
             root.AppendChild(importedUser);
-            classesData.Save(@"./../../../../../Xml/ClassesTester.xml");
+            SaveChangesClassesInFile();
         }
         //========== save changes in classes  
         static public void SaveChangesClassesInFile()
@@ -325,21 +324,22 @@ namespace attendence_system
             {
                 if (emailNode.InnerText.Equals(email, StringComparison.OrdinalIgnoreCase))
                 {
-                    // Email already exists, not available
                     return false;
                 }
             }
-            // Email does not exist and is available
             return true;
         }
 
 
-        public static bool IsClassNameAvailable(string className)
+
+
+
+        public static bool IsClassCapacityAvailable(string className)
         {
+            // Find the class with the specified name
+            XmlNode classNode = classesData.SelectSingleNode($"/classes/class[name='{className}']");
 
-            XmlNodeList nameNodes = classesData.SelectNodes("/classes/class/name");
-
-            foreach (XmlNode nameNode in nameNodes)
+            if (classNode != null)
             {
                 
                 if (nameNode.InnerText.Equals(className, StringComparison.OrdinalIgnoreCase))
@@ -496,7 +496,16 @@ namespace attendence_system
             classesData.SelectSingleNode("/classes").ReplaceChild(oneWillBeAppended, GetClassNode(id));
             SaveChangesClassesInFile();
         }
+                int maxUsers = int.Parse(classNode.SelectSingleNode("max").InnerText);
+                int currentUsers = usersData.SelectNodes($"/users/user[class='{className}']").Count;
 
+                // Check if adding a new user exceeds the maximum limit
+                return currentUsers < maxUsers;
+            }
+
+            // Return false if the class is not found or if an error occurred
+            return false;
+        }
 
     }
     //===============================================================================================
