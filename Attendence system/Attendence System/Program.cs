@@ -14,8 +14,8 @@ namespace attendence_system
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new login());
-          //  Application.Run(new admin());
-            Application.Run(new instructor());
+             Application.Run(new admin());
+           // Application.Run(new instructor());
         }
     }
 }

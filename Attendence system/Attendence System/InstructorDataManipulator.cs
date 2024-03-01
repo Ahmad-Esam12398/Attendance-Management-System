@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Schema;
 using System.Xml;
 using attendence_system.Instructor;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace attendence_system
 {
@@ -91,12 +92,14 @@ namespace attendence_system
         //validate classes 
         public static bool validateClassesData(XmlNode underTest)
         {
+
+            string Cls = underTest.SelectSingleNode("id").InnerText;
             XmlNode rootNode = classesData.SelectSingleNode("/classes");
 
 
             XmlNode importedNode = classesData.ImportNode(underTest, true);
-           // rootNode.AppendChild(importedNode);
-            classesData.SelectSingleNode("/classes").ReplaceChild(importedNode, underTest);
+            // rootNode.AppendChild(importedNode);
+            classesData.SelectSingleNode("/classes").ReplaceChild(importedNode, GetClassNode(Cls));
 
             XmlReader reader = XmlReader.Create(new StringReader(classesData.OuterXml), XmlReaderClassesSettings);
             try
@@ -331,22 +334,7 @@ namespace attendence_system
         }
 
 
-        //============ Checks if the provided email is available or already exists in the users' data.====
-        public static bool IsEmailAvailable(string email)
-        {
-
-            XmlNodeList emailNodes = usersData.SelectNodes("/users/user/email");
-
-            foreach (XmlNode emailNode in emailNodes)
-            {
-                if (emailNode.InnerText.Equals(email, StringComparison.OrdinalIgnoreCase))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+  
 
 
 
@@ -366,6 +354,22 @@ namespace attendence_system
             }
 
             // Return false if the class is not found or if an error occurred
+            return false;
+        }
+
+
+        static public bool CheckUsersInClass(string className)
+        {
+            XmlNodeList userNodes = usersData.SelectNodes("//user");
+            foreach (XmlNode userNode in userNodes)
+            {
+                XmlNode classNode = userNode.SelectSingleNode("class");
+                if (classNode != null && classNode.InnerText == className)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 

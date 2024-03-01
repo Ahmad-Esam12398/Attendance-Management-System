@@ -16,6 +16,9 @@
     <Compile Update="Admin\userControl\UserControlAttendance.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Admin\userControl\UserControlAttendanceV2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Admin\userControl\UserControlDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>

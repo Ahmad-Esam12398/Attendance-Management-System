@@ -12,8 +12,8 @@
   </class>
   <class>
     <id>4</id>
-    <name>R1</name>
-    <max>10</max>
+    <name>x1</name>
+    <max>11</max>
   </class>
   <class>
     <id>5</id>
@@ -21,18 +21,13 @@
     <max>10</max>
   </class>
   <class>
-    <id>6</id>
-    <name>S1</name>
-    <max>13</max>
-  </class>
-  <class>
     <id>8</id>
-    <name>C1</name>
+    <name>o1</name>
     <max>12</max>
   </class>
   <class>
     <id>9</id>
-    <name>Q1</name>
+    <name>W1</name>
     <max>12</max>
   </class>
 </classes>
