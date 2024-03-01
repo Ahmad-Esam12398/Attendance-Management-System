@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 using System.Xml.Schema;
 using System.Xml;
 using attendence_system.Instructor;
-using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
+using OfficeOpenXml;
+using System.Data;
+using iText.Kernel.Pdf;
+using iText.Layout.Element;
+using System.Reflection.Metadata;
+using iText.Layout;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
+using Document = iText.Layout.Document;
 
 namespace attendence_system
 {
     public static class InstructorDataManipulator
     {
-        static string path = @"./../../../../../Xml";
-        static string userData = "usersAuthenticationC#.xml";
+        static string path = @"./../../../Xml";
+        static string userData = "usersAuthentication.xml";
         static string testUser = "userAuthenticationTester.xml";
         static string usersSchema = "usersAuthenticationSchema.xsd";
         static string classSchema = "ClassesSchema.xsd";
@@ -28,7 +36,9 @@ namespace attendence_system
         static private XmlNode userNode;
         // This field represents a dictionary that maps class names to their corresponding IDs.
         static private Dictionary<string, string> classIdByName = new Dictionary<string, string>();
-
+        //Id field of User
+        static private string id = "-1";
+        static private string dateCustomizer;
         static InstructorDataManipulator()
         {
             usersData.Load(path + "/" + userData);
@@ -39,14 +49,15 @@ namespace attendence_system
 
             XmlReaderUsersSettings.Schemas = usersSchemaSet;
             XmlReaderUsersSettings.ValidationType = ValidationType.Schema;
-            //class
-            XmlReaderClassesSettings.Schemas = classSchemaSet;
-            XmlReaderClassesSettings.ValidationType= ValidationType.Schema;
-            //class 
-            classesData.Load(path + "/" + classData);
-            userNode = GetUserNode("1");
-            classIdByName.Add("L1", "1");
-
+            //classIdByName.Add("L1", "1"); //Should be Removed
+        }
+        static public void SetDateCustomizer(string date)
+        {
+            dateCustomizer = date;
+        }
+        static public void setId(string _id)
+        {
+            id = _id;
         }
         // get count student
         static public int GetCountStudents()
@@ -54,38 +65,58 @@ namespace attendence_system
             int studentsCount = usersData.SelectNodes("/users/user[role='student']").Count;
             return studentsCount;
         }
+        static public XmlNode GetUserNode()
+        {
+            userNode = usersData.SelectSingleNode($"/users/user[id='{id}']");
+            XmlNode duplicate = userNode.CloneNode(true);
+            return duplicate;
+        }
+        static public XmlNode GetUserNode(string _id)
+        {
+            XmlNode target = usersData.SelectSingleNode($"/users/user[id='{_id}']");
+            return target;
+        }
+        static public HashSet<string> GetClassesForInstructor(XmlNode node)
+        {
+            HashSet<string> classes = new HashSet<string>();
+            string id = node.SelectSingleNode("id").InnerText;
+            XmlNodeList classNodes = usersData.SelectNodes($"/users/user[id='{id}']/class");
+            foreach (XmlNode classNode in classNodes)
+            {
+                classes.Add(classNode.InnerText);
+            }
+            return classes;
+        }
 
-        static public XmlNode GetUserNode(string id)
+        public static bool validateUserData(XmlNode underTest, bool update = false)
         {
-            XmlNode target = usersData.SelectSingleNode($"/users/user[id='{id}']");
-            return target;
-        }
-        // get specified class 
-        static public XmlNode GetClassNode(string id)
-        {
-            XmlNode target = classesData.SelectSingleNode($"/classes/class[id='{id}']");
-            return target;
-        }
-        public static bool validateUserData(XmlNode underTest)
-        {
-            XmlNode rootNode = testUserDoc.SelectSingleNode("/users");
-            XmlNode importedNode = testUserDoc.ImportNode(underTest, true);
+            XmlNode rootNode = usersData.SelectSingleNode("/users");
+            XmlNode importedNode = usersData.ImportNode(underTest, true);
             //XmlNode nameNode = importedNode.SelectSingleNode("name");
             //XmlNode emailNode = importedNode.SelectSingleNode("email");
             //XmlNode phoneNode = importedNode.SelectSingleNode("phone");
-            rootNode.AppendChild(importedNode);
-            XmlReader reader = XmlReader.Create(new StringReader(testUserDoc.OuterXml), XmlReaderUsersSettings);
+            if (update)
+            {
+                rootNode.ReplaceChild(importedNode, GetUserNode(underTest.SelectSingleNode("id").InnerText));
+            }
+            else
+            {
+                rootNode.AppendChild(importedNode);
+            }  
+            XmlReader reader = XmlReader.Create(new StringReader(usersData.OuterXml), XmlReaderUsersSettings);
             try
             {
                 while (reader.Read()) { }
-                testUserDoc.Load(path + "/" + testUser);
                 return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                testUserDoc.Load(path + "/" + testUser);
                 return false;
+            }
+            finally
+            {
+                usersData.Load(path + "/" + userData);
             }
         }
 
@@ -152,28 +183,6 @@ namespace attendence_system
             usersData.SelectSingleNode("/users").ReplaceChild(oneWillBeAppended, GetUserNode(id));
             SaveChangesInFile();
         }
-        // update class 
-        static public void UpdateClassData(XmlNode newOne)
-        {
-            string id = newOne.SelectSingleNode("id").InnerText;
-            XmlNode oneWillBeAppended = classesData.ImportNode(GetClassNode(id), true);
-            oneWillBeAppended.SelectSingleNode("name").InnerText = newOne.SelectSingleNode("name").InnerText;
-            oneWillBeAppended.SelectSingleNode("max").InnerText = newOne.SelectSingleNode("max").InnerText;
-          
-            // Replace the existing user node with the updated user node
-            classesData.SelectSingleNode("/classes").ReplaceChild(oneWillBeAppended, GetClassNode(id));
-            SaveChangesClassesInFile();
-        }
-
-        static public XmlNode GetUserNode()
-        {
-            XmlNode duplicate = userNode.CloneNode(true);
-            return duplicate;
-        }
-        static public XmlDocument GetUsersData()
-        {
-            return usersData;
-        }
 
 
         // get all Classes From class xml 
@@ -190,6 +199,17 @@ namespace attendence_system
             }
             return students;
         }
+        static public List<XmlNode> GetinstructorList()
+        {
+            int instructorCount = usersData.SelectNodes("/users/user[role='instructor']").Count;
+            List<XmlNode> instructor = new List<XmlNode>();
+            for (int i = 0; i < instructorCount; i++)
+            {
+                instructor.Add(usersData.SelectNodes("/users/user[role='instructor']")[i]);
+            }
+            return instructor;
+        }
+
 
 
         // get all classes  from class.xml 
@@ -204,7 +224,7 @@ namespace attendence_system
             return classes;
         }
 
-        // Function to retrieve the last ID in usersAuthenticationC#.xml
+        // Function to retrieve the last ID in usersAuthentication.xml
         public static int GetLastUserId()
         {
             int lastId = 0;
@@ -271,17 +291,6 @@ namespace attendence_system
             }
             return classes;
         }
-       /* static public HashSet<string> GetClassesSetV2()
-        {
-            XmlDocument Allclasses =classesData;
-            HashSet<string> classes = new HashSet<string>();
-            for (int i = 0; i < Students.Count; i++)
-            {
-                classes.Add(Students[i].SelectSingleNode("class").InnerText);
-            }
-            return classes;
-        }*/
-
         // Add New User
         static public void AddNewUser(XmlNode newUser)
         {
@@ -292,8 +301,8 @@ namespace attendence_system
         }
         static public void SaveChangesInFile()
         {
-            usersData.Save(@"./../../../../../Xml/usersAuthenticationC#.xml");
-            userNode = GetUserNode("1");
+            usersData.Save(path + "/" + userData);
+            userNode = GetUserNode();
         }
         // Add New Class
         static public void AddNewClass(XmlNode newClass)
@@ -306,7 +315,7 @@ namespace attendence_system
         //========== save changes in classes  
         static public void SaveChangesClassesInFile()
         {
-            classesData.Save(@"./../../../../../Xml/ClassesTester.xml");
+            classesData.Save(@"./../../../Xml/ClassesTester.xml");
         }
         // This  method initializes the mapping between class names and their corresponding IDs.
         // 1. Retrieves a list of student nodes from the XML data.
@@ -374,22 +383,152 @@ namespace attendence_system
             // Return false if the class is not found or if an error occurred
             return false;
         }
+        //======================================================= Methods For Exporting Data =======================================================
 
-
-        static public bool CheckUsersInClass(string className)
+        static public void SaveFileDialogCustom(string typo, string extension, string title, Action<DataGridView, string> execute, DataGridView dataGridView)
         {
-            XmlNodeList userNodes = usersData.SelectNodes("//user");
-            foreach (XmlNode userNode in userNodes)
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = typo + "|*." + extension;
+            saveFileDialog.Title = title;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                XmlNode classNode = userNode.SelectSingleNode("class");
-                if (classNode != null && classNode.InnerText == className)
+                try
                 {
-                    return true;
+                    string outputPath = saveFileDialog.FileName;
+                    execute(dataGridView, outputPath);
+                    MessageBox.Show("File has been saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+         static public void ExportDataGridViewToCsv(DataGridView dgv, string filename)
+        {
+            using (StreamWriter writer = new StreamWriter(filename))
+            {
+                // Write column headers
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    writer.Write(dgv.Columns[i].HeaderText);
+                    if (i < dgv.Columns.Count - 1)
+                    {
+                        writer.Write(",");
+                    }
+                }
+                writer.WriteLine();
+
+                // Write rows
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.Index == dgv.Rows.Count - 1)
+                    {
+                        break;
+                    }
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+                        if (i == 5)
+                            writer.Write(Convert.ToDateTime(row.Cells[i].Value).ToString("dd-MM-yyyy"));
+                        else if (i == 6)
+                            writer.Write(row.Cells[i].Value.ToString() == "True" ? "Absent" : "Present");
+                        else
+                            writer.Write(row.Cells[i].Value);
+                        if (i < row.Cells.Count - 1)
+                        {
+                            writer.Write(",");
+                        }
+                    }
+                    writer.WriteLine();
+                }
+            }
+        }
+        static public void ExportDataToExcel(DataGridView dataGridView, string fileName)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells["A1"].LoadFromDataTable((DataTable)dataGridView.DataSource, true);
+                ws.Column(6).Style.Numberformat.Format = "dd-MM-yyyy";
+                for (int row = 2; row <= ws.Dimension.End.Row; row++)
+                {
+                    if (ws.Cells[row, 7].Value.ToString().ToLower() == "true")
+                    {
+                        ws.Cells[row, 7].Value = "Absent";
+                    }
+                    else
+                    {
+                        ws.Cells[row, 7].Value = "Present";
+                    }
+                }
+                using (var stream = File.Create(fileName))
+                {
+                    pck.SaveAs(stream);
+                }
+            }
+        }
+        static public void GeneratePdfFromDataGridView(DataGridView dataGridView, string outputPath)
+        {
+            // Initialize a new PDF writer
+            PdfWriter writer = new PdfWriter(outputPath);
+
+            // Initialize a new PDF document
+            PdfDocument pdf = new PdfDocument(writer);
+
+            // Initialize a new document
+            Document document = new Document(pdf);
+
+            // Create a new table with the same number of columns as the data grid view
+            Table table = new Table(dataGridView.ColumnCount);
+
+            // Add the headers to the table
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                table.AddCell(new Cell().Add(new Paragraph(column.HeaderText)));
+            }
+
+            // Add the rows to the table
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Index == dataGridView.Rows.Count - 1)
+                {
+                    break;
+                }
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.ColumnIndex == 6)
+                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString() == "True" ? "Absent" : "Present")));
+                    else if (cell.ColumnIndex == 5)
+                        table.AddCell(new Cell().Add(new Paragraph(Convert.ToDateTime(cell.Value).ToString("dd-MM-yyyy"))));
+                    else
+                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString())));
                 }
             }
 
-            return false;
+            // Add the table to the document
+            document.Add(table);
+
+            // Close the document
+            document.Close();
+        }
+        static public XmlNode GetClassNode(string id)
+        {
+            XmlNode target = classesData.SelectSingleNode($"/classes/class[id='{id}']");
+            return target;
+        }
+        static public void UpdateClassData(XmlNode newOne)
+        {
+            string id = newOne.SelectSingleNode("id").InnerText;
+            XmlNode oneWillBeAppended = classesData.ImportNode(GetClassNode(id), true);
+            oneWillBeAppended.SelectSingleNode("name").InnerText = newOne.SelectSingleNode("name").InnerText;
+            oneWillBeAppended.SelectSingleNode("max").InnerText = newOne.SelectSingleNode("max").InnerText;
+
+            // Replace the existing user node with the updated user node
+            classesData.SelectSingleNode("/classes").ReplaceChild(oneWillBeAppended, GetClassNode(id));
+            SaveChangesClassesInFile();
         }
 
-    }
+}
+    //===============================================================================================
 }

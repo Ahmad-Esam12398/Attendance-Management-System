@@ -154,5 +154,17 @@ namespace AttendanceManagmentProject.Admin
         }
 
 
+
+
+        private void parentPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelBack_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
+

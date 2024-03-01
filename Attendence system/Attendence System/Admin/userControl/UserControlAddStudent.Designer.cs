@@ -115,10 +115,10 @@
             tabPageSearchStudent.Controls.Add(panel5);
             tabPageSearchStudent.Controls.Add(srearch);
             tabPageSearchStudent.Controls.Add(label8);
-            tabPageSearchStudent.Location = new Point(4, 26);
+            tabPageSearchStudent.Location = new Point(4, 29);
             tabPageSearchStudent.Name = "tabPageSearchStudent";
             tabPageSearchStudent.Padding = new Padding(3);
-            tabPageSearchStudent.Size = new Size(935, 441);
+            tabPageSearchStudent.Size = new Size(935, 438);
             tabPageSearchStudent.TabIndex = 1;
             tabPageSearchStudent.Text = "SrearchStudent ";
             tabPageSearchStudent.Enter += tabPageSearchStudent_Enter;
@@ -140,7 +140,7 @@
             textBoxSearch.Font = new Font("Century Gothic", 10F);
             textBoxSearch.Location = new Point(152, 82);
             textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new Size(270, 17);
+            textBoxSearch.Size = new Size(270, 21);
             textBoxSearch.TabIndex = 58;
             textBoxSearch.TextChanged += textBoxSearch_TextChanged_1;
             // 
@@ -152,7 +152,7 @@
             comboBoxSearchBy.Items.AddRange(new object[] { "Name", "Email", "Class" });
             comboBoxSearchBy.Location = new Point(518, 75);
             comboBoxSearchBy.Name = "comboBoxSearchBy";
-            comboBoxSearchBy.Size = new Size(152, 25);
+            comboBoxSearchBy.Size = new Size(152, 29);
             comboBoxSearchBy.TabIndex = 57;
             // 
             // panel11
@@ -170,7 +170,7 @@
             label7.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label7.Location = new Point(518, 36);
             label7.Name = "label7";
-            label7.Size = new Size(72, 16);
+            label7.Size = new Size(91, 19);
             label7.TabIndex = 54;
             label7.Text = "Search By";
             // 
@@ -181,7 +181,7 @@
             labelTotalStudents.ForeColor = SystemColors.GrayText;
             labelTotalStudents.Location = new Point(862, 397);
             labelTotalStudents.Name = "labelTotalStudents";
-            labelTotalStudents.Size = new Size(21, 15);
+            labelTotalStudents.Size = new Size(26, 17);
             labelTotalStudents.TabIndex = 17;
             labelTotalStudents.Text = "{?}";
             // 
@@ -191,7 +191,7 @@
             label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label6.Location = new Point(767, 397);
             label6.Name = "label6";
-            label6.Size = new Size(90, 16);
+            label6.Size = new Size(110, 19);
             label6.TabIndex = 16;
             label6.Text = "TotalStudent:";
             // 
@@ -211,6 +211,7 @@
             dataGridViewStudent.Location = new Point(31, 119);
             dataGridViewStudent.Name = "dataGridViewStudent";
             dataGridViewStudent.ReadOnly = true;
+            dataGridViewStudent.RowHeadersWidth = 51;
             dataGridViewStudent.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewStudent.ShowCellErrors = false;
             dataGridViewStudent.ShowEditingIcon = false;
@@ -223,6 +224,7 @@
             // 
             Column1.DataPropertyName = "id";
             Column1.HeaderText = "ID";
+            Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
             // 
@@ -230,6 +232,7 @@
             // 
             Column2.DataPropertyName = "name";
             Column2.HeaderText = "Name";
+            Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
             Column2.ReadOnly = true;
             // 
@@ -237,6 +240,7 @@
             // 
             Column3.DataPropertyName = "email";
             Column3.HeaderText = "Email";
+            Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             Column3.ReadOnly = true;
             // 
@@ -244,6 +248,7 @@
             // 
             Column5.DataPropertyName = "class";
             Column5.HeaderText = "Class";
+            Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
             Column5.ReadOnly = true;
             // 
@@ -251,6 +256,7 @@
             // 
             Column6.DataPropertyName = "phone";
             Column6.HeaderText = "phone";
+            Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
             Column6.ReadOnly = true;
             // 
@@ -258,6 +264,7 @@
             // 
             Column4.DataPropertyName = "gender";
             Column4.HeaderText = "gender";
+            Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
             Column4.ReadOnly = true;
             // 
@@ -275,7 +282,7 @@
             srearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             srearch.Location = new Point(152, 45);
             srearch.Name = "srearch";
-            srearch.Size = new Size(56, 16);
+            srearch.Size = new Size(71, 19);
             srearch.TabIndex = 12;
             srearch.Text = "Search:";
             // 
@@ -287,7 +294,7 @@
             label8.ForeColor = Color.MidnightBlue;
             label8.Location = new Point(31, 23);
             label8.Name = "label8";
-            label8.Size = new Size(118, 18);
+            label8.Size = new Size(130, 19);
             label8.TabIndex = 11;
             label8.Text = "Search Student";
             // 
@@ -314,11 +321,10 @@
             tabPageAddStudent.Controls.Add(panel1);
             tabPageAddStudent.Controls.Add(label2);
             tabPageAddStudent.Controls.Add(label1);
-            tabPageAddStudent.Font = new Font("Century Gothic", 11F);
-            tabPageAddStudent.Location = new Point(4, 26);
+            tabPageAddStudent.Location = new Point(4, 30);
             tabPageAddStudent.Name = "tabPageAddStudent";
             tabPageAddStudent.Padding = new Padding(3);
-            tabPageAddStudent.Size = new Size(935, 441);
+            tabPageAddStudent.Size = new Size(935, 437);
             tabPageAddStudent.TabIndex = 0;
             tabPageAddStudent.Text = "Add Student";
             tabPageAddStudent.Click += tabPageAddStudent_Click;
@@ -332,7 +338,7 @@
             comboBoxGender.Items.AddRange(new object[] { "female", "male" });
             comboBoxGender.Location = new Point(147, 313);
             comboBoxGender.Name = "comboBoxGender";
-            comboBoxGender.Size = new Size(270, 28);
+            comboBoxGender.Size = new Size(270, 29);
             comboBoxGender.TabIndex = 64;
             // 
             // panel4
@@ -350,7 +356,7 @@
             label5.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label5.Location = new Point(147, 284);
             label5.Name = "label5";
-            label5.Size = new Size(60, 16);
+            label5.Size = new Size(76, 19);
             label5.TabIndex = 62;
             label5.Text = "Gender:";
             // 
@@ -369,7 +375,7 @@
             textBoxphoneNumber.Font = new Font("Century Gothic", 10F);
             textBoxphoneNumber.Location = new Point(461, 320);
             textBoxphoneNumber.Name = "textBoxphoneNumber";
-            textBoxphoneNumber.Size = new Size(270, 17);
+            textBoxphoneNumber.Size = new Size(270, 21);
             textBoxphoneNumber.TabIndex = 60;
             // 
             // label14
@@ -379,7 +385,7 @@
             label14.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label14.Location = new Point(461, 275);
             label14.Name = "label14";
-            label14.Size = new Size(108, 16);
+            label14.Size = new Size(138, 19);
             label14.TabIndex = 59;
             label14.Text = "phone Number:";
             // 
@@ -391,7 +397,7 @@
             comboBoxClassStudent.Items.AddRange(new object[] { "---Name--", "name ", "class ", "email", "" });
             comboBoxClassStudent.Location = new Point(147, 215);
             comboBoxClassStudent.Name = "comboBoxClassStudent";
-            comboBoxClassStudent.Size = new Size(270, 28);
+            comboBoxClassStudent.Size = new Size(270, 29);
             comboBoxClassStudent.TabIndex = 58;
             // 
             // panel10
@@ -409,7 +415,7 @@
             labelClassStudent.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             labelClassStudent.Location = new Point(147, 186);
             labelClassStudent.Name = "labelClassStudent";
-            labelClassStudent.Size = new Size(46, 16);
+            labelClassStudent.Size = new Size(58, 19);
             labelClassStudent.TabIndex = 51;
             labelClassStudent.Text = "Class:";
             // 
@@ -443,7 +449,7 @@
             textBoxPassStudent.Font = new Font("Century Gothic", 10F);
             textBoxPassStudent.Location = new Point(461, 222);
             textBoxPassStudent.Name = "textBoxPassStudent";
-            textBoxPassStudent.Size = new Size(270, 17);
+            textBoxPassStudent.Size = new Size(270, 21);
             textBoxPassStudent.TabIndex = 47;
             // 
             // textBoxEmailstudent
@@ -453,7 +459,7 @@
             textBoxEmailstudent.Font = new Font("Century Gothic", 10F);
             textBoxEmailstudent.Location = new Point(461, 117);
             textBoxEmailstudent.Name = "textBoxEmailstudent";
-            textBoxEmailstudent.Size = new Size(270, 17);
+            textBoxEmailstudent.Size = new Size(270, 21);
             textBoxEmailstudent.TabIndex = 40;
             // 
             // textBoxNameStudent
@@ -463,7 +469,7 @@
             textBoxNameStudent.Font = new Font("Century Gothic", 10F);
             textBoxNameStudent.Location = new Point(147, 117);
             textBoxNameStudent.Name = "textBoxNameStudent";
-            textBoxNameStudent.Size = new Size(270, 17);
+            textBoxNameStudent.Size = new Size(270, 21);
             textBoxNameStudent.TabIndex = 37;
             // 
             // panel2
@@ -481,7 +487,7 @@
             label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label4.Location = new Point(461, 177);
             label4.Name = "label4";
-            label4.Size = new Size(71, 16);
+            label4.Size = new Size(92, 19);
             label4.TabIndex = 46;
             label4.Text = "Password:";
             // 
@@ -492,7 +498,7 @@
             label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label3.Location = new Point(461, 72);
             label3.Name = "label3";
-            label3.Size = new Size(47, 16);
+            label3.Size = new Size(58, 19);
             label3.TabIndex = 39;
             label3.Text = "Email:";
             // 
@@ -511,7 +517,7 @@
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label2.Location = new Point(147, 72);
             label2.Name = "label2";
-            label2.Size = new Size(54, 16);
+            label2.Size = new Size(70, 19);
             label2.TabIndex = 36;
             label2.Text = "Name :";
             // 
@@ -523,7 +529,7 @@
             label1.ForeColor = Color.MidnightBlue;
             label1.Location = new Point(42, 34);
             label1.Name = "label1";
-            label1.Size = new Size(104, 19);
+            label1.Size = new Size(108, 19);
             label1.TabIndex = 35;
             label1.Text = "Add Student";
             // 
@@ -563,10 +569,10 @@
             tabPageUpdateAndDelete.Controls.Add(textBoxName1);
             tabPageUpdateAndDelete.Controls.Add(label10);
             tabPageUpdateAndDelete.Controls.Add(panel9);
-            tabPageUpdateAndDelete.Location = new Point(4, 24);
+            tabPageUpdateAndDelete.Location = new Point(4, 29);
             tabPageUpdateAndDelete.Name = "tabPageUpdateAndDelete";
             tabPageUpdateAndDelete.Padding = new Padding(3);
-            tabPageUpdateAndDelete.Size = new Size(935, 443);
+            tabPageUpdateAndDelete.Size = new Size(935, 438);
             tabPageUpdateAndDelete.TabIndex = 2;
             tabPageUpdateAndDelete.Text = "Update&Delete";
             tabPageUpdateAndDelete.Leave += tabPageUpdateAndDelete_Leave;
@@ -579,7 +585,7 @@
             comboBoxGender1.Items.AddRange(new object[] { "female", "male" });
             comboBoxGender1.Location = new Point(144, 281);
             comboBoxGender1.Name = "comboBoxGender1";
-            comboBoxGender1.Size = new Size(270, 25);
+            comboBoxGender1.Size = new Size(270, 29);
             comboBoxGender1.TabIndex = 86;
             // 
             // panel13
@@ -597,7 +603,7 @@
             label15.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label15.Location = new Point(144, 252);
             label15.Name = "label15";
-            label15.Size = new Size(60, 16);
+            label15.Size = new Size(76, 19);
             label15.TabIndex = 84;
             label15.Text = "Gender:";
             // 
@@ -616,7 +622,7 @@
             textBoxphoneNumber1.Font = new Font("Century Gothic", 10F);
             textBoxphoneNumber1.Location = new Point(476, 290);
             textBoxphoneNumber1.Name = "textBoxphoneNumber1";
-            textBoxphoneNumber1.Size = new Size(270, 17);
+            textBoxphoneNumber1.Size = new Size(270, 21);
             textBoxphoneNumber1.TabIndex = 82;
             // 
             // label16
@@ -626,7 +632,7 @@
             label16.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label16.Location = new Point(476, 245);
             label16.Name = "label16";
-            label16.Size = new Size(108, 16);
+            label16.Size = new Size(138, 19);
             label16.TabIndex = 81;
             label16.Text = "phone Number:";
             // 
@@ -638,7 +644,7 @@
             comboBoxClasses1.Items.AddRange(new object[] { "---Name--", "name ", "class ", "email", "" });
             comboBoxClasses1.Location = new Point(144, 193);
             comboBoxClasses1.Name = "comboBoxClasses1";
-            comboBoxClasses1.Size = new Size(270, 25);
+            comboBoxClasses1.Size = new Size(270, 29);
             comboBoxClasses1.TabIndex = 80;
             // 
             // panel8
@@ -656,7 +662,7 @@
             label12.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label12.Location = new Point(144, 164);
             label12.Name = "label12";
-            label12.Size = new Size(46, 16);
+            label12.Size = new Size(58, 19);
             label12.TabIndex = 78;
             label12.Text = "Class:";
             // 
@@ -690,7 +696,7 @@
             textBoxpass1.Font = new Font("Century Gothic", 10F);
             textBoxpass1.Location = new Point(476, 202);
             textBoxpass1.Name = "textBoxpass1";
-            textBoxpass1.Size = new Size(270, 17);
+            textBoxpass1.Size = new Size(270, 21);
             textBoxpass1.TabIndex = 76;
             // 
             // btnUpdateStudent
@@ -724,7 +730,7 @@
             label11.ForeColor = Color.MidnightBlue;
             label11.Location = new Point(27, 26);
             label11.Name = "label11";
-            label11.Size = new Size(141, 17);
+            label11.Size = new Size(169, 19);
             label11.TabIndex = 66;
             label11.Text = "Update And Delete ";
             // 
@@ -735,7 +741,7 @@
             label9.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label9.Location = new Point(476, 157);
             label9.Name = "label9";
-            label9.Size = new Size(71, 16);
+            label9.Size = new Size(92, 19);
             label9.TabIndex = 75;
             label9.Text = "Password:";
             // 
@@ -746,7 +752,7 @@
             label13.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label13.Location = new Point(144, 58);
             label13.Name = "label13";
-            label13.Size = new Size(54, 16);
+            label13.Size = new Size(70, 19);
             label13.TabIndex = 69;
             label13.Text = "Name :";
             // 
@@ -757,7 +763,7 @@
             textBoxEmail1.Font = new Font("Century Gothic", 10F);
             textBoxEmail1.Location = new Point(476, 105);
             textBoxEmail1.Name = "textBoxEmail1";
-            textBoxEmail1.Size = new Size(270, 17);
+            textBoxEmail1.Size = new Size(270, 21);
             textBoxEmail1.TabIndex = 73;
             // 
             // textBoxName1
@@ -767,7 +773,7 @@
             textBoxName1.Font = new Font("Century Gothic", 10F);
             textBoxName1.Location = new Point(144, 103);
             textBoxName1.Name = "textBoxName1";
-            textBoxName1.Size = new Size(270, 17);
+            textBoxName1.Size = new Size(270, 21);
             textBoxName1.TabIndex = 70;
             // 
             // label10
@@ -777,7 +783,7 @@
             label10.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label10.Location = new Point(476, 60);
             label10.Name = "label10";
-            label10.Size = new Size(47, 16);
+            label10.Size = new Size(58, 19);
             label10.TabIndex = 72;
             label10.Text = "Email:";
             // 
@@ -791,7 +797,7 @@
             // 
             // UserControlAddStudent
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(tabControlAddStudent);

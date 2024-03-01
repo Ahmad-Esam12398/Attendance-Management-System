@@ -24,7 +24,7 @@ namespace attendence_system.Admin.userControl
         private void populateDataGridView()
         {
             // Assuming the XML file path is correct
-            string usersData = @"./../../../../../Xml/usersAuthenticationC#.xml";
+            string usersData = @"./../../../Xml/usersAuthentication.xml";
 
             // Load the XML data into a DataSet
             DataSet dataSet = new DataSet();
