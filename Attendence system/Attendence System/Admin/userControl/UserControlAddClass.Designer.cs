@@ -200,8 +200,7 @@
             tabPageSearchClass.Location = new Point(4, 26);
             tabPageSearchClass.Name = "tabPageSearchClass";
             tabPageSearchClass.Padding = new Padding(3);
-            tabPageSearchClass.Size = new Size(934, 471);
-            tabPageSearchClass.TabIndex = 1;
+             tabPageSearchClass.TabIndex = 1;
             tabPageSearchClass.Text = "Search Class";
             tabPageSearchClass.Enter += tabPageSearchClass_Enter;
             // 

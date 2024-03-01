@@ -107,7 +107,7 @@
             tabPageAddTeacher.Controls.Add(btnAddStudent);
             tabPageAddTeacher.Controls.Add(textBoxPassTeacher);
             tabPageAddTeacher.Controls.Add(textBoxEmailTeacher);
-            tabPageAddTeacher.Controls.Add(textBoxTeacherName);
+             tabPageAddTeacher.Controls.Add(textBoxTeacherName);
             tabPageAddTeacher.Controls.Add(panel2);
             tabPageAddTeacher.Controls.Add(label4);
             tabPageAddTeacher.Controls.Add(label3);
@@ -201,7 +201,7 @@
             textBoxTeacherName.Font = new Font("Century Gothic", 10F);
             textBoxTeacherName.Location = new Point(139, 117);
             textBoxTeacherName.Name = "textBoxTeacherName";
-            textBoxTeacherName.Size = new Size(270, 17);
+            //textBoxTeacherName.Size = new Size(270, 17);
             textBoxTeacherName.TabIndex = 37;
             // 
             // panel2
