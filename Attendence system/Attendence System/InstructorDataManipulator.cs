@@ -20,7 +20,7 @@ namespace attendence_system
 {
     public static class InstructorDataManipulator
     {
-        static string path = @"./../../../../../Xml";
+        static string path = @"./../../../Xml";
         static string userData = "usersAuthentication.xml";
         static string testUser = "userAuthenticationTester.xml";
         static string usersSchema = "usersAuthenticationSchema.xsd";
@@ -38,7 +38,7 @@ namespace attendence_system
         static private Dictionary<string, string> classIdByName = new Dictionary<string, string>();
         //Id field of User
         static private string id = "-1";
-
+        static private string dateCustomizer;
         static InstructorDataManipulator()
         {
             usersData.Load(path + "/" + userData);
@@ -49,8 +49,11 @@ namespace attendence_system
 
             XmlReaderUsersSettings.Schemas = usersSchemaSet;
             XmlReaderUsersSettings.ValidationType = ValidationType.Schema;
-            classIdByName.Add("L1", "1"); //Should be Removed
-            id = "1";
+            //classIdByName.Add("L1", "1"); //Should be Removed
+        }
+        static public void SetDateCustomizer(string date)
+        {
+            dateCustomizer = date;
         }
         static public void setId(string _id)
         {
@@ -201,7 +204,7 @@ namespace attendence_system
             return classes;
         }
 
-        // Function to retrieve the last ID in usersAuthenticationC#.xml
+        // Function to retrieve the last ID in usersAuthentication.xml
         public static int GetLastUserId()
         {
             int lastId = 0;
@@ -278,8 +281,8 @@ namespace attendence_system
         }
         static public void SaveChangesInFile()
         {
-            usersData.Save(@"./../../../../../Xml/usersAuthenticationC#.xml");
-            userNode = GetUserNode("1");
+            usersData.Save(path + "/" + userData);
+            userNode = GetUserNode();
         }
         // Add New Class
         static public void AddNewClass(XmlNode newClass)
@@ -292,7 +295,7 @@ namespace attendence_system
         //========== save changes in classes  
         static public void SaveChangesClassesInFile()
         {
-            classesData.Save(@"./../../../../../Xml/ClassesTester.xml");
+            classesData.Save(@"./../../../Xml/ClassesTester.xml");
         }
         // This  method initializes the mapping between class names and their corresponding IDs.
         // 1. Retrieves a list of student nodes from the XML data.

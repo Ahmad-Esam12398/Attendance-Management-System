@@ -32,7 +32,8 @@ namespace attendence_system.Instructor.userControl
             if (e.ColumnIndex == 6 && e.RowIndex != -1)
             {
                 string id = dataGridViewAttendance.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string date = dataGridViewAttendance.Rows[e.RowIndex].Cells[5].Value.ToString();
+                string dateTime = dataGridViewAttendance.Rows[e.RowIndex].Cells[5].Value.ToString();
+                string date = DateTime.Parse(dateTime).ToString("yyyy-MM-dd");
                 bool status = (bool)dataGridViewAttendance.Rows[e.RowIndex].Cells[6].Value;
                 XmlNode studentNode = InstructorDataManipulator.GetUserNode(id);
                 XmlNodeList attendanceDates = studentNode.SelectNodes("attendanceDates");
@@ -73,7 +74,7 @@ namespace attendence_system.Instructor.userControl
         }
         private void populateDataGirdView()
         {
-            string usersData = @"./../../../../../Xml/usersAuthenticationC#.xml";
+            string usersData = @"./../../../Xml/usersAuthentication.xml";
             DataSet dataSet = new DataSet();
             dataSet.ReadXml(usersData);
             combinedTable = new DataTable();

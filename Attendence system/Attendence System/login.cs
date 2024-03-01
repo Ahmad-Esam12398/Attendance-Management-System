@@ -86,7 +86,7 @@ namespace attendence_system
         private string AuthenticateUser(string email, string password)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"./../../../../../Xml/usersAuthentication.xml"); // Adjust the path as necessary
+            doc.Load(@"./../../../Xml/usersAuthentication.xml"); // Adjust the path as necessary
 
             XmlNodeList users = doc.SelectNodes("//user");
             foreach (XmlNode user in users)
