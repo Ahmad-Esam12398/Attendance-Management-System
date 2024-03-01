@@ -16,20 +16,20 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using Document = iText.Layout.Document;
 using System.Xml.Xsl;
-
 namespace attendence_system
 {
     public static class InstructorDataManipulator
     {
         static string path = @"./../../../Xml";
         static string userData = "usersAuthentication.xml";
-        static string testUser = "userAuthenticationTester.xml";
+        //static string testUser = "userAuthenticationTester.xml";
         static string usersSchema = "usersAuthenticationSchema.xsd";
         static string classSchema = "ClassesSchema.xsd";
-        static string classData = "ClassesTester.xml";
+        static string attendanceXslt = path + "/" + "ExportToHtml.xslt";
+        static string classData = "ClassesData.xml";
         static public XmlDocument classesData = new();
         static public XmlDocument usersData = new();
-        static private XmlDocument testUserDoc = new();
+        //static private XmlDocument testUserDoc = new();
         static private XmlSchemaSet usersSchemaSet = new();
         static private XmlSchemaSet classSchemaSet = new();
         static private XmlReaderSettings XmlReaderUsersSettings = new();
@@ -42,8 +42,8 @@ namespace attendence_system
         static private string dateCustomizer;
         static InstructorDataManipulator()
         {
+            //testUserDoc.Load(path + "/" + testUser);
             usersData.Load(path + "/" + userData);
-            testUserDoc.Load(path + "/" + testUser);
             usersSchemaSet.Add("", XmlReader.Create(new StreamReader(path + "/" + usersSchema)));
             // class
             classSchemaSet.Add("", XmlReader.Create(new StreamReader(path + "/" + classSchema)));
@@ -544,23 +544,15 @@ namespace attendence_system
             }
             return xmlDocument.OuterXml;
         }
-        public static string TransformXmlWithXslt(string xml, string xslt)
+        public static void ExportFromDataGridToHtml(DataGridView dataGridView, string outputPath)
         {
-            var xsltSettings = new XsltSettings { EnableScript = true };
-            var xsltTransform = new XslCompiledTransform();
-            xsltTransform.Load(XmlReader.Create(new StringReader(xslt)), xsltSettings, null);
-
-            var xmlReader = XmlReader.Create(new StringReader(xml));
-            var stringWriter = new StringWriter();
-            var xmlWriter = XmlWriter.Create(stringWriter, xsltTransform.OutputSettings);
-
-            xsltTransform.Transform(xmlReader, xmlWriter);
-
-            return stringWriter.ToString();
-        }
-        public static void WriteToFile(string data, string filePath)
-        {
-            File.WriteAllText(filePath, data);
+            string xml = DataGridViewToXml(dataGridView);
+            XslCompiledTransform xslt = new XslCompiledTransform();
+            xslt.Load(attendanceXslt);
+            using (var writer = XmlWriter.Create(outputPath))
+            {
+                xslt.Transform(XmlReader.Create(new StringReader(xml)), writer);
+            }
         }
         static public XmlNode GetClassNode(string id)
         {

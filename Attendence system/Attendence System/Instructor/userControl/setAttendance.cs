@@ -239,10 +239,13 @@ namespace attendence_system.Instructor.userControl
                     InstructorDataManipulator.SaveFileDialogCustom("PDF files (*.pdf)", "pdf", "Save PDF", InstructorDataManipulator.GeneratePdfFromDataGridView, dataGridViewAttendance);
                     break;
                 case "CSV":
-                    InstructorDataManipulator.SaveFileDialogCustom("CSV files", "csv", "Save CSV", InstructorDataManipulator.ExportDataGridViewToCsv, dataGridViewAttendance);
+                    InstructorDataManipulator.SaveFileDialogCustom("CSV files(*.csv)", "csv", "Save CSV", InstructorDataManipulator.ExportDataGridViewToCsv, dataGridViewAttendance);
                     break;
                 case "Excel":
                     InstructorDataManipulator.SaveFileDialogCustom("Excel files(*.xlsx)", "xlsx", "Save Excel", InstructorDataManipulator.ExportDataToExcel, dataGridViewAttendance);
+                    break;
+                case "HTML":
+                    InstructorDataManipulator.SaveFileDialogCustom("HTML files(*.html)", "html", "Save HTML", InstructorDataManipulator.ExportFromDataGridToHtml, dataGridViewAttendance);
                     break;
             }
 

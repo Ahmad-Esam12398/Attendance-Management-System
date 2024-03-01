@@ -48,7 +48,6 @@
             labelClass = new Label();
             labelDateFrom = new Label();
             tabPage1 = new TabPage();
-            buttonTest = new Button();
             label3 = new Label();
             buttonSave = new Button();
             comboBoxExtension = new ComboBox();
@@ -287,7 +286,6 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(buttonTest);
             tabPage1.Controls.Add(label3);
             tabPage1.Controls.Add(buttonSave);
             tabPage1.Controls.Add(comboBoxExtension);
@@ -298,16 +296,6 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Export";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // buttonTest
-            // 
-            buttonTest.Location = new Point(544, 225);
-            buttonTest.Name = "buttonTest";
-            buttonTest.Size = new Size(113, 59);
-            buttonTest.TabIndex = 3;
-            buttonTest.Text = "Test";
-            buttonTest.UseVisualStyleBackColor = true;
-            buttonTest.Click += buttonTest_Click;
             // 
             // label3
             // 
@@ -336,7 +324,7 @@
             // 
             comboBoxExtension.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboBoxExtension.FormattingEnabled = true;
-            comboBoxExtension.Items.AddRange(new object[] { "PDF", "Excel", "CSV" });
+            comboBoxExtension.Items.AddRange(new object[] { "PDF", "Excel", "CSV", "HTML" });
             comboBoxExtension.Location = new Point(366, 124);
             comboBoxExtension.Name = "comboBoxExtension";
             comboBoxExtension.Size = new Size(151, 28);
@@ -421,6 +409,5 @@
         private Button buttonSave;
         private ComboBox comboBoxExtension;
         private Label label3;
-        private Button buttonTest;
     }
 }
