@@ -580,11 +580,6 @@ namespace attendence_system.Admin.userControl
         {
 
         }
-
-        private void tabPageAddStudent_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
 }

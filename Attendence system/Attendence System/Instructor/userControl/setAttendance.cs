@@ -114,8 +114,6 @@ namespace attendence_system.Instructor.userControl
         }
         private string[,] getStudentData(XmlNode node)
         {
-            int dateCounts = node.SelectNodes("attendanceDates").Count;
-            string[,] target = new string[dateCounts, 7];
             string id = node.SelectSingleNode("id").InnerText;
             string name = node.SelectSingleNode("name").InnerText;
             string phone = node.SelectSingleNode("phone").InnerText;
@@ -142,8 +140,9 @@ namespace attendence_system.Instructor.userControl
                 attendanceNode.AppendChild(statusNode);
                 node.AppendChild(attendanceNode);
                 InstructorDataManipulator.SaveChangesInFile();
-                attendanceDates = node.SelectNodes("attendanceDates");
             }
+            attendanceDates = node.SelectNodes("attendanceDates");
+            string[,] target = new string[attendanceDates.Count, 7];
             for (int i = 0; i < attendanceDates.Count; i++)
             {
                 target[i, 0] = id;
@@ -172,6 +171,7 @@ namespace attendence_system.Instructor.userControl
                 comboBoxClass.Items.Add(item.InnerText);
             }
         }
+        
         private void filterRows(string criteria, string column = "class", string comparison = "=", DateTime dateCriteria = default)
         {
             if (column == "Date")
@@ -221,14 +221,14 @@ namespace attendence_system.Instructor.userControl
             }
         }
 
-        private void buttonSaveAs_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (comboBoxFileType.SelectedItem == null)
+            if (comboBoxExtension.SelectedItem == null)
             {
                 MessageBox.Show("Please select a file type to save the file.", "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MapSaveAsToFile(comboBoxFileType.SelectedItem.ToString());
+            MapSaveAsToFile(comboBoxExtension.SelectedItem.ToString());
         }
         private void MapSaveAsToFile(string extension)
         {
@@ -244,11 +244,6 @@ namespace attendence_system.Instructor.userControl
                     InstructorDataManipulator.SaveFileDialogCustom("Excel files(*.xlsx)", "xlsx", "Save Excel", InstructorDataManipulator.ExportDataToExcel, dataGridViewAttendance);
                     break;
             }
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
 
         }
     }

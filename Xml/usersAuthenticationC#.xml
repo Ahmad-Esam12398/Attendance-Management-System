@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="usersAuthenticationSchema.xsd">
   <user>
+    <id>1</id>
+    <name>Ahmed</name>
+    <email>ahmad.esam1231998@gmail.com</email>
+    <phone>01015328933</phone>
+    <password>12345678</password>
+    <gender>m</gender>
+    <role>instructor</role>
+    <class>L1</class>
+  </user>
+  <user>
     <id>2</id>
     <name>Mohamed</name>
     <email>mohamed.esam1231998@gmail.com</email>
@@ -16,14 +26,6 @@
     <attendanceDates>
       <date>2024-04-12</date>
       <status>present</status>
-    </attendanceDates>
-    <attendanceDates>
-      <date>2024-02-28</date>
-      <status>absent</status>
-    </attendanceDates>
-    <attendanceDates>
-      <date>2024-02-29</date>
-      <status>absent</status>
     </attendanceDates>
     <attendanceDates>
       <date>2024-03-01</date>
@@ -48,23 +50,4 @@
     <gender>f</gender>
     <role>admin</role>
   </user>
-  <user>
-    <id>5</id>
-    <name>amina</name>
-    <email>amina@gmail.com</email>
-    <phone>01020228030</phone>
-    <password>1234567aa#</password>
-    <gender>f</gender>
-    <role>student</role>
-    <class>R1</class>
-    <attendanceDates>
-      <date>2024-02-29</date>
-      <status>absent</status>
-    </attendanceDates>
-    <attendanceDates>
-      <date>2024-03-01</date>
-      <status>absent</status>
-    </attendanceDates>
-  </user>
-
 </users>

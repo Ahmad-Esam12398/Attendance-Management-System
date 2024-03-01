@@ -21,7 +21,7 @@ namespace attendence_system
     public static class InstructorDataManipulator
     {
         static string path = @"./../../../../../Xml";
-        static string userData = "usersAuthenticationC#.xml";
+        static string userData = "usersAuthentication.xml";
         static string testUser = "userAuthenticationTester.xml";
         static string usersSchema = "usersAuthenticationSchema.xsd";
         static string classSchema = "ClassesSchema.xsd";

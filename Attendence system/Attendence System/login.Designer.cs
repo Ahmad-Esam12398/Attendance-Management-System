@@ -101,9 +101,9 @@
             label1.Location = new Point(13, 70);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(99, 28);
+            label1.Size = new Size(59, 28);
             label1.TabIndex = 5;
-            label1.Text = "Username";
+            label1.Text = "Email";
             // 
             // label2
             // 

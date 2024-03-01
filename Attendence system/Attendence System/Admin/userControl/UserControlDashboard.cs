@@ -21,7 +21,7 @@ namespace attendence_system.Admin.userControl
             labelTotalStudents.Text = "3";
             labelTotalClasses.Text = "4";
             adminRole.Text = "Admin";
-            CustomizeShape();
+            
         }
 
 
@@ -31,6 +31,7 @@ namespace attendence_system.Admin.userControl
             List<XmlNode> allClasses = InstructorDataManipulator.GetClassessList();
             labelTotalClasses.Text = allClasses.Count.ToString();
             labelTotalStudents.Text = InstructorDataManipulator.GetCountStudents().ToString();
+            CustomizeShape();
 
         }
         public void CustomizeShape()
@@ -40,10 +41,11 @@ namespace attendence_system.Admin.userControl
             switch (userData.SelectSingleNode("role").InnerText)
             {
                 case "instructor":
-                    HashSet<string> classes = InstructorDataManipulator.GetClassesForInstructor(userData);
-                    labelTotalClasses.Text = classes.Count.ToString();
+                    XmlNodeList ownClasses = userData.SelectNodes("class");
+                    labelTotalClasses.Text = ownClasses.Count.ToString();
                     panel2.Hide();
-                    panel3.Location = new Point(500, 110);
+                    panel3.Location = new Point(panel1.Location.X + panel3.Size.Width + 150, panel1.Location.Y);
+
                     //panel3.Anchor = AnchorStyles.Top;
                 break;
                 case "student":

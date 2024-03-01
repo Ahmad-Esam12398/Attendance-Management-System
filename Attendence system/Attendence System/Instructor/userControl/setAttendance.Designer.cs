@@ -48,7 +48,9 @@
             labelClass = new Label();
             labelDateFrom = new Label();
             tabPage1 = new TabPage();
-
+            label3 = new Label();
+            buttonSave = new Button();
+            comboBoxExtension = new ComboBox();
             label1 = new Label();
             buttonSaveAs = new Button();
             comboBoxFileType = new ComboBox();
@@ -66,11 +68,9 @@
             tabControlSetAttendance.Controls.Add(tabPage1);
             tabControlSetAttendance.Dock = DockStyle.Fill;
             tabControlSetAttendance.Location = new Point(0, 0);
-            tabControlSetAttendance.Margin = new Padding(3, 2, 3, 2);
             tabControlSetAttendance.Name = "tabControlSetAttendance";
             tabControlSetAttendance.SelectedIndex = 0;
-            tabControlSetAttendance.Size = new Size(817, 348);
-
+            tabControlSetAttendance.Size = new Size(934, 464);
             tabControlSetAttendance.TabIndex = 33;
             // 
             // tabPage2
@@ -93,12 +93,10 @@
             tabPage2.Controls.Add(panel1);
             tabPage2.Controls.Add(labelClass);
             tabPage2.Controls.Add(labelDateFrom);
-            tabPage2.Controls.Add(labelAddStudent);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Margin = new Padding(3, 2, 3, 2);
+            tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 2, 3, 2);
-            tabPage2.Size = new Size(809, 320);
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(926, 431);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "SetAttendance";
             // 
@@ -115,14 +113,13 @@
             dataGridViewAttendance.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAttendance.EnableHeadersVisualStyles = false;
-            dataGridViewAttendance.Location = new Point(18, 111);
-            dataGridViewAttendance.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewAttendance.Location = new Point(21, 148);
             dataGridViewAttendance.Name = "dataGridViewAttendance";
             dataGridViewAttendance.RowHeadersWidth = 51;
             dataGridViewAttendance.ShowCellErrors = false;
             dataGridViewAttendance.ShowEditingIcon = false;
             dataGridViewAttendance.ShowRowErrors = false;
-            dataGridViewAttendance.Size = new Size(760, 195);
+            dataGridViewAttendance.Size = new Size(869, 260);
             dataGridViewAttendance.TabIndex = 50;
             dataGridViewAttendance.CellContentClick += dataGridViewAttendance_CellContentClick;
             // 
@@ -130,10 +127,9 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Top;
             pictureBox1.Image = Properties.Resources.searchInstructor;
-            pictureBox1.Location = new Point(570, 69);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(651, 92);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(35, 20);
+            pictureBox1.Size = new Size(40, 27);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 49;
             pictureBox1.TabStop = false;
@@ -143,20 +139,18 @@
             // 
             panel5.Anchor = AnchorStyles.Top;
             panel5.BackColor = Color.FromArgb(67, 3, 125);
-            panel5.Location = new Point(437, 45);
-            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Location = new Point(499, 60);
             panel5.Name = "panel5";
-            panel5.Size = new Size(132, 2);
+            panel5.Size = new Size(151, 3);
             panel5.TabIndex = 38;
             // 
             // panel4
             // 
             panel4.Anchor = AnchorStyles.Top;
             panel4.BackColor = Color.FromArgb(67, 3, 125);
-            panel4.Location = new Point(376, 90);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(430, 120);
             panel4.Name = "panel4";
-            panel4.Size = new Size(193, 2);
+            panel4.Size = new Size(221, 3);
             panel4.TabIndex = 39;
             // 
             // labelSearchBy
@@ -164,9 +158,9 @@
             labelSearchBy.Anchor = AnchorStyles.Top;
             labelSearchBy.AutoSize = true;
             labelSearchBy.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelSearchBy.Location = new Point(340, 17);
+            labelSearchBy.Location = new Point(389, 23);
             labelSearchBy.Name = "labelSearchBy";
-            labelSearchBy.Size = new Size(76, 16);
+            labelSearchBy.Size = new Size(96, 19);
             labelSearchBy.TabIndex = 48;
             labelSearchBy.Text = "Search By:";
             // 
@@ -175,10 +169,9 @@
             comboBoxSearchBy.Anchor = AnchorStyles.Top;
             comboBoxSearchBy.FormattingEnabled = true;
             comboBoxSearchBy.Items.AddRange(new object[] { "name", "phone", "Both" });
-            comboBoxSearchBy.Location = new Point(436, 17);
-            comboBoxSearchBy.Margin = new Padding(3, 2, 3, 2);
+            comboBoxSearchBy.Location = new Point(498, 23);
             comboBoxSearchBy.Name = "comboBoxSearchBy";
-            comboBoxSearchBy.Size = new Size(133, 23);
+            comboBoxSearchBy.Size = new Size(151, 28);
             comboBoxSearchBy.TabIndex = 47;
             // 
             // labelSearch
@@ -186,30 +179,28 @@
             labelSearch.Anchor = AnchorStyles.Top;
             labelSearch.AutoSize = true;
             labelSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelSearch.Location = new Point(313, 72);
+            labelSearch.Location = new Point(358, 96);
             labelSearch.Name = "labelSearch";
-            labelSearch.Size = new Size(56, 16);
+            labelSearch.Size = new Size(71, 19);
             labelSearch.TabIndex = 46;
             labelSearch.Text = "Search:";
             // 
             // textBoxSearchValue
             // 
             textBoxSearchValue.Anchor = AnchorStyles.Top;
-            textBoxSearchValue.Location = new Point(375, 65);
-            textBoxSearchValue.Margin = new Padding(3, 2, 3, 2);
+            textBoxSearchValue.Location = new Point(429, 87);
             textBoxSearchValue.Name = "textBoxSearchValue";
-            textBoxSearchValue.Size = new Size(194, 23);
+            textBoxSearchValue.Size = new Size(221, 27);
             textBoxSearchValue.TabIndex = 45;
             // 
             // dateTimePickerFrom
             // 
             dateTimePickerFrom.CustomFormat = "dd-MM-yyyy";
             dateTimePickerFrom.Format = DateTimePickerFormat.Custom;
-            dateTimePickerFrom.Location = new Point(18, 65);
-            dateTimePickerFrom.Margin = new Padding(3, 2, 3, 2);
+            dateTimePickerFrom.Location = new Point(21, 87);
             dateTimePickerFrom.MinDate = new DateTime(2010, 1, 1, 0, 0, 0, 0);
             dateTimePickerFrom.Name = "dateTimePickerFrom";
-            dateTimePickerFrom.Size = new Size(125, 23);
+            dateTimePickerFrom.Size = new Size(142, 27);
             dateTimePickerFrom.TabIndex = 44;
             dateTimePickerFrom.Value = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimePickerFrom.ValueChanged += dateTimePickerFrom_ValueChanged_1;
@@ -218,11 +209,10 @@
             // 
             dateTimePickerTo.CustomFormat = "dd-MM-yyyy";
             dateTimePickerTo.Format = DateTimePickerFormat.Custom;
-            dateTimePickerTo.Location = new Point(158, 65);
-            dateTimePickerTo.Margin = new Padding(3, 2, 3, 2);
+            dateTimePickerTo.Location = new Point(181, 87);
             dateTimePickerTo.MinDate = new DateTime(2010, 1, 1, 0, 0, 0, 0);
             dateTimePickerTo.Name = "dateTimePickerTo";
-            dateTimePickerTo.Size = new Size(125, 23);
+            dateTimePickerTo.Size = new Size(142, 27);
             dateTimePickerTo.TabIndex = 43;
             dateTimePickerTo.Value = new DateTime(2024, 2, 28, 9, 33, 48, 0);
             dateTimePickerTo.ValueChanged += dateTimePickerTo_ValueChanged;
@@ -231,19 +221,18 @@
             // 
             labelDateTo.AutoSize = true;
             labelDateTo.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelDateTo.Location = new Point(158, 43);
+            labelDateTo.Location = new Point(181, 57);
             labelDateTo.Name = "labelDateTo";
-            labelDateTo.Size = new Size(59, 16);
+            labelDateTo.Size = new Size(75, 19);
             labelDateTo.TabIndex = 42;
             labelDateTo.Text = "Date To:";
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(67, 3, 125);
-            panel3.Location = new Point(158, 92);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(181, 123);
             panel3.Name = "panel3";
-            panel3.Size = new Size(124, 2);
+            panel3.Size = new Size(142, 3);
             panel3.TabIndex = 41;
             // 
             // comboBoxClass
@@ -251,10 +240,9 @@
             comboBoxClass.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboBoxClass.FormattingEnabled = true;
             comboBoxClass.Items.AddRange(new object[] { "All" });
-            comboBoxClass.Location = new Point(614, 65);
-            comboBoxClass.Margin = new Padding(3, 2, 3, 2);
+            comboBoxClass.Location = new Point(702, 87);
             comboBoxClass.Name = "comboBoxClass";
-            comboBoxClass.Size = new Size(114, 23);
+            comboBoxClass.Size = new Size(130, 28);
             comboBoxClass.TabIndex = 40;
             comboBoxClass.SelectedIndexChanged += comboBoxClass_SelectedIndexChanged_1;
             // 
@@ -262,19 +250,17 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(67, 3, 125);
-            panel2.Location = new Point(614, 90);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(702, 120);
             panel2.Name = "panel2";
-            panel2.Size = new Size(114, 2);
+            panel2.Size = new Size(130, 3);
             panel2.TabIndex = 37;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(67, 3, 125);
-            panel1.Location = new Point(18, 92);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(21, 123);
             panel1.Name = "panel1";
-            panel1.Size = new Size(124, 2);
+            panel1.Size = new Size(142, 3);
             panel1.TabIndex = 36;
             // 
             // labelClass
@@ -282,9 +268,9 @@
             labelClass.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelClass.AutoSize = true;
             labelClass.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelClass.Location = new Point(614, 41);
+            labelClass.Location = new Point(702, 55);
             labelClass.Name = "labelClass";
-            labelClass.Size = new Size(50, 16);
+            labelClass.Size = new Size(63, 19);
             labelClass.TabIndex = 35;
             labelClass.Text = "Class :";
             // 
@@ -292,80 +278,95 @@
             // 
             labelDateFrom.AutoSize = true;
             labelDateFrom.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelDateFrom.Location = new Point(18, 43);
+            labelDateFrom.Location = new Point(21, 57);
             labelDateFrom.Name = "labelDateFrom";
-            labelDateFrom.Size = new Size(76, 16);
+            labelDateFrom.Size = new Size(97, 19);
             labelDateFrom.TabIndex = 34;
             labelDateFrom.Text = "Date From:";
             // 
-            // labelAddStudent
-            // 
-            labelAddStudent.AutoSize = true;
-            labelAddStudent.BackColor = Color.Transparent;
-            labelAddStudent.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelAddStudent.Location = new Point(4, 20);
-            labelAddStudent.Name = "labelAddStudent";
-            labelAddStudent.Size = new Size(114, 16);
-            labelAddStudent.TabIndex = 33;
-            labelAddStudent.Text = "Set Attendance :";
-            // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(buttonExportCSV);
-            tabPage1.Controls.Add(buttonExportExcel);
-            tabPage1.Controls.Add(buttonExportPDF);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Margin = new Padding(3, 2, 3, 2);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Controls.Add(buttonSave);
+            tabPage1.Controls.Add(comboBoxExtension);
+            tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(809, 320);
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(926, 431);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Export";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // buttonExportCSV
+            // label3
             // 
-            buttonExportCSV.Location = new Point(114, 213);
-            buttonExportCSV.Margin = new Padding(3, 2, 3, 2);
-            buttonExportCSV.Name = "buttonExportCSV";
-            buttonExportCSV.Size = new Size(165, 58);
-            buttonExportCSV.TabIndex = 2;
-            buttonExportCSV.Text = "CSV";
-            buttonExportCSV.UseVisualStyleBackColor = true;
-            buttonExportCSV.Click += buttonExportCSV_Click;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(271, 124);
+            label3.Name = "label3";
+            label3.Size = new Size(91, 28);
+            label3.TabIndex = 2;
+            label3.Text = "Save As:";
             // 
-            // buttonExportExcel
+            // buttonSave
             // 
-            buttonExportExcel.Location = new Point(114, 109);
-            buttonExportExcel.Margin = new Padding(3, 2, 3, 2);
-            buttonExportExcel.Name = "buttonExportExcel";
-            buttonExportExcel.Size = new Size(165, 77);
-            buttonExportExcel.TabIndex = 1;
-            buttonExportExcel.Text = "Excel";
-            buttonExportExcel.UseVisualStyleBackColor = true;
-            buttonExportExcel.Click += buttonExportExcel_Click;
+            buttonSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonSave.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
+            buttonSave.Location = new Point(544, 119);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(113, 38);
+            buttonSave.TabIndex = 1;
+            buttonSave.Text = "Save";
+            buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += buttonSave_Click;
             // 
-            // buttonExportPDF
+            // comboBoxExtension
             // 
-            buttonExportPDF.Location = new Point(386, 109);
-            buttonExportPDF.Margin = new Padding(3, 2, 3, 2);
-            buttonExportPDF.Name = "buttonExportPDF";
-            buttonExportPDF.Size = new Size(196, 77);
-            buttonExportPDF.TabIndex = 0;
-            buttonExportPDF.Text = "PDF";
-            buttonExportPDF.UseVisualStyleBackColor = true;
-            buttonExportPDF.Click += buttonExportPDF_Click;
+            comboBoxExtension.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            comboBoxExtension.FormattingEnabled = true;
+            comboBoxExtension.Items.AddRange(new object[] { "PDF", "Excel", "CSV" });
+            comboBoxExtension.Location = new Point(366, 124);
+            comboBoxExtension.Name = "comboBoxExtension";
+            comboBoxExtension.Size = new Size(151, 28);
+            comboBoxExtension.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 23);
+            label1.TabIndex = 0;
+            // 
+            // buttonSaveAs
+            // 
+            buttonSaveAs.Location = new Point(0, 0);
+            buttonSaveAs.Name = "buttonSaveAs";
+            buttonSaveAs.Size = new Size(75, 23);
+            buttonSaveAs.TabIndex = 0;
+            // 
+            // comboBoxFileType
+            // 
+            comboBoxFileType.Location = new Point(0, 0);
+            comboBoxFileType.Name = "comboBoxFileType";
+            comboBoxFileType.Size = new Size(121, 28);
+            comboBoxFileType.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(100, 23);
+            label2.TabIndex = 0;
             // 
             // setAttendance
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(tabControlSetAttendance);
             Cursor = Cursors.Hand;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "setAttendance";
-            Size = new Size(817, 348);
+            Size = new Size(934, 464);
             Load += setAttendance_Load;
             tabControlSetAttendance.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
@@ -405,5 +406,8 @@
         private ComboBox comboBoxFileType;
         private Label label2;
         private Label label1;
+        private Button buttonSave;
+        private ComboBox comboBoxExtension;
+        private Label label3;
     }
 }
