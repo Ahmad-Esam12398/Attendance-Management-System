@@ -120,16 +120,33 @@ namespace attendence_system
             }
         }
 
-        //validate classes 
+
+
+
+
+
+
         public static bool validateClassesData(XmlNode underTest)
         {
-            XmlNode rootNode = classesData.SelectSingleNode("/classes");
 
-
+            XmlNode classesNode = classesData.SelectSingleNode("/classes");
             XmlNode importedNode = classesData.ImportNode(underTest, true);
-           // rootNode.AppendChild(importedNode);
-            classesData.SelectSingleNode("/classes").ReplaceChild(importedNode, underTest);
 
+            // Determine whether to add or replace based on the presence of existing data
+            XmlNode existingNode = classesNode.SelectSingleNode($"class[id='{underTest.SelectSingleNode("id").InnerText}']");
+            // Assume classesData is the XmlDocument containing the classes
+
+
+            if (existingNode != null)
+            {
+                // If the class already exists, replace it
+                classesNode.ReplaceChild(importedNode, existingNode);
+            }
+            else
+            {
+                // If the class doesn't exist, append it
+                classesNode.AppendChild(importedNode);
+            }
             XmlReader reader = XmlReader.Create(new StringReader(classesData.OuterXml), XmlReaderClassesSettings);
             try
             {
@@ -143,7 +160,10 @@ namespace attendence_system
                 classesData.Load(path + "/" + classData);
                 return false;
             }
+
+
         }
+
         static public void UpdateUserData(XmlNode newOne)
         {
             string id = newOne.SelectSingleNode("id").InnerText;
@@ -341,22 +361,7 @@ namespace attendence_system
         }
 
 
-        //============ Checks if the provided email is available or already exists in the users' data.====
-        public static bool IsEmailAvailable(string email)
-        {
-
-            XmlNodeList emailNodes = usersData.SelectNodes("/users/user/email");
-
-            foreach (XmlNode emailNode in emailNodes)
-            {
-                if (emailNode.InnerText.Equals(email, StringComparison.OrdinalIgnoreCase))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+  
 
 
 

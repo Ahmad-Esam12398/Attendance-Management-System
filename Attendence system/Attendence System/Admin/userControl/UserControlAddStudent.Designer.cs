@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlAddStudent));
             toolTip1 = new ToolTip(components);
             tabPageSearchStudent = new TabPage();
+            pictureBox1 = new PictureBox();
             textBoxSearch = new TextBox();
             comboBoxSearchBy = new ComboBox();
             panel11 = new Panel();
@@ -92,6 +94,7 @@
             label10 = new Label();
             panel9 = new Panel();
             tabPageSearchStudent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStudent).BeginInit();
             tabPageAddStudent.SuspendLayout();
             tabControlAddStudent.SuspendLayout();
@@ -101,6 +104,7 @@
             // tabPageSearchStudent
             // 
             tabPageSearchStudent.BackColor = Color.White;
+            tabPageSearchStudent.Controls.Add(pictureBox1);
             tabPageSearchStudent.Controls.Add(textBoxSearch);
             tabPageSearchStudent.Controls.Add(comboBoxSearchBy);
             tabPageSearchStudent.Controls.Add(panel11);
@@ -118,6 +122,16 @@
             tabPageSearchStudent.TabIndex = 1;
             tabPageSearchStudent.Text = "SrearchStudent ";
             tabPageSearchStudent.Enter += tabPageSearchStudent_Enter;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(412, 75);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 25);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 59;
+            pictureBox1.TabStop = false;
             // 
             // textBoxSearch
             // 
@@ -143,7 +157,7 @@
             // 
             // panel11
             // 
-            panel11.BackColor = Color.Black;
+            panel11.BackColor = SystemColors.InactiveCaption;
             panel11.Location = new Point(518, 101);
             panel11.Name = "panel11";
             panel11.Size = new Size(151, 2);
@@ -202,7 +216,7 @@
             dataGridViewStudent.ShowCellErrors = false;
             dataGridViewStudent.ShowEditingIcon = false;
             dataGridViewStudent.ShowRowErrors = false;
-            dataGridViewStudent.Size = new Size(872, 318);
+            dataGridViewStudent.Size = new Size(872, 259);
             dataGridViewStudent.TabIndex = 15;
             dataGridViewStudent.CellClick += dataGridViewStudent_CellClick_1;
             // 
@@ -256,7 +270,7 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.Black;
+            panel5.BackColor = SystemColors.InactiveCaption;
             panel5.Location = new Point(152, 102);
             panel5.Name = "panel5";
             panel5.Size = new Size(270, 2);
@@ -276,7 +290,7 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            label8.Font = new Font("Century Gothic", 11F, FontStyle.Bold);
             label8.ForeColor = Color.MidnightBlue;
             label8.Location = new Point(31, 23);
             label8.Name = "label8";
@@ -329,7 +343,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.Black;
+            panel4.BackColor = SystemColors.InactiveCaption;
             panel4.Location = new Point(147, 345);
             panel4.Name = "panel4";
             panel4.Size = new Size(270, 2);
@@ -348,7 +362,7 @@
             // 
             // panel12
             // 
-            panel12.BackColor = Color.Black;
+            panel12.BackColor = Color.LightGray;
             panel12.Location = new Point(461, 343);
             panel12.Name = "panel12";
             panel12.Size = new Size(270, 2);
@@ -388,7 +402,7 @@
             // 
             // panel10
             // 
-            panel10.BackColor = Color.Black;
+            panel10.BackColor = Color.LightGray;
             panel10.Location = new Point(147, 247);
             panel10.Name = "panel10";
             panel10.Size = new Size(270, 2);
@@ -407,7 +421,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.Black;
+            panel3.BackColor = Color.LightGray;
             panel3.Location = new Point(461, 245);
             panel3.Name = "panel3";
             panel3.Size = new Size(270, 2);
@@ -453,14 +467,14 @@
             textBoxNameStudent.BackColor = Color.White;
             textBoxNameStudent.BorderStyle = BorderStyle.None;
             textBoxNameStudent.Font = new Font("Century Gothic", 10F);
-            textBoxNameStudent.Location = new Point(139, 117);
+            textBoxNameStudent.Location = new Point(147, 117);
             textBoxNameStudent.Name = "textBoxNameStudent";
             textBoxNameStudent.Size = new Size(270, 21);
             textBoxNameStudent.TabIndex = 37;
             // 
             // panel2
             // 
-            panel2.BackColor = Color.Black;
+            panel2.BackColor = Color.LightGray;
             panel2.Location = new Point(461, 141);
             panel2.Name = "panel2";
             panel2.Size = new Size(270, 2);
@@ -490,8 +504,8 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Black;
-            panel1.Location = new Point(139, 141);
+            panel1.BackColor = Color.LightGray;
+            panel1.Location = new Point(147, 141);
             panel1.Name = "panel1";
             panel1.Size = new Size(270, 2);
             panel1.TabIndex = 38;
@@ -501,7 +515,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.White;
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(139, 72);
+            label2.Location = new Point(147, 72);
             label2.Name = "label2";
             label2.Size = new Size(70, 19);
             label2.TabIndex = 36;
@@ -511,7 +525,7 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.White;
-            label1.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             label1.ForeColor = Color.MidnightBlue;
             label1.Location = new Point(42, 34);
             label1.Name = "label1";
@@ -576,7 +590,7 @@
             // 
             // panel13
             // 
-            panel13.BackColor = Color.Black;
+            panel13.BackColor = Color.LightGray;
             panel13.Location = new Point(144, 313);
             panel13.Name = "panel13";
             panel13.Size = new Size(270, 2);
@@ -595,7 +609,7 @@
             // 
             // panel14
             // 
-            panel14.BackColor = Color.Black;
+            panel14.BackColor = Color.LightGray;
             panel14.Location = new Point(476, 313);
             panel14.Name = "panel14";
             panel14.Size = new Size(270, 2);
@@ -635,7 +649,7 @@
             // 
             // panel8
             // 
-            panel8.BackColor = Color.Black;
+            panel8.BackColor = Color.LightGray;
             panel8.Location = new Point(144, 225);
             panel8.Name = "panel8";
             panel8.Size = new Size(270, 2);
@@ -654,7 +668,7 @@
             // 
             // panel6
             // 
-            panel6.BackColor = Color.Black;
+            panel6.BackColor = Color.LightGray;
             panel6.Location = new Point(476, 225);
             panel6.Name = "panel6";
             panel6.Size = new Size(270, 2);
@@ -667,7 +681,7 @@
             btnDeleteStudent.FlatStyle = FlatStyle.Flat;
             btnDeleteStudent.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnDeleteStudent.ForeColor = SystemColors.ControlLightLight;
-            btnDeleteStudent.Location = new Point(261, 358);
+            btnDeleteStudent.Location = new Point(290, 358);
             btnDeleteStudent.Name = "btnDeleteStudent";
             btnDeleteStudent.Size = new Size(124, 40);
             btnDeleteStudent.TabIndex = 68;
@@ -692,7 +706,7 @@
             btnUpdateStudent.FlatStyle = FlatStyle.Flat;
             btnUpdateStudent.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             btnUpdateStudent.ForeColor = SystemColors.ControlLightLight;
-            btnUpdateStudent.Location = new Point(120, 358);
+            btnUpdateStudent.Location = new Point(144, 358);
             btnUpdateStudent.Name = "btnUpdateStudent";
             btnUpdateStudent.Size = new Size(124, 40);
             btnUpdateStudent.TabIndex = 67;
@@ -702,7 +716,7 @@
             // 
             // panel7
             // 
-            panel7.BackColor = Color.Black;
+            panel7.BackColor = Color.LightGray;
             panel7.Location = new Point(476, 129);
             panel7.Name = "panel7";
             panel7.Size = new Size(270, 2);
@@ -775,7 +789,7 @@
             // 
             // panel9
             // 
-            panel9.BackColor = Color.Black;
+            panel9.BackColor = Color.LightGray;
             panel9.Location = new Point(144, 127);
             panel9.Name = "panel9";
             panel9.Size = new Size(270, 2);
@@ -792,6 +806,7 @@
             Size = new Size(934, 471);
             tabPageSearchStudent.ResumeLayout(false);
             tabPageSearchStudent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStudent).EndInit();
             tabPageAddStudent.ResumeLayout(false);
             tabPageAddStudent.PerformLayout();
@@ -864,5 +879,6 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column4;
+        private PictureBox pictureBox1;
     }
 }
