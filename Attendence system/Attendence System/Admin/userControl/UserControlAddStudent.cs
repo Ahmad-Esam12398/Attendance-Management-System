@@ -34,7 +34,7 @@ namespace attendence_system.Admin.userControl
             textBoxEmailstudent.Clear();
             textBoxPassStudent.Clear();
             textBoxphoneNumber.Clear();
-             comboBoxClassStudent.SelectedIndex = -1;
+            comboBoxClassStudent.SelectedIndex = -1;
             comboBoxGender.SelectedIndex = -1;
             tabControlAddStudent.SelectedTab = tabPageAddStudent;
         }
@@ -73,7 +73,7 @@ namespace attendence_system.Admin.userControl
 
         private void UdateAndDelete_Enter(object sender, EventArgs e)
         {
-          //  ClearText();
+            //  ClearText();
 
 
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
@@ -145,7 +145,7 @@ namespace attendence_system.Admin.userControl
 
         //===============Method to add a user in the XML data source===============
         private void btnAddStudent_Click_1(object sender, EventArgs e)
-        { 
+        {
 
             if (textBoxNameStudent.Text == "" || textBoxEmailstudent.Text == "" || textBoxPassStudent.Text == "" || textBoxphoneNumber.Text == "" || comboBoxClassStudent.SelectedIndex == -1 || comboBoxGender.SelectedIndex == -1)
             {
@@ -154,7 +154,7 @@ namespace attendence_system.Admin.userControl
             }
             else
             {
-             
+
 
 
                 // Create a new user node
@@ -204,13 +204,13 @@ namespace attendence_system.Admin.userControl
                 XmlNode classNode = doc.CreateElement("class");
                 classNode.InnerText = selectedClass;
                 newUser.AppendChild(classNode);
-                
+
                 if (!InstructorDataManipulator.IsClassCapacityAvailable(selectedClass))
                 {
                     MessageBox.Show($"Class {selectedClass} has reached its maximum capacity. Cannot add more users", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-  
+
                 if (InstructorDataManipulator.validateUserData(newUser))
                 {
                     InstructorDataManipulator.AddNewUser(newUser);
@@ -375,8 +375,8 @@ namespace attendence_system.Admin.userControl
 
         private void dataGridViewStudent_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-             comboBoxClasses1.Items.Clear();
-             comboBoxGender1.Items.Clear();
+            comboBoxClasses1.Items.Clear();
+            comboBoxGender1.Items.Clear();
             // Call the method to get the unique class values
             List<XmlNode> classes = InstructorDataManipulator.GetClassessList();
 
@@ -420,7 +420,7 @@ namespace attendence_system.Admin.userControl
                 {
                     comboBoxClasses1.SelectedItem = classValue;
                 }
-          
+
                 textBoxphoneNumber1.Text = row.Cells["Column6"].Value.ToString();
 
                 // Retrieve and display password
@@ -434,15 +434,20 @@ namespace attendence_system.Admin.userControl
                     }
 
                 }
-      
+
             }
         }
 
 
-    
+
         private void tabPageUpdateAndDelete_Leave(object sender, EventArgs e)
         {
             ClearText1();
+
+        }
+
+        private void tabPageAddStudent_Click(object sender, EventArgs e)
+        {
 
         }
     }

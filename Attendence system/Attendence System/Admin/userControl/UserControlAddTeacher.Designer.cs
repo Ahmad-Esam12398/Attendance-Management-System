@@ -99,6 +99,7 @@
             // tabPageAddTeacher
             // 
             tabPageAddTeacher.BackColor = Color.White;
+            tabPageAddTeacher.Controls.Add(userControlChangeUserData1);
             tabPageAddTeacher.Controls.Add(comboBoxClassTeacher);
             tabPageAddTeacher.Controls.Add(panel10);
             tabPageAddTeacher.Controls.Add(labelClassStudent);
@@ -115,7 +116,7 @@
             tabPageAddTeacher.Controls.Add(label1);
             tabPageAddTeacher.Location = new Point(4, 24);
             tabPageAddTeacher.Name = "tabPageAddTeacher";
-            tabPageAddTeacher.Padding = new Padding(3, 3, 3, 3);
+            tabPageAddTeacher.Padding = new Padding(3);
             tabPageAddTeacher.Size = new Size(935, 443);
             tabPageAddTeacher.TabIndex = 0;
             tabPageAddTeacher.Text = "Add Teacher";
@@ -280,7 +281,7 @@
             tabPageSearchTeacher.Controls.Add(label8);
             tabPageSearchTeacher.Location = new Point(4, 24);
             tabPageSearchTeacher.Name = "tabPageSearchTeacher";
-            tabPageSearchTeacher.Padding = new Padding(3, 3, 3, 3);
+            tabPageSearchTeacher.Padding = new Padding(3);
             tabPageSearchTeacher.Size = new Size(935, 443);
             tabPageSearchTeacher.TabIndex = 1;
             tabPageSearchTeacher.Text = "SrearchTeacher";
@@ -464,7 +465,7 @@
             tabPageUpdateAndDelete.Controls.Add(panel9);
             tabPageUpdateAndDelete.Location = new Point(4, 24);
             tabPageUpdateAndDelete.Name = "tabPageUpdateAndDelete";
-            tabPageUpdateAndDelete.Padding = new Padding(3, 3, 3, 3);
+            tabPageUpdateAndDelete.Padding = new Padding(3);
             tabPageUpdateAndDelete.Size = new Size(935, 443);
             tabPageUpdateAndDelete.TabIndex = 2;
             tabPageUpdateAndDelete.Text = "Update&Delete";
@@ -632,7 +633,7 @@
             userControlChangeUserData1.Location = new Point(0, 0);
             userControlChangeUserData1.Margin = new Padding(3, 2, 3, 2);
             userControlChangeUserData1.Name = "userControlChangeUserData1";
-            userControlChangeUserData1.Size = new Size(912, 475);
+            userControlChangeUserData1.Size = new Size(935, 441);
             userControlChangeUserData1.TabIndex = 2;
             // 
             // UserControlAddTeacher
@@ -640,7 +641,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(userControlChangeUserData1);
             Controls.Add(tabControlAddTeacher);
             Name = "UserControlAddTeacher";
             Size = new Size(934, 471);

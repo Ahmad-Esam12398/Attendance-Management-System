@@ -15,9 +15,7 @@ namespace attendence_system.Admin.userControl
     
     public partial class UserControlAddClass : UserControl
     {
-        public delegate void ClassChangedEventHandler(string className);
-
-        public static event ClassChangedEventHandler ClassChanged;
+    
       
         string ClsString = "";
         public UserControlAddClass()
@@ -79,29 +77,34 @@ namespace attendence_system.Admin.userControl
             // Check if SID is not empty and is a valid integer
             if (!string.IsNullOrEmpty(ClsString) && int.TryParse(ClsString, out int userId))
             {
-            // Retrieve the existing user node from the data source
+                // Retrieve the existing user node from the data source
                 XmlNode existingClassNode = InstructorDataManipulator.GetClassNode(userId.ToString());
 
                 if (existingClassNode != null)
                 {
-                    string classNameChanged = textBoxClassName1.Text.Trim();
-                    existingClassNode.SelectSingleNode("name").InnerText = classNameChanged;
-                    existingClassNode.SelectSingleNode("max").InnerText = textBoxHMstudent1.Text.Trim();
+                    string oldClassName = existingClassNode.SelectSingleNode("name").InnerText;
+                    string newClassName = textBoxClassName1.Text.Trim();
 
-                    if (InstructorDataManipulator.validateClassesData(existingClassNode))
+                    if (oldClassName != newClassName) // Check if class name has changed
                     {
-                      
-                        InstructorDataManipulator.UpdateClassData(existingClassNode);
-                        // Hook up event handler
-                        ClassChanged += UpdateUsers;
+                        existingClassNode.SelectSingleNode("name").InnerText = newClassName;
+                        existingClassNode.SelectSingleNode("max").InnerText = textBoxHMstudent1.Text.Trim();
 
-                        // Simulate a change in the <class> element
-                        // This can be triggered by any appropriate mechanism in your application
-                        // For demonstration purposes, we are manually calling the event with a class name
-                        ClassChanged?.Invoke(classNameChanged);
+                        if (InstructorDataManipulator.validateClassesData(existingClassNode))
+                        {
+                            InstructorDataManipulator.UpdateClassData(existingClassNode);
 
-                       
-                        MessageBox.Show("Class updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Invoke event handler if class name changed
+                           UpdateUsers(oldClassName, newClassName);
+
+                            //   ClassChanged?.Invoke(oldClassName, newClassName);
+
+                            MessageBox.Show("Class updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Class name remains unchanged", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -110,12 +113,12 @@ namespace attendence_system.Admin.userControl
                 MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        static void UpdateUsers(string className)
+
+        static void UpdateUsers(string oldClassName, string newClassName)
         {
             XmlDocument usersData = InstructorDataManipulator.GetUsersData();
-            XmlDocument classesData = InstructorDataManipulator.GetAllClasses();
             // Retrieve all <user> elements with the specified class name
-            List<XmlNode> userList = usersData.SelectNodes($"/users/user[class='{className}']").Cast<XmlNode>().ToList();
+            List<XmlNode> userList = usersData.SelectNodes($"/users/user[class='{oldClassName}']").Cast<XmlNode>().ToList();
 
             // Update relevant information for each user
             foreach (XmlNode userNode in userList)
@@ -125,11 +128,12 @@ namespace attendence_system.Admin.userControl
                 XmlNode classNode = userNode.SelectSingleNode("class");
                 if (classNode != null)
                 {
-                    classNode.InnerText = className; // Update the class name
+                    classNode.InnerText = newClassName; // Update the class name
                 }
             }
-             // Save changes to the users.xml file
-                        InstructorDataManipulator.SaveChangesInFile();
+            // Save changes to the users.xml file
+            usersData.Save(@"./../../../../../Xml/usersAuthenticationC#.xml");
+            InstructorDataManipulator.SaveChangesInFile();
         }
 
         private void btnDeleteClass_Click(object sender, EventArgs e)
