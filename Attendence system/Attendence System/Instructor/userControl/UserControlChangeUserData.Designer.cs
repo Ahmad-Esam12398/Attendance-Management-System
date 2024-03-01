@@ -68,11 +68,10 @@
             tabControlChangeUserData.Controls.Add(tabPageChangePassword);
             tabControlChangeUserData.Dock = DockStyle.Fill;
             tabControlChangeUserData.Location = new Point(0, 0);
-            tabControlChangeUserData.Margin = new Padding(3, 2, 3, 2);
             tabControlChangeUserData.Multiline = true;
             tabControlChangeUserData.Name = "tabControlChangeUserData";
             tabControlChangeUserData.SelectedIndex = 0;
-            tabControlChangeUserData.Size = new Size(912, 475);
+            tabControlChangeUserData.Size = new Size(1042, 633);
             tabControlChangeUserData.TabIndex = 16;
             // 
             // tabPageChangeData
@@ -90,10 +89,9 @@
             tabPageChangeData.Controls.Add(labelPhone);
             tabPageChangeData.Controls.Add(textBoxEmail);
             tabPageChangeData.Location = new Point(4, 4);
-            tabPageChangeData.Margin = new Padding(3, 2, 3, 2);
             tabPageChangeData.Name = "tabPageChangeData";
-            tabPageChangeData.Padding = new Padding(3, 2, 3, 2);
-            tabPageChangeData.Size = new Size(904, 447);
+            tabPageChangeData.Padding = new Padding(3, 3, 3, 3);
+            tabPageChangeData.Size = new Size(1034, 600);
             tabPageChangeData.TabIndex = 0;
             tabPageChangeData.Text = "ChangeData";
             tabPageChangeData.Click += tabPageChangeData_Click;
@@ -101,10 +99,9 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(67, 3, 125);
-            panel4.Location = new Point(179, 218);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(205, 291);
             panel4.Name = "panel4";
-            panel4.Size = new Size(236, 2);
+            panel4.Size = new Size(270, 3);
             panel4.TabIndex = 27;
             // 
             // labelChangeStudentData
@@ -112,37 +109,35 @@
             labelChangeStudentData.AutoSize = true;
             labelChangeStudentData.BackColor = Color.Transparent;
             labelChangeStudentData.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelChangeStudentData.Location = new Point(30, 41);
+            labelChangeStudentData.Location = new Point(23, 47);
             labelChangeStudentData.Name = "labelChangeStudentData";
-            labelChangeStudentData.Size = new Size(102, 16);
+            labelChangeStudentData.Size = new Size(128, 19);
             labelChangeStudentData.TabIndex = 17;
             labelChangeStudentData.Text = "Change Data :";
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(67, 3, 125);
-            panel2.Location = new Point(484, 153);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(553, 204);
             panel2.Name = "panel2";
-            panel2.Size = new Size(236, 2);
+            panel2.Size = new Size(270, 3);
             panel2.TabIndex = 26;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(67, 3, 125);
-            panel1.Location = new Point(179, 153);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(205, 204);
             panel1.Name = "panel1";
-            panel1.Size = new Size(236, 2);
+            panel1.Size = new Size(270, 3);
             panel1.TabIndex = 25;
             // 
             // labelName
             // 
             labelName.AutoSize = true;
             labelName.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelName.Location = new Point(179, 104);
+            labelName.Location = new Point(205, 139);
             labelName.Name = "labelName";
-            labelName.Size = new Size(54, 16);
+            labelName.Size = new Size(70, 19);
             labelName.TabIndex = 18;
             labelName.Text = "Name :";
             // 
@@ -152,10 +147,9 @@
             buttonChangeData.FlatStyle = FlatStyle.Flat;
             buttonChangeData.Font = new Font("Century Gothic", 9.75F);
             buttonChangeData.ForeColor = Color.White;
-            buttonChangeData.Location = new Point(179, 265);
-            buttonChangeData.Margin = new Padding(3, 2, 3, 2);
+            buttonChangeData.Location = new Point(205, 353);
             buttonChangeData.Name = "buttonChangeData";
-            buttonChangeData.Size = new Size(125, 40);
+            buttonChangeData.Size = new Size(143, 53);
             buttonChangeData.TabIndex = 24;
             buttonChangeData.Text = "Update";
             buttonChangeData.UseVisualStyleBackColor = false;
@@ -165,29 +159,27 @@
             // 
             textBoxName.BackColor = Color.White;
             textBoxName.BorderStyle = BorderStyle.None;
-            textBoxName.Location = new Point(179, 128);
-            textBoxName.Margin = new Padding(3, 2, 3, 2);
+            textBoxName.Location = new Point(205, 171);
             textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(236, 16);
+            textBoxName.Size = new Size(270, 20);
             textBoxName.TabIndex = 19;
             // 
             // textBoxPhone
             // 
             textBoxPhone.BackColor = Color.White;
             textBoxPhone.BorderStyle = BorderStyle.None;
-            textBoxPhone.Location = new Point(179, 193);
-            textBoxPhone.Margin = new Padding(3, 2, 3, 2);
+            textBoxPhone.Location = new Point(205, 257);
             textBoxPhone.Name = "textBoxPhone";
-            textBoxPhone.Size = new Size(236, 16);
+            textBoxPhone.Size = new Size(270, 20);
             textBoxPhone.TabIndex = 23;
             // 
             // labelEmail
             // 
             labelEmail.AutoSize = true;
             labelEmail.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelEmail.Location = new Point(484, 104);
+            labelEmail.Location = new Point(553, 139);
             labelEmail.Name = "labelEmail";
-            labelEmail.Size = new Size(51, 16);
+            labelEmail.Size = new Size(63, 19);
             labelEmail.TabIndex = 20;
             labelEmail.Text = "Email :";
             // 
@@ -195,9 +187,9 @@
             // 
             labelPhone.AutoSize = true;
             labelPhone.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelPhone.Location = new Point(179, 168);
+            labelPhone.Location = new Point(205, 224);
             labelPhone.Name = "labelPhone";
-            labelPhone.Size = new Size(54, 16);
+            labelPhone.Size = new Size(71, 19);
             labelPhone.TabIndex = 22;
             labelPhone.Text = "Phone :";
             // 
@@ -205,10 +197,9 @@
             // 
             textBoxEmail.BackColor = Color.White;
             textBoxEmail.BorderStyle = BorderStyle.None;
-            textBoxEmail.Location = new Point(484, 128);
-            textBoxEmail.Margin = new Padding(3, 2, 3, 2);
+            textBoxEmail.Location = new Point(553, 171);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(236, 16);
+            textBoxEmail.Size = new Size(270, 20);
             textBoxEmail.TabIndex = 21;
             // 
             // tabPageChangePassword
@@ -226,10 +217,9 @@
             tabPageChangePassword.Controls.Add(buttonChangePassword);
             tabPageChangePassword.Controls.Add(textBoxOldPassword);
             tabPageChangePassword.Location = new Point(4, 4);
-            tabPageChangePassword.Margin = new Padding(3, 2, 3, 2);
             tabPageChangePassword.Name = "tabPageChangePassword";
-            tabPageChangePassword.Padding = new Padding(3, 2, 3, 2);
-            tabPageChangePassword.Size = new Size(904, 447);
+            tabPageChangePassword.Padding = new Padding(3, 3, 3, 3);
+            tabPageChangePassword.Size = new Size(1034, 600);
             tabPageChangePassword.TabIndex = 1;
             tabPageChangePassword.Text = "Change Password";
             tabPageChangePassword.UseVisualStyleBackColor = true;
@@ -238,10 +228,9 @@
             // 
             pictureBoxShowPassword.Cursor = Cursors.Hand;
             pictureBoxShowPassword.Image = (Image)resources.GetObject("pictureBoxShowPassword.Image");
-            pictureBoxShowPassword.Location = new Point(510, 165);
-            pictureBoxShowPassword.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxShowPassword.Location = new Point(583, 220);
             pictureBoxShowPassword.Name = "pictureBoxShowPassword";
-            pictureBoxShowPassword.Size = new Size(109, 46);
+            pictureBoxShowPassword.Size = new Size(125, 61);
             pictureBoxShowPassword.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxShowPassword.TabIndex = 36;
             pictureBoxShowPassword.TabStop = false;
@@ -250,50 +239,47 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(67, 3, 125);
-            panel6.Location = new Point(210, 269);
-            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Location = new Point(240, 359);
             panel6.Name = "panel6";
-            panel6.Size = new Size(236, 2);
+            panel6.Size = new Size(270, 3);
             panel6.TabIndex = 35;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label4.Location = new Point(210, 220);
+            label4.Location = new Point(240, 293);
             label4.Name = "label4";
-            label4.Size = new Size(98, 16);
+            label4.Size = new Size(126, 19);
             label4.TabIndex = 33;
             label4.Text = "Confirm New :";
             // 
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(67, 3, 125);
-            panel5.Location = new Point(210, 190);
-            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Location = new Point(240, 253);
             panel5.Name = "panel5";
-            panel5.Size = new Size(236, 2);
+            panel5.Size = new Size(270, 3);
             panel5.TabIndex = 32;
             // 
             // textBoxPasswordConfirm
             // 
             textBoxPasswordConfirm.BackColor = Color.White;
             textBoxPasswordConfirm.BorderStyle = BorderStyle.None;
-            textBoxPasswordConfirm.Location = new Point(210, 244);
-            textBoxPasswordConfirm.Margin = new Padding(3, 2, 3, 2);
+            textBoxPasswordConfirm.Location = new Point(240, 325);
             textBoxPasswordConfirm.Name = "textBoxPasswordConfirm";
             textBoxPasswordConfirm.PasswordChar = '*';
             textBoxPasswordConfirm.PlaceholderText = "Confirm New Password";
-            textBoxPasswordConfirm.Size = new Size(236, 16);
+            textBoxPasswordConfirm.Size = new Size(270, 20);
             textBoxPasswordConfirm.TabIndex = 34;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label3.Location = new Point(210, 140);
+            label3.Location = new Point(240, 187);
             label3.Name = "label3";
-            label3.Size = new Size(74, 16);
+            label3.Size = new Size(97, 19);
             label3.TabIndex = 30;
             label3.Text = "New One :";
             // 
@@ -301,9 +287,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(14, 10);
+            label2.Location = new Point(16, 13);
             label2.Name = "label2";
-            label2.Size = new Size(123, 16);
+            label2.Size = new Size(158, 19);
             label2.TabIndex = 30;
             label2.Text = "Change Password";
             // 
@@ -311,30 +297,28 @@
             // 
             textBoxPasswordNew.BackColor = Color.White;
             textBoxPasswordNew.BorderStyle = BorderStyle.None;
-            textBoxPasswordNew.Location = new Point(210, 165);
-            textBoxPasswordNew.Margin = new Padding(3, 2, 3, 2);
+            textBoxPasswordNew.Location = new Point(240, 220);
             textBoxPasswordNew.Name = "textBoxPasswordNew";
             textBoxPasswordNew.PasswordChar = '*';
             textBoxPasswordNew.PlaceholderText = "New Password";
-            textBoxPasswordNew.Size = new Size(236, 16);
+            textBoxPasswordNew.Size = new Size(270, 20);
             textBoxPasswordNew.TabIndex = 31;
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(67, 3, 125);
-            panel3.Location = new Point(210, 120);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(240, 160);
             panel3.Name = "panel3";
-            panel3.Size = new Size(236, 2);
+            panel3.Size = new Size(270, 3);
             panel3.TabIndex = 29;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label1.Location = new Point(210, 70);
+            label1.Location = new Point(240, 93);
             label1.Name = "label1";
-            label1.Size = new Size(103, 16);
+            label1.Size = new Size(131, 19);
             label1.TabIndex = 26;
             label1.Text = "Old Password :";
             // 
@@ -345,10 +329,9 @@
             buttonChangePassword.FlatStyle = FlatStyle.Flat;
             buttonChangePassword.Font = new Font("Century Gothic", 9.75F);
             buttonChangePassword.ForeColor = Color.White;
-            buttonChangePassword.Location = new Point(246, 316);
-            buttonChangePassword.Margin = new Padding(3, 2, 3, 2);
+            buttonChangePassword.Location = new Point(281, 421);
             buttonChangePassword.Name = "buttonChangePassword";
-            buttonChangePassword.Size = new Size(125, 40);
+            buttonChangePassword.Size = new Size(143, 53);
             buttonChangePassword.TabIndex = 28;
             buttonChangePassword.Text = "Change";
             buttonChangePassword.UseVisualStyleBackColor = false;
@@ -358,23 +341,21 @@
             // 
             textBoxOldPassword.BackColor = Color.White;
             textBoxOldPassword.BorderStyle = BorderStyle.None;
-            textBoxOldPassword.Location = new Point(210, 95);
-            textBoxOldPassword.Margin = new Padding(3, 2, 3, 2);
+            textBoxOldPassword.Location = new Point(240, 127);
             textBoxOldPassword.Name = "textBoxOldPassword";
             textBoxOldPassword.PasswordChar = '*';
             textBoxOldPassword.PlaceholderText = "YourOld Password";
-            textBoxOldPassword.Size = new Size(236, 16);
+            textBoxOldPassword.Size = new Size(270, 20);
             textBoxOldPassword.TabIndex = 27;
             // 
             // UserControlChangeUserData
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(tabControlChangeUserData);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "UserControlChangeUserData";
-            Size = new Size(912, 475);
+            Size = new Size(1042, 633);
             Load += UserControlAddStudent_Load;
             tabControlChangeUserData.ResumeLayout(false);
             tabPageChangeData.ResumeLayout(false);

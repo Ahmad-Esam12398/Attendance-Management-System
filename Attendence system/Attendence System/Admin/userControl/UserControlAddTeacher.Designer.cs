@@ -85,7 +85,6 @@
             textBoxName1 = new TextBox();
             label10 = new Label();
             panel9 = new Panel();
-            userControlChangeUserData1 = new Instructor.UserControlChangeUserData();
             tabControlAddTeacher.SuspendLayout();
             tabPageAddTeacher.SuspendLayout();
             tabPageSearchTeacher.SuspendLayout();
@@ -742,15 +741,6 @@
             panel9.Name = "panel9";
             panel9.Size = new Size(270, 2);
             panel9.TabIndex = 71;
-            // 
-            // userControlChangeUserData1
-            // 
-            userControlChangeUserData1.BackColor = Color.White;
-            userControlChangeUserData1.Location = new Point(0, 0);
-            userControlChangeUserData1.Margin = new Padding(3, 2, 3, 2);
-            userControlChangeUserData1.Name = "userControlChangeUserData1";
-            userControlChangeUserData1.Size = new Size(935, 441);
-            userControlChangeUserData1.TabIndex = 2;
             // 
             // UserControlAddTeacher
             // 

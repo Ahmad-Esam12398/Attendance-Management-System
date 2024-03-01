@@ -36,14 +36,6 @@ namespace attendence_system.Admin.userControl
             }
             else
             {
-                // Check if the Email is unique
-                if (!InstructorDataManipulator.IsEmailAvailable(textBoxEmailTeacher.Text.Trim()))
-                {
-                    MessageBox.Show("Email already exists. Please choose a different mail.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
                 XmlNode newUser = InstructorDataManipulator.usersData.CreateElement("user");
 
                 XmlNode idNode = InstructorDataManipulator.usersData.CreateElement("id");

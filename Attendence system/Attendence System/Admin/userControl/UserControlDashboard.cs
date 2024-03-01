@@ -21,7 +21,6 @@ namespace attendence_system.Admin.userControl
             labelTotalStudents.Text = "3";
             labelTotalClasses.Text = "4";
             adminRole.Text = "Admin";
-            
         }
 
 

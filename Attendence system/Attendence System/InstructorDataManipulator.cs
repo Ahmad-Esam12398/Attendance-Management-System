@@ -77,6 +77,10 @@ namespace attendence_system
             XmlNode target = usersData.SelectSingleNode($"/users/user[id='{_id}']");
             return target;
         }
+        static public XmlDocument GetUsersData()
+        {
+            return usersData;
+        }
         static public HashSet<string> GetClassesForInstructor(XmlNode node)
         {
             HashSet<string> classes = new HashSet<string>();
@@ -574,7 +578,21 @@ namespace attendence_system
             classesData.SelectSingleNode("/classes").ReplaceChild(oneWillBeAppended, GetClassNode(id));
             SaveChangesClassesInFile();
         }
+        static public bool CheckUsersInClass(string className)
+        {
+            XmlNodeList userNodes = usersData.SelectNodes("//user");
+            foreach (XmlNode userNode in userNodes)
+            {
+                XmlNode classNode = userNode.SelectSingleNode("class");
+                if (classNode != null && classNode.InnerText == className)
+                {
+                    return true;
+                }
+            }
 
-}
+            return false;
+        }
+
+    }
     //===============================================================================================
 }

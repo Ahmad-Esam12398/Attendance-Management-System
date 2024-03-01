@@ -48,6 +48,7 @@
             labelClass = new Label();
             labelDateFrom = new Label();
             tabPage1 = new TabPage();
+            buttonTest = new Button();
             label3 = new Label();
             buttonSave = new Button();
             comboBoxExtension = new ComboBox();
@@ -55,7 +56,6 @@
             buttonSaveAs = new Button();
             comboBoxFileType = new ComboBox();
             label2 = new Label();
-            buttonTest = new Button();
             tabControlSetAttendance.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttendance).BeginInit();
@@ -128,7 +128,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Top;
             pictureBox1.Image = Properties.Resources.searchInstructor;
-            pictureBox1.Location = new Point(651, 92);
+            pictureBox1.Location = new Point(651, 88);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(40, 27);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -140,7 +140,7 @@
             // 
             panel5.Anchor = AnchorStyles.Top;
             panel5.BackColor = Color.FromArgb(67, 3, 125);
-            panel5.Location = new Point(499, 60);
+            panel5.Location = new Point(498, 52);
             panel5.Name = "panel5";
             panel5.Size = new Size(151, 3);
             panel5.TabIndex = 38;
@@ -149,7 +149,7 @@
             // 
             panel4.Anchor = AnchorStyles.Top;
             panel4.BackColor = Color.FromArgb(67, 3, 125);
-            panel4.Location = new Point(430, 120);
+            panel4.Location = new Point(428, 116);
             panel4.Name = "panel4";
             panel4.Size = new Size(221, 3);
             panel4.TabIndex = 39;
@@ -159,7 +159,7 @@
             labelSearchBy.Anchor = AnchorStyles.Top;
             labelSearchBy.AutoSize = true;
             labelSearchBy.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelSearchBy.Location = new Point(389, 23);
+            labelSearchBy.Location = new Point(389, 28);
             labelSearchBy.Name = "labelSearchBy";
             labelSearchBy.Size = new Size(96, 19);
             labelSearchBy.TabIndex = 48;
@@ -180,7 +180,7 @@
             labelSearch.Anchor = AnchorStyles.Top;
             labelSearch.AutoSize = true;
             labelSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelSearch.Location = new Point(358, 96);
+            labelSearch.Location = new Point(352, 95);
             labelSearch.Name = "labelSearch";
             labelSearch.Size = new Size(71, 19);
             labelSearch.TabIndex = 46;
@@ -189,7 +189,7 @@
             // textBoxSearchValue
             // 
             textBoxSearchValue.Anchor = AnchorStyles.Top;
-            textBoxSearchValue.Location = new Point(429, 87);
+            textBoxSearchValue.Location = new Point(428, 88);
             textBoxSearchValue.Name = "textBoxSearchValue";
             textBoxSearchValue.Size = new Size(221, 27);
             textBoxSearchValue.TabIndex = 45;
@@ -231,7 +231,7 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(67, 3, 125);
-            panel3.Location = new Point(181, 123);
+            panel3.Location = new Point(181, 115);
             panel3.Name = "panel3";
             panel3.Size = new Size(142, 3);
             panel3.TabIndex = 41;
@@ -241,7 +241,7 @@
             comboBoxClass.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboBoxClass.FormattingEnabled = true;
             comboBoxClass.Items.AddRange(new object[] { "All" });
-            comboBoxClass.Location = new Point(702, 87);
+            comboBoxClass.Location = new Point(765, 87);
             comboBoxClass.Name = "comboBoxClass";
             comboBoxClass.Size = new Size(130, 28);
             comboBoxClass.TabIndex = 40;
@@ -251,7 +251,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(67, 3, 125);
-            panel2.Location = new Point(702, 120);
+            panel2.Location = new Point(765, 116);
             panel2.Name = "panel2";
             panel2.Size = new Size(130, 3);
             panel2.TabIndex = 37;
@@ -259,7 +259,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(67, 3, 125);
-            panel1.Location = new Point(21, 123);
+            panel1.Location = new Point(21, 115);
             panel1.Name = "panel1";
             panel1.Size = new Size(142, 3);
             panel1.TabIndex = 36;
@@ -269,7 +269,7 @@
             labelClass.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelClass.AutoSize = true;
             labelClass.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            labelClass.Location = new Point(702, 55);
+            labelClass.Location = new Point(765, 55);
             labelClass.Name = "labelClass";
             labelClass.Size = new Size(63, 19);
             labelClass.TabIndex = 35;
@@ -298,6 +298,16 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Export";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // buttonTest
+            // 
+            buttonTest.Location = new Point(544, 225);
+            buttonTest.Name = "buttonTest";
+            buttonTest.Size = new Size(113, 59);
+            buttonTest.TabIndex = 3;
+            buttonTest.Text = "Test";
+            buttonTest.UseVisualStyleBackColor = true;
+            buttonTest.Click += buttonTest_Click;
             // 
             // label3
             // 
@@ -359,16 +369,6 @@
             label2.Name = "label2";
             label2.Size = new Size(100, 23);
             label2.TabIndex = 0;
-            // 
-            // buttonTest
-            // 
-            buttonTest.Location = new Point(544, 225);
-            buttonTest.Name = "buttonTest";
-            buttonTest.Size = new Size(113, 59);
-            buttonTest.TabIndex = 3;
-            buttonTest.Text = "Test";
-            buttonTest.UseVisualStyleBackColor = true;
-            buttonTest.Click += buttonTest_Click;
             // 
             // setAttendance
             // 
