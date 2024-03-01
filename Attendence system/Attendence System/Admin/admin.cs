@@ -70,7 +70,7 @@ namespace AttendanceManagmentProject.Admin
             userControlAddClass1.Visible = false;
             userControlAddTeacher1.Visible = false;
             userControlAddStudent1.Visible = false;
-            userControlAttendance1.Visible = false;
+             userControlAttendanceV2.Visible = false;
 
             MoveSidePanel(PanelDashboard);
 
@@ -79,7 +79,7 @@ namespace AttendanceManagmentProject.Admin
 
         private void buttonAttendance_Click(object sender, EventArgs e)
         {
-            userControlAttendance1.Visible = true;
+            userControlAttendanceV2.Visible = true;
             userControlDashboard1.Visible = false;
             userControlAddClass1.Visible = false;
             userControlAddStudent1.Visible = false;
@@ -97,7 +97,8 @@ namespace AttendanceManagmentProject.Admin
             userControlAddStudent1.Visible = false;
             userControlAddTeacher1.Visible = false;
             userControlDashboard1.Visible = false;
-            userControlAttendance1.Visible = false;
+            userControlAttendanceV2.Visible = false;
+
 
             MoveSidePanel(panelAddClass);
 
@@ -129,7 +130,8 @@ namespace AttendanceManagmentProject.Admin
             userControlAddStudent1.Visible = false;
             userControlAddClass1.Visible = false;
             userControlDashboard1.Visible = false;
-            userControlAttendance1.Visible = false;
+            userControlAttendanceV2.Visible = false;
+
 
             MoveSidePanel(panelAddTeacher);
 
@@ -144,7 +146,8 @@ namespace AttendanceManagmentProject.Admin
             userControlAddClass1.Visible = false;
             userControlDashboard1.Visible = false;
             userControlAddTeacher1.Visible = false;
-            userControlAttendance1.Visible = false;
+            userControlAttendanceV2.Visible = false;
+
 
             MoveSidePanel(panelAddstudent);
 

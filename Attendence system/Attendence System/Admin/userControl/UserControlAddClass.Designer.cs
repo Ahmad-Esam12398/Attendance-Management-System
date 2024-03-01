@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlAddClass));
             toolTip = new ToolTip(components);
             tabPageAddClass = new TabPage();
             btnAddClass = new Button();
@@ -41,6 +42,7 @@
             label1 = new Label();
             tabControlAddClass = new TabControl();
             tabPageSearchClass = new TabPage();
+            pictureBox1 = new PictureBox();
             panel3 = new Panel();
             labelTotalClasses = new Label();
             label6 = new Label();
@@ -64,6 +66,7 @@
             tabPageAddClass.SuspendLayout();
             tabControlAddClass.SuspendLayout();
             tabPageSearchClass.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClass).BeginInit();
             tabPageUpdateAndDelete.SuspendLayout();
             SuspendLayout();
@@ -105,7 +108,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.Blue;
+            panel2.BackColor = Color.LightGray;
             panel2.Location = new Point(456, 214);
             panel2.Name = "panel2";
             panel2.Size = new Size(270, 2);
@@ -132,7 +135,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Blue;
+            panel1.BackColor = Color.LightGray;
             panel1.Location = new Point(134, 214);
             panel1.Name = "panel1";
             panel1.Size = new Size(270, 2);
@@ -186,6 +189,7 @@
             // tabPageSearchClass
             // 
             tabPageSearchClass.BackColor = Color.White;
+            tabPageSearchClass.Controls.Add(pictureBox1);
             tabPageSearchClass.Controls.Add(panel3);
             tabPageSearchClass.Controls.Add(labelTotalClasses);
             tabPageSearchClass.Controls.Add(label6);
@@ -193,17 +197,26 @@
             tabPageSearchClass.Controls.Add(textBoxSearchClass);
             tabPageSearchClass.Controls.Add(label4);
             tabPageSearchClass.Controls.Add(label5);
-            tabPageSearchClass.Location = new Point(4, 24);
+            tabPageSearchClass.Location = new Point(4, 26);
             tabPageSearchClass.Name = "tabPageSearchClass";
             tabPageSearchClass.Padding = new Padding(3);
-            tabPageSearchClass.Size = new Size(934, 473);
-            tabPageSearchClass.TabIndex = 1;
+             tabPageSearchClass.TabIndex = 1;
             tabPageSearchClass.Text = "Search Class";
             tabPageSearchClass.Enter += tabPageSearchClass_Enter;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(407, 79);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 25);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 60;
+            pictureBox1.TabStop = false;
+            // 
             // panel3
             // 
-            panel3.BackColor = Color.BurlyWood;
+            panel3.BackColor = Color.LightGray;
             panel3.Location = new Point(154, 110);
             panel3.Name = "panel3";
             panel3.Size = new Size(270, 2);
@@ -318,10 +331,10 @@
             tabPageUpdateAndDelete.Controls.Add(textBoxClassName1);
             tabPageUpdateAndDelete.Controls.Add(label8);
             tabPageUpdateAndDelete.Controls.Add(label9);
-            tabPageUpdateAndDelete.Location = new Point(4, 24);
+            tabPageUpdateAndDelete.Location = new Point(4, 26);
             tabPageUpdateAndDelete.Name = "tabPageUpdateAndDelete";
             tabPageUpdateAndDelete.Padding = new Padding(3);
-            tabPageUpdateAndDelete.Size = new Size(934, 473);
+            tabPageUpdateAndDelete.Size = new Size(934, 471);
             tabPageUpdateAndDelete.TabIndex = 2;
             tabPageUpdateAndDelete.Text = "Update and Delete";
             tabPageUpdateAndDelete.Leave += tabPageUpdateAndDelete_Leave;
@@ -358,7 +371,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.Blue;
+            panel4.BackColor = Color.LightGray;
             panel4.Location = new Point(438, 186);
             panel4.Name = "panel4";
             panel4.Size = new Size(270, 2);
@@ -385,7 +398,7 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.Blue;
+            panel5.BackColor = Color.LightGray;
             panel5.Location = new Point(116, 186);
             panel5.Name = "panel5";
             panel5.Size = new Size(270, 2);
@@ -436,6 +449,7 @@
             tabControlAddClass.ResumeLayout(false);
             tabPageSearchClass.ResumeLayout(false);
             tabPageSearchClass.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClass).EndInit();
             tabPageUpdateAndDelete.ResumeLayout(false);
             tabPageUpdateAndDelete.PerformLayout();
@@ -476,5 +490,6 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private Panel panel3;
+        private PictureBox pictureBox1;
     }
 }

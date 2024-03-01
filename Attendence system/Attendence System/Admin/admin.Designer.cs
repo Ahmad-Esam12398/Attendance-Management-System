@@ -71,7 +71,7 @@
             userControlAddClass1 = new attendence_system.Admin.userControl.UserControlAddClass();
             userControlAddStudent1 = new attendence_system.Admin.userControl.UserControlAddStudent();
             userControlAddTeacher1 = new attendence_system.Admin.userControl.UserControlAddTeacher();
-            userControlAttendance1 = new attendence_system.Admin.userControl.UserControlAttendance();
+            userControlAttendanceV2 = new attendence_system.Admin.userControl.UserControlAttendanceV2();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panelAddTeacher.SuspendLayout();
@@ -108,7 +108,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(67, 3, 105);
+            panel4.BackColor = Color.FromArgb(67, 3, 125);
             panel4.Controls.Add(panelAddTeacher);
             panel4.Controls.Add(panelAddClass);
             panel4.Controls.Add(panelAddstudent);
@@ -267,7 +267,6 @@
             PanelDashboard.Name = "PanelDashboard";
             PanelDashboard.Size = new Size(200, 66);
             PanelDashboard.TabIndex = 1;
-        //    PanelDashboard.Paint += parentPanel_Paint;
             // 
             // buttonDashboard
             // 
@@ -305,7 +304,7 @@
             // panel2
             // 
             panel2.AutoSize = true;
-            panel2.BackColor = Color.FromArgb(67, 3, 105);
+            panel2.BackColor = Color.FromArgb(67, 3, 125);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(pictureBox1);
@@ -440,7 +439,7 @@
             // 
             // panelTop
             // 
-            panelTop.BackColor = Color.FromArgb(67, 3, 105);
+            panelTop.BackColor = Color.FromArgb(67, 3, 125);
             panelTop.Controls.Add(labelRole);
             panelTop.Controls.Add(labelR);
             panelTop.Controls.Add(LabelUserName);
@@ -563,17 +562,16 @@
             userControlAddTeacher1.Size = new Size(1046, 389);
             userControlAddTeacher1.TabIndex = 0;
             userControlAddTeacher1.Visible = false;
-         //   userControlAddTeacher1.Load += userControlAddTeacher1_Load;
             // 
-            // userControlAttendance1
+            // userControlAttendanceV2
             // 
-            userControlAttendance1.BackColor = Color.White;
-            userControlAttendance1.Location = new Point(287, 173);
-            userControlAttendance1.Margin = new Padding(4, 4, 4, 4);
-            userControlAttendance1.Name = "userControlAttendance1";
-            userControlAttendance1.Size = new Size(1336, 620);
-            userControlAttendance1.TabIndex = 6;
-            userControlAttendance1.Visible = false;
+            userControlAttendanceV2.BackColor = Color.White;
+            userControlAttendanceV2.Location = new Point(287, 172);
+            userControlAttendanceV2.Margin = new Padding(4);
+            userControlAttendanceV2.Name = "userControlAttendanceV2";
+            userControlAttendanceV2.Size = new Size(1350, 620);
+            userControlAttendanceV2.TabIndex = 5;
+            userControlAttendanceV2.Visible = false;
             // 
             // admin
             // 
@@ -581,7 +579,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1333, 562);
-            Controls.Add(userControlAttendance1);
+            Controls.Add(userControlAttendanceV2);
             Controls.Add(userControlAddTeacher1);
             Controls.Add(userControlAddStudent1);
             Controls.Add(userControlAddClass1);
@@ -670,6 +668,7 @@
         private attendence_system.Admin.userControl.UserControlAddStudent userControlAddStudent1;
         private attendence_system.Admin.userControl.UserControlAddTeacher userControlAddTeacher1;
         private attendence_system.Admin.userControl.UserControlAttendance userControlAttendance1;
+        private attendence_system.Admin.userControl.UserControlAttendanceV2 userControlAttendanceV2;
         //  private System.Windows.Forms.Timer timerDateAndTime;
     }
 }

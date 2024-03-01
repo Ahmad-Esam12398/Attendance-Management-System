@@ -173,12 +173,7 @@ namespace attendence_system.Admin.userControl
             }
             else
             {
-                // Check if the Email is unique
-                if (!InstructorDataManipulator.IsEmailAvailable(textBoxEmailstudent.Text.Trim()))
-                {
-                    MessageBox.Show("Email already exists. Please choose a different mail.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+
 
 
                 // Create a new user node
@@ -228,13 +223,13 @@ namespace attendence_system.Admin.userControl
                 XmlNode classNode = doc.CreateElement("class");
                 classNode.InnerText = selectedClass;
                 newUser.AppendChild(classNode);
-                
+
                 if (!InstructorDataManipulator.IsClassCapacityAvailable(selectedClass))
                 {
                     MessageBox.Show($"Class {selectedClass} has reached its maximum capacity. Cannot add more users", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-  
+
                 if (InstructorDataManipulator.validateUserData(newUser))
                 {
                     InstructorDataManipulator.AddNewUser(newUser);
@@ -463,7 +458,7 @@ namespace attendence_system.Admin.userControl
         }
 
 
-    
+
         private void tabPageUpdateAndDelete_Leave(object sender, EventArgs e)
         {
             // Check if SID is not empty and is a valid integer

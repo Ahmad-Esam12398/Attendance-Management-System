@@ -12,8 +12,11 @@ using System.Xml;
 using attendence_system;
 namespace attendence_system.Admin.userControl
 {
+    
     public partial class UserControlAddClass : UserControl
     {
+    
+      
         string ClsString = "";
         public UserControlAddClass()
         {
@@ -74,19 +77,34 @@ namespace attendence_system.Admin.userControl
             // Check if SID is not empty and is a valid integer
             if (!string.IsNullOrEmpty(ClsString) && int.TryParse(ClsString, out int userId))
             {
-            // Retrieve the existing user node from the data source
+                // Retrieve the existing user node from the data source
                 XmlNode existingClassNode = InstructorDataManipulator.GetClassNode(userId.ToString());
 
                 if (existingClassNode != null)
                 {
+                    string oldClassName = existingClassNode.SelectSingleNode("name").InnerText;
+                    string newClassName = textBoxClassName1.Text.Trim();
 
-                    existingClassNode.SelectSingleNode("name").InnerText = textBoxClassName1.Text.Trim();
-                    existingClassNode.SelectSingleNode("max").InnerText = textBoxHMstudent1.Text.Trim();
-
-                    if (InstructorDataManipulator.validateClassesData(existingClassNode))
+                    if (oldClassName != newClassName) // Check if class name has changed
                     {
-                        InstructorDataManipulator.UpdateClassData(existingClassNode);
-                        MessageBox.Show("Class updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        existingClassNode.SelectSingleNode("name").InnerText = newClassName;
+                        existingClassNode.SelectSingleNode("max").InnerText = textBoxHMstudent1.Text.Trim();
+
+                        if (InstructorDataManipulator.validateClassesData(existingClassNode))
+                        {
+                            InstructorDataManipulator.UpdateClassData(existingClassNode);
+
+                            // Invoke event handler if class name changed
+                           UpdateUsers(oldClassName, newClassName);
+
+                            //   ClassChanged?.Invoke(oldClassName, newClassName);
+
+                            MessageBox.Show("Class updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Class name remains unchanged", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -96,23 +114,60 @@ namespace attendence_system.Admin.userControl
             }
         }
 
+        static void UpdateUsers(string oldClassName, string newClassName)
+        {
+            XmlDocument usersData = InstructorDataManipulator.GetUsersData();
+            // Retrieve all <user> elements with the specified class name
+            List<XmlNode> userList = usersData.SelectNodes($"/users/user[class='{oldClassName}']").Cast<XmlNode>().ToList();
+
+            // Update relevant information for each user
+            foreach (XmlNode userNode in userList)
+            {
+                // Modify the user information as needed
+                // For example, update the class name or any other attributes
+                XmlNode classNode = userNode.SelectSingleNode("class");
+                if (classNode != null)
+                {
+                    classNode.InnerText = newClassName; // Update the class name
+                }
+            }
+            // Save changes to the users.xml file
+            usersData.Save(@"./../../../../../Xml/usersAuthenticationC#.xml");
+            InstructorDataManipulator.SaveChangesInFile();
+        }
+
         private void btnDeleteClass_Click(object sender, EventArgs e)
         {
-
             if (!string.IsNullOrEmpty(ClsString))
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to delete this Class?", "Delete Class", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                XmlNode classNode= InstructorDataManipulator.GetClassNode(ClsString);
+                string className = classNode.SelectSingleNode("name").InnerText;
 
-                if (dialogResult == DialogResult.Yes)
+                // Check if there are users in the class
+                bool usersExist =InstructorDataManipulator.CheckUsersInClass(className);
 
+                if (usersExist)
                 {
-                    DeleteClass(ClsString);
+                    DialogResult dialogResult = MessageBox.Show($"The presence of users associated with this class {className} prevents its deletion.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else
+                {
+                    // No users in the class, proceed with deletion
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete this class?", "Delete Class", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        DeleteClass(ClsString);
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Please select a row from the table.", "Select Row", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+  
 
         }
         // ======================= Delete Specific Class =======================
