@@ -55,6 +55,7 @@
             buttonSaveAs = new Button();
             comboBoxFileType = new ComboBox();
             label2 = new Label();
+            buttonTest = new Button();
             tabControlSetAttendance.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttendance).BeginInit();
@@ -286,6 +287,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(buttonTest);
             tabPage1.Controls.Add(label3);
             tabPage1.Controls.Add(buttonSave);
             tabPage1.Controls.Add(comboBoxExtension);
@@ -358,6 +360,16 @@
             label2.Size = new Size(100, 23);
             label2.TabIndex = 0;
             // 
+            // buttonTest
+            // 
+            buttonTest.Location = new Point(544, 225);
+            buttonTest.Name = "buttonTest";
+            buttonTest.Size = new Size(113, 59);
+            buttonTest.TabIndex = 3;
+            buttonTest.Text = "Test";
+            buttonTest.UseVisualStyleBackColor = true;
+            buttonTest.Click += buttonTest_Click;
+            // 
             // setAttendance
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -409,5 +421,6 @@
         private Button buttonSave;
         private ComboBox comboBoxExtension;
         private Label label3;
+        private Button buttonTest;
     }
 }

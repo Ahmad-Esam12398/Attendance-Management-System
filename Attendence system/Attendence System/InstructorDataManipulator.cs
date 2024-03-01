@@ -15,6 +15,7 @@ using iText.Layout;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using Document = iText.Layout.Document;
+using System.Xml.Xsl;
 
 namespace attendence_system
 {
@@ -493,7 +494,7 @@ namespace attendence_system
                 foreach (DataGridViewCell cell in row.Cells)
                 {
                     if (cell.ColumnIndex == 6)
-                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString() == "True" ? "Absent" : "Present")));
+                        table.AddCell(new Cell().Add(new Paragraph(cell.Value.ToString() == "True" ? "Present" : "Absent")));
                     else if (cell.ColumnIndex == 5)
                         table.AddCell(new Cell().Add(new Paragraph(Convert.ToDateTime(cell.Value).ToString("dd-MM-yyyy"))));
                     else
@@ -506,6 +507,51 @@ namespace attendence_system
 
             // Close the document
             document.Close();
+        }
+        public static string DataGridViewToXml(DataGridView dgv)
+        {
+            var xmlDocument = new XmlDocument();
+            var xmlDeclaration = xmlDocument.CreateXmlDeclaration("1.0", "UTF-8", null);
+            xmlDocument.AppendChild(xmlDeclaration);
+
+            var root = xmlDocument.CreateElement("students");
+            xmlDocument.AppendChild(root);
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                var xmlElement = xmlDocument.CreateElement("student");
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    var element = xmlDocument.CreateElement(cell.OwningColumn.HeaderText);
+                    if(cell.OwningColumn.HeaderText == "Date")
+                        element.InnerText = Convert.ToDateTime(cell.Value).ToString("dd-MM-yyyy");
+                    else if(cell.OwningColumn.HeaderText == "Status")
+                        element.InnerText = cell.Value.ToString() == "True" ? "Present" : "Absent";
+                    else
+                        element.InnerText = cell.Value.ToString();
+                    xmlElement.AppendChild(element);
+                }
+                root.AppendChild(xmlElement);
+            }
+            return xmlDocument.OuterXml;
+        }
+        public static string TransformXmlWithXslt(string xml, string xslt)
+        {
+            var xsltSettings = new XsltSettings { EnableScript = true };
+            var xsltTransform = new XslCompiledTransform();
+            xsltTransform.Load(XmlReader.Create(new StringReader(xslt)), xsltSettings, null);
+
+            var xmlReader = XmlReader.Create(new StringReader(xml));
+            var stringWriter = new StringWriter();
+            var xmlWriter = XmlWriter.Create(stringWriter, xsltTransform.OutputSettings);
+
+            xsltTransform.Transform(xmlReader, xmlWriter);
+
+            return stringWriter.ToString();
+        }
+        public static void WriteToFile(string data, string filePath)
+        {
+            File.WriteAllText(filePath, data);
         }
         static public XmlNode GetClassNode(string id)
         {

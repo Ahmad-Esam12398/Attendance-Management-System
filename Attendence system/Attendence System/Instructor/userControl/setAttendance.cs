@@ -172,7 +172,7 @@ namespace attendence_system.Instructor.userControl
                 comboBoxClass.Items.Add(item.InnerText);
             }
         }
-        
+
         private void filterRows(string criteria, string column = "class", string comparison = "=", DateTime dateCriteria = default)
         {
             if (column == "Date")
@@ -246,6 +246,14 @@ namespace attendence_system.Instructor.userControl
                     break;
             }
 
+        }
+
+        private void buttonTest_Click(object sender, EventArgs e)
+        {
+            string outerXml = InstructorDataManipulator.DataGridViewToXml(dataGridViewAttendance);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(outerXml);
+            doc.Save("C:\\Users\\Ahmad Esam El-Bastaw\\Desktop\\test.xml");
         }
     }
 }
